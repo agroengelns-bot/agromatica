@@ -33,8 +33,8 @@ assets/
 Den kompletten Inhalt dieses Ordners in das GitHub-Repository kopieren, committen und pushen. GitHub Pages kann direkt aus `main` und `/root` bereitstellen.
 
 
-## Produkt-Unterseiten
-- dreh-schwenkantriebe.html
-- linearantriebe.html
-
-Die Karten auf `produkte.html` verlinken direkt auf diese Unterseiten.
+## Neue Produkt-Unterseite
+- `dreh-schwenkantriebe.html` enthält den Konfigurator für Dreh- und Schwenkantriebe.
+- `assets/css/configurator.css` enthält das Layout für den Konfigurator.
+- `assets/js/configurator.js` enthält die Beispiel-Produktlogik.
+- Echte Layer-Bilder können später als transparente PNGs in `assets/img/konfigurator/` abgelegt werden.
