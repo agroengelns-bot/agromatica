@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const existing = document.querySelector(".version-badge");
-  if (existing) existing.remove();
-
-  const box = document.createElement("div");
-  box.className = "version-badge";
+  let box = document.querySelector(".version-badge");
+  if (!box) {
+    box = document.createElement("div");
+    box.className = "version-badge";
+    document.body.appendChild(box);
+  }
   box.textContent = "Konfigurator V15";
-  document.body.appendChild(box);
 });
