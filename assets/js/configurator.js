@@ -14,13 +14,6 @@ function setActive(layer, active) {
   layer.classList.toggle("is-active", active);
 }
 
-function ensureVersionBadge() {
-  if (document.querySelector(".version-badge")) return;
-  const badge = document.createElement("div");
-  badge.className = "version-badge";
-  badge.textContent = "Konfigurator V14";
-  document.body.appendChild(badge);
-}
 
 function renderMatches(rule, hasShaft, layerText) {
   const box = $("matches");
@@ -72,6 +65,9 @@ function updateConfigurator() {
 
   baseLayer.classList.toggle("has-shaft", hasShaft);
 
+  hoodLayer.src = rule.ring ? "assets/img/konfigurator/haube-mit-ring.png" : "assets/img/konfigurator/haube.png";
+  hoodLayer.alt = rule.ring ? "Haube mit Ring" : "Haube";
+
   setActive(baseLayer, true);
   setActive(ringLayer, rule.ring);
   setActive(hoodLayer, rule.hood);
@@ -97,8 +93,6 @@ function updateConfigurator() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  ensureVersionBadge();
-
   ["torque", "time", "protection", "shaftType"].forEach((id) => {
     const el = $(id);
     if (!el) return;
