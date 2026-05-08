@@ -1,85 +1,31 @@
-const productRules = [
-  { name: "100-Nm-Testaufbau", min: 0, max: 199, ring: false, hood: true },
-  { name: "200-Nm-Testaufbau", min: 200, max: 9999, ring: true, hood: true }
-];
+document.addEventListener("DOMContentLoaded", () => {
 
-const $ = (id) => document.getElementById(id);
+  const torqueInput = document.getElementById("torque");
+  const shaftTypeInput = document.getElementById("shaftType");
 
-const torqueInput = $("torque");
-const timeInput = $("time");
-const protectionInput = $("protection");
-const shaftTypeInput = $("shaftType");
+  const baseLayer = document.getElementById("baseLayer");
+  const ringLayer = document.getElementById("ringLayer");
+  const hoodLayer = document.getElementById("hoodLayer");
 
-const preview = $("productPreview");
-const baseLayer = $("baseLayer");
-const ringLayer = $("ringLayer");
-const hoodLayer = $("hoodLayer");
+  function update() {
+    const torque = Number(torqueInput.value || 0);
+    const hasRing = torque >= 200;
+    const hasShaft = shaftTypeInput.value === "querbohrung";
 
-function getRule(torque) {
-  return productRules.find((rule) => torque >= rule.min && torque <= rule.max) || productRules[0];
-}
+    baseLayer.src = hasShaft
+      ? "assets/img/konfigurator/gehaeuse-welle.png"
+      : "assets/img/konfigurator/gehaeuse.png";
 
-function setActive(layer, active) {
-  layer.classList.toggle("is-active", active);
-}
+    baseLayer.classList.toggle("has-shaft", hasShaft);
 
-function update() {
-  const torque = Number(torqueInput.value || 0);
-  const time = Number(timeInput.value || 0);
-  const protection = protectionInput.value;
-  const shaftType = shaftTypeInput.value;
+    ringLayer.classList.toggle("is-active", hasRing);
+    hoodLayer.classList.toggle("is-active", true);
 
-  const rule = getRule(torque);
-  const hasShaft = shaftType === "querbohrung";
+    hoodLayer.classList.toggle("with-ring", hasRing);
+  }
 
-  baseLayer.src = hasShaft
-    ? "assets/img/konfigurator/gehaeuse-welle.png"
-    : "assets/img/konfigurator/gehaeuse.png";
-  baseLayer.alt = hasShaft ? "Gehäuse mit Welle" : "Gehäuse";
-  baseLayer.classList.toggle("has-shaft", hasShaft);
-  preview.classList.toggle("is-shaft", hasShaft);
+  torqueInput.addEventListener("input", update);
+  shaftTypeInput.addEventListener("change", update);
 
-  setActive(baseLayer, true);
-  setActive(ringLayer, rule.ring);
-  setActive(hoodLayer, rule.hood);
-  hoodLayer.classList.toggle("with-ring", rule.ring);
-
-  const layerParts = [];
-  if (rule.ring) layerParts.push("Ring");
-  if (rule.hood) layerParts.push("Haube");
-  const layerText = layerParts.join(" + ") || "nur Gehäuse";
-
-  $("torqueOut").textContent = torque + " Nm";
-  $("timeOut").textContent = time + " s";
-  $("protectionOut").textContent = protection;
-  $("housingOut").textContent = hasShaft ? "Gehäuse mit Welle" : "Standardgehäuse";
-  $("layersOut").textContent = layerText;
-  $("seriesBadge").textContent = torque >= 200 ? "200 Nm" : "100 Nm";
-  $("resultTitle").textContent = (hasShaft ? "Gehäuse mit Welle" : "Gehäuse") + (layerText ? " + " + layerText : "");
-
-  renderMatches(rule, hasShaft, layerText);
-}
-
-function renderMatches(rule, hasShaft, layerText) {
-  const box = $("matches");
-  if (!box) return;
-  box.innerHTML = "";
-
-  [
-    { title: rule.name, copy: hasShaft ? "Querbohrung: Gehäuse mit Welle" : "Standard: fixes Gehäuse" },
-    { title: "Aktive Layer", copy: layerText }
-  ].forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "match-card";
-    card.innerHTML = `<h3>${item.title}</h3><p>${item.copy}</p>`;
-    box.appendChild(card);
-  });
-}
-
-[torqueInput, timeInput, protectionInput, shaftTypeInput].forEach((el) => {
-  if (!el) return;
-  el.addEventListener("input", update);
-  el.addEventListener("change", update);
+  update();
 });
-
-update();
