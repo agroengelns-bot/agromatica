@@ -18,7 +18,7 @@ function ensureVersionBadge() {
   if (document.querySelector(".version-badge")) return;
   const badge = document.createElement("div");
   badge.className = "version-badge";
-  badge.textContent = "Konfigurator V14";
+  badge.textContent = "Konfigurator V15";
   document.body.appendChild(badge);
 }
 
@@ -70,13 +70,13 @@ function updateConfigurator() {
     : "assets/img/konfigurator/gehaeuse.png";
   baseLayer.alt = hasShaft ? "Gehäuse mit Welle" : "Gehäuse";
 
-  baseLayer.classList.toggle("has-shaft", hasShaft);
+  hoodLayer.src = rule.ring
+    ? "assets/img/konfigurator/haube-mit-ring.png"
+    : "assets/img/konfigurator/haube.png";
 
   setActive(baseLayer, true);
   setActive(ringLayer, rule.ring);
   setActive(hoodLayer, rule.hood);
-
-  hoodLayer.classList.toggle("with-ring", rule.ring);
 
   const layerParts = [];
   if (rule.ring) layerParts.push("Ring");
