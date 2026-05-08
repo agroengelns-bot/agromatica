@@ -105,20 +105,29 @@
 
 .product-preview {
   position: relative;
-  width: min(100%, 720px);
-  aspect-ratio: 1 / 1;
+  width: min(100%, 760px);
+  aspect-ratio: 5 / 4;
   overflow: hidden;
 }
 
 /* gemeinsamer Nullpunkt für alle Layer */
 .product-layer {
+  --layer-x: 0%;
+  --layer-y: 2%;
+  --layer-scale: 1;
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  width: 172%;
+  height: 172%;
   object-fit: contain;
   opacity: 0;
   pointer-events: none;
+  transform-origin: center center;
+  transform: translate(
+      calc(-50% + var(--layer-x)),
+      calc(-50% + var(--layer-y))
+    ) scale(var(--layer-scale));
   transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
@@ -129,29 +138,30 @@
 /* Basis */
 .product-base {
   z-index: 1;
-  transform: translate3d(0, 0, 0);
 }
 
 /* mit Welle minimal tiefer */
 .product-base.has-shaft {
-  transform: translate3d(0, 1.2%, 0);
+  --layer-y: 4.5%;
 }
 
 /* Ring direkt auf Gehäuse */
 .product-ring {
   z-index: 2;
-  transform: translate3d(0, -1.5%, 0) scale(1.01);
+  --layer-y: 0.8%;
+  --layer-scale: 1.01;
 }
 
 /* Haube ohne Ring direkt auf Gehäuse */
 .product-hood {
   z-index: 3;
-  transform: translate3d(0, -0.8%, 0) scale(1.01);
+  --layer-y: 0.5%;
+  --layer-scale: 1.01;
 }
 
 /* Haube mit Ring leicht höher */
 .product-hood.with-ring {
-  transform: translate3d(0, -8.5%, 0) scale(1.01);
+  --layer-y: -6.8%;
 }
 
 .device-info {
