@@ -17,11 +17,6 @@
   padding: 28px;
 }
 
-.config-panel h2 {
-  font-size: 30px;
-  margin: 0 0 18px;
-}
-
 .form-grid {
   display: grid;
   gap: 18px;
@@ -41,27 +36,6 @@
   padding: 13px 14px;
   font-size: 16px;
   background: #fff;
-}
-
-.hint {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 5px;
-}
-
-.note {
-  margin-top: 16px;
-  padding: 14px;
-  border-radius: 14px;
-  background: #fff7df;
-  border: 1px solid #f1d58b;
-}
-
-.result-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 18px;
 }
 
 .device-stage {
@@ -87,7 +61,6 @@
   aspect-ratio: 1 / 1;
 }
 
-/* 🔥 WICHTIG: Layer Setup */
 .product-layer {
   position: absolute;
   width: 130%;
@@ -98,80 +71,32 @@
   opacity: 0;
 }
 
-/* Sichtbarkeit */
 .product-layer.is-active {
   opacity: 1;
 }
 
-/* Basis */
 .product-base {
   z-index: 1;
+  transform: translateY(0%);
 }
 
-/* Ring */
+.product-base.has-shaft {
+  transform: translateY(2%);
+}
+
+/* Ring sitzt direkt auf Gehäuse */
 .product-ring {
   z-index: 2;
-  transform: translateY(-15%);
+  transform: translateY(-6%) scale(1.015);
 }
 
-/* 🔥 FIX: Haube korrekt nach oben */
+/* Haube ohne Ring → direkt auf Gehäuse */
 .product-hood {
   z-index: 3;
-  transform: translateY(-25%) scale(1.02);
+  transform: translateY(6%) scale(1.02);
 }
 
-/* rechte Infobox */
-.device-info {
-  border-left: 1px solid var(--line);
-  padding-left: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.spec {
-  padding: 13px;
-  border-radius: 14px;
-  background: #f4f9fb;
-  border: 1px solid var(--line);
-}
-
-.spec strong {
-  display: block;
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.spec span {
-  font-size: 17px;
-  font-weight: 700;
-}
-
-.matches {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-
-.match-card {
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 16px;
-  background: #fff;
-}
-
-/* Responsive */
-@media (max-width: 980px) {
-  .config-grid,
-  .device-stage {
-    grid-template-columns: 1fr;
-  }
-
-  .device-info {
-    border-left: 0;
-    border-top: 1px solid var(--line);
-    padding-left: 0;
-    padding-top: 18px;
-  }
+/* Haube mit Ring → rutscht nach oben */
+.product-hood.with-ring {
+  transform: translateY(-10%) scale(1.02);
 }
