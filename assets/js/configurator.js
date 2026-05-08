@@ -1,40 +1,36 @@
-const productRules=[{name:"100-Nm-Testaufbau",min:0,max:199,ring:false,hood:true},{name:"200-Nm-Testaufbau",min:200,max:9999,ring:true,hood:true}];
-const $=id=>document.getElementById(id);
-const torqueInput=$("torque"),timeInput=$("time"),protectionInput=$("protection"),shaftTypeInput=$("shaftType");
-const baseLayer=$("baseLayer"),ringLayer=$("ringLayer"),hoodLayer=$("hoodLayer");
-function getRule(torque){return productRules.find(rule=>torque>=rule.min&&torque<=rule.max)||productRules[0]}
-function setActive(layer,active){layer.classList.toggle("is-active",active)}
-function update(){
-  const torque=Number(torqueInput.value||0);
-  const time=Number(timeInput.value||0);
-  const protection=protectionInput.value;
-  const shaftType=shaftTypeInput.value;
-  const rule=getRule(torque);
-  const hasShaft=shaftType==="querbohrung";
-  baseLayer.src=hasShaft?"assets/img/konfigurator/gehaeuse-welle.png":"assets/img/konfigurator/gehaeuse.png";
-  baseLayer.alt=hasShaft?"Gehäuse mit Welle":"Gehäuse";
-  setActive(baseLayer,true);
-  setActive(ringLayer,rule.ring);
-  setActive(hoodLayer,rule.hood);
-  const layerText=[rule.hood?"Haube":"",rule.ring?"Ring":""].filter(Boolean).join(" + ")||"nur Gehäuse";
-  $("torqueOut").textContent=torque+" Nm";
-  $("timeOut").textContent=time+" s";
-  $("protectionOut").textContent=protection;
-  $("housingOut").textContent=hasShaft?"Gehäuse mit Welle":"Standardgehäuse";
-  $("layersOut").textContent=layerText;
-  $("seriesBadge").textContent=torque>=200?"200 Nm":"100 Nm";
-  $("resultTitle").textContent=hasShaft?"Gehäuse mit Welle"+(layerText?" + "+layerText:""):"Gehäuse"+(layerText?" + "+layerText:"");
-  renderMatches(torque,rule,hasShaft,layerText);
-}
-function renderMatches(torque,rule,hasShaft,layerText){
-  const box=$("matches");
-  box.innerHTML="";
-  [{title:rule.name,copy:(hasShaft?"Querbohrung: Gehäuse mit Welle":"Standard: fixes Gehäuse")},{title:"Aktive Layer",copy:layerText}].forEach(item=>{
-    const card=document.createElement("div");
-    card.className="match-card";
-    card.innerHTML=`<h3>${item.title}</h3><p>${item.copy}</p>`;
-    box.appendChild(card);
-  });
-}
-[torqueInput,timeInput,protectionInput,shaftTypeInput].forEach(el=>{el.addEventListener("input",update);el.addEventListener("change",update)});
-update();
+document.addEventListener("DOMContentLoaded", () => {
+  const drehmoment = document.querySelector("#drehmoment");
+  const wellenanschluss = document.querySelector("#wellenanschluss");
+
+  const base = document.querySelector(".layer-base");
+  const shaft = document.querySelector(".layer-shaft");
+  const ring = document.querySelector(".layer-ring");
+  const hood = document.querySelector(".layer-hood");
+
+  function updateConfig() {
+    const torque = parseInt(drehmoment.value);
+    const welle = wellenanschluss.value;
+
+    base.classList.remove("layer-hidden");
+    shaft.classList.add("layer-hidden");
+    ring.classList.add("layer-hidden");
+    hood.classList.add("layer-hidden");
+
+    if (welle === "Querbohrung") {
+      base.classList.add("layer-hidden");
+      shaft.classList.remove("layer-hidden");
+    }
+
+    if (torque >= 200) {
+      ring.classList.remove("layer-hidden");
+      hood.classList.remove("layer-hidden");
+    } else {
+      hood.classList.remove("layer-hidden");
+    }
+  }
+
+  drehmoment.addEventListener("change", updateConfig);
+  wellenanschluss.addEventListener("change", updateConfig);
+
+  updateConfig();
+});
