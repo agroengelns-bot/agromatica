@@ -30,3 +30,6 @@ h1,h2,h3{color:var(--text)}h2{font-size:40px;line-height:1.12;margin:12px 0 0}.s
 @media (max-width:760px){section{padding:56px 0}.grid-2,.grid-3,.grid-4,.split,.contact-grid{grid-template-columns:1fr}h2{font-size:32px}.page-hero h1{font-size:38px}}
 
 .card-link{display:block;text-decoration:none;color:inherit}.card-link:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 20px 46px rgba(13,56,79,.16)}
+
+
+.section-header.section-header-full{max-width:none;margin-bottom:18px}
