@@ -26,6 +26,7 @@ function getPreset(torque) {
 function applyLayer(layer, preset) {
   if (!layer || !preset) return;
   layer.classList.toggle("is-active", Boolean(preset.visible));
+  layer.style.display = preset.visible ? "block" : "none";
   layer.style.zIndex = String(preset.order);
   layer.style.opacity = preset.visible ? "1" : "0";
   layer.style.transform = `translate(calc(-50% + ${preset.x}px), calc(-50% + ${preset.y}px)) scale(${preset.scale / 100})`;

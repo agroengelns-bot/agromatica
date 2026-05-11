@@ -97,32 +97,35 @@
 }
 
 .device-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 470px;
-}
-
-.product-preview {
   position: relative;
-  width: min(100%, 760px);
-  aspect-ratio: 5 / 4;
+  min-height: 470px;
   overflow: hidden;
 }
 
-/* gemeinsamer Nullpunkt für alle Layer – Werte kommen 1:1 aus dem Layer-Tool */
+.product-preview {
+  /* Gleiche Render-Bühne wie im Layer-Tool: feste Pixel-Bühne, danach nur komplett skaliert. */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 900px;
+  height: 760px;
+  overflow: hidden;
+  transform: translate(-50%, -50%) scale(0.58);
+  transform-origin: center center;
+}
+
+/* Layer-Tool-kompatibel: natürliche PNG-Größe, gemeinsamer Mittelpunkt, keine extra object-fit-Skalierung. */
 .product-layer {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 172%;
-  height: 172%;
-  object-fit: contain;
   opacity: 0;
   pointer-events: none;
   transform-origin: center center;
   transform: translate(-50%, -50%) scale(1);
   transition: opacity 0.22s ease, transform 0.22s ease;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .product-layer.is-active {
@@ -235,10 +238,10 @@
   }
 
   .device-wrap {
-    min-height: 320px;
+    min-height: 360px;
   }
 
   .product-preview {
-    width: min(100%, 440px);
+    transform: translate(-50%, -50%) scale(0.44);
   }
 }
