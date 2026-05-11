@@ -312,3 +312,50 @@
     transform: translate(-50%, -50%) scale(0.55);
   }
 }
+
+
+/* V23 breitere Vorschau */
+
+.configurator-layout{
+  grid-template-columns: 380px minmax(1250px,1fr);
+  gap: 32px;
+}
+
+.device-stage{
+  width:100%;
+  max-width:none;
+  min-height: 620px;
+  padding: 24px 40px;
+}
+
+.device-wrap{
+  min-height: 540px;
+}
+
+.product-preview{
+  transform: translate(-50%, -50%) scale(0.78);
+}
+
+.device-info{
+  width: 280px;
+}
+
+@media (max-width: 1600px){
+  .configurator-layout{
+    grid-template-columns: 380px minmax(1000px,1fr);
+  }
+
+  .product-preview{
+    transform: translate(-50%, -50%) scale(0.68);
+  }
+}
+
+@media (max-width: 1200px){
+  .configurator-layout{
+    grid-template-columns:1fr;
+  }
+
+  .product-preview{
+    transform: translate(-50%, -50%) scale(0.58);
+  }
+}
