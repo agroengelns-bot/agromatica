@@ -1,119 +1,94 @@
-
-const productRules = [
-  {
-    name: "100-Nm-Testaufbau",
-    min: 0,
-    max: 199,
-    title: "Gehäuse + Haube",
-    ring: false,
-    hood: true,
-    layerText: "Haube",
-    preset: {
-      base: { x: 0, y: 68, scale: 1.08, opacity: 100, order: 3 },
-      ring: { x: 9, y: 22, scale: 1.03, opacity: 100, order: 2 },
-      hood: { x: 10, y: -8, scale: 1.10, opacity: 100, order: 1 }
+const productPresets = {
+  "100": {
+    name: "100 Nm – Gehäuse mit Haube",
+    layers: {
+      base: { visible: true, x: 0, y: 218, scale: 100, order: 3 },
+      ring: { visible: false, x: 20, y: 63, scale: 94, order: 2 },
+      hood: { visible: true, x: 9, y: -21, scale: 101, order: 1 }
     }
   },
-  {
-    name: "200-Nm-Testaufbau",
-    min: 200,
-    max: 9999,
-    title: "Gehäuse + Ring + Haube",
-    ring: true,
-    hood: true,
-    layerText: "Ring + Haube",
-    preset: {
-      base: { x: 0, y: 68, scale: 1.08, opacity: 100, order: 3 },
-      ring: { x: 9, y: 24, scale: 1.03, opacity: 100, order: 2 },
-      hood: { x: 10, y: -34, scale: 1.10, opacity: 100, order: 1 }
+  "200": {
+    name: "200 Nm – Gehäuse mit Ring und Haube",
+    layers: {
+      base: { visible: true, x: 0, y: 218, scale: 100, order: 3 },
+      ring: { visible: true, x: 20, y: 63, scale: 94, order: 2 },
+      hood: { visible: true, x: 9, y: -108, scale: 101, order: 1 }
     }
   }
-];
+};
 
 const $ = (id) => document.getElementById(id);
 
-function getRule(torque) {
-  return productRules.find((rule) => torque >= rule.min && torque <= rule.max) || productRules[0];
+function getPreset(torque) {
+  return Number(torque || 0) >= 200 ? productPresets["200"] : productPresets["100"];
 }
 
-function applyLayer(layer, preset, isVisible) {
+function applyLayer(layer, preset) {
   if (!layer || !preset) return;
-  layer.style.display = isVisible ? "block" : "none";
-  if (!isVisible) return;
-  layer.style.position = "absolute";
-  layer.style.left = "50%";
-  layer.style.top = "50%";
-  layer.style.transformOrigin = "center center";
-  layer.style.opacity = String((preset.opacity ?? 100) / 100);
-  layer.style.zIndex = String(preset.order ?? 1);
-  layer.style.transform = `translate(calc(-50% + ${preset.x || 0}px), calc(-50% + ${preset.y || 0}px)) scale(${preset.scale || 1})`;
+  layer.classList.toggle("is-active", Boolean(preset.visible));
+  layer.style.zIndex = String(preset.order);
+  layer.style.opacity = preset.visible ? "1" : "0";
+  layer.style.transform = `translate(calc(-50% + ${preset.x}px), calc(-50% + ${preset.y}px)) scale(${preset.scale / 100})`;
 }
 
-function renderMatches(rule, hasShaft, layerText) {
-  const matches = $("matches");
-  if (!matches) return;
-  matches.innerHTML = `
-    <article class="match-card">
-      <h3>${rule.name}</h3>
-      <p>${hasShaft ? "Querbohrung" : "Standard"}: ${hasShaft ? "Gehäuse mit Welle" : "fixes Gehäuse"}</p>
-    </article>
-    <article class="match-card">
-      <h3>Aktive Layer</h3>
-      <p>${layerText}</p>
-    </article>
-  `;
+function renderMatches(preset, layerText) {
+  const box = $("matches");
+  if (!box) return;
+  box.innerHTML = "";
+
+  [
+    { title: preset.name, copy: "Basis ist immer gehaeuse.png. Zusatzlayer werden je nach Drehmoment gesetzt." },
+    { title: "Aktive Layer", copy: layerText }
+  ].forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "match-card";
+    card.innerHTML = `<h3>${item.title}</h3><p>${item.copy}</p>`;
+    box.appendChild(card);
+  });
 }
 
 function updateConfigurator() {
   const torqueInput = $("torque");
   const timeInput = $("time");
   const protectionInput = $("protection");
-  const shaftTypeInput = $("shaftType");
-  const seriesBadge = $("seriesBadge");
-  const resultTitle = $("resultTitle");
-  const torqueOut = $("torqueOut");
-  const timeOut = $("timeOut");
-  const protectionOut = $("protectionOut");
-  const housingOut = $("housingOut");
-  const layersOut = $("layersOut");
 
   const baseLayer = $("baseLayer");
   const ringLayer = $("ringLayer");
   const hoodLayer = $("hoodLayer");
 
-  if (!torqueInput || !shaftTypeInput || !baseLayer || !ringLayer || !hoodLayer) return;
+  if (!torqueInput || !baseLayer || !ringLayer || !hoodLayer) return;
 
   const torque = Number(torqueInput.value || 0);
   const time = Number(timeInput?.value || 0);
   const protection = protectionInput?.value || "";
-  const shaftType = shaftTypeInput.value;
-  const hasShaft = shaftType === "querbohrung";
-  const rule = getRule(torque);
+  const preset = getPreset(torque);
 
-  if (seriesBadge) seriesBadge.textContent = `${torque || 0} Nm`;
-  if (resultTitle) resultTitle.textContent = rule.title;
-  if (torqueOut) torqueOut.textContent = `${torque || 0} Nm`;
-  if (timeOut) timeOut.textContent = `${time || 0} s`;
-  if (protectionOut) protectionOut.textContent = protection;
-  if (housingOut) housingOut.textContent = hasShaft ? "Gehäuse mit Welle" : "Standardgehäuse";
-  if (layersOut) layersOut.textContent = rule.layerText;
+  baseLayer.src = "assets/img/konfigurator/gehaeuse.png";
+  ringLayer.src = "assets/img/konfigurator/ring.png";
+  hoodLayer.src = "assets/img/konfigurator/haube.png";
 
-  baseLayer.src = hasShaft
-    ? "assets/img/konfigurator/gehaeuse-welle.png"
-    : "assets/img/konfigurator/gehaeuse.png";
-  hoodLayer.src = rule.ring
-    ? "assets/img/konfigurator/haube-mit-ring.png"
-    : "assets/img/konfigurator/haube.png";
+  applyLayer(baseLayer, preset.layers.base);
+  applyLayer(ringLayer, preset.layers.ring);
+  applyLayer(hoodLayer, preset.layers.hood);
 
-  applyLayer(baseLayer, rule.preset.base, true);
-  applyLayer(ringLayer, rule.preset.ring, rule.ring);
-  applyLayer(hoodLayer, rule.preset.hood, rule.hood);
+  const activeParts = ["Gehäuse"];
+  if (preset.layers.ring.visible) activeParts.push("Ring");
+  if (preset.layers.hood.visible) activeParts.push("Haube");
+  const layerText = activeParts.join(" + ");
 
-  renderMatches(rule, hasShaft, rule.layerText);
+  if ($("torqueOut")) $("torqueOut").textContent = torque + " Nm";
+  if ($("timeOut")) $("timeOut").textContent = time + " s";
+  if ($("protectionOut")) $("protectionOut").textContent = protection;
+  if ($("housingOut")) $("housingOut").textContent = "Gehäuse";
+  if ($("layersOut")) $("layersOut").textContent = preset.layers.ring.visible ? "Ring + Haube" : "Haube";
+  if ($("seriesBadge")) $("seriesBadge").textContent = torque >= 200 ? "200 Nm" : "100 Nm";
+  if ($("resultTitle")) $("resultTitle").textContent = preset.layers.ring.visible ? "Gehäuse mit Ring und Haube" : "Gehäuse mit Haube";
+
+  renderMatches(preset, layerText);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  ["torque", "time", "protection", "shaftType"].forEach((id) => {
+  ["torque", "time", "protection"].forEach((id) => {
     const el = $(id);
     if (!el) return;
     el.addEventListener("input", updateConfigurator);
