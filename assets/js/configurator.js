@@ -64,9 +64,9 @@ function updateConfigurator() {
   const protection = protectionInput?.value || "";
   const preset = getPreset(torque);
 
-  baseLayer.src = "assets/img/konfigurator/gehaeuse.png";
-  ringLayer.src = "assets/img/konfigurator/ring.png";
-  hoodLayer.src = "assets/img/konfigurator/haube.png";
+  baseLayer.src = "assets/img/konfigurator/gehaeuse.png?v=20";
+  ringLayer.src = "assets/img/konfigurator/ring.png?v=20";
+  hoodLayer.src = "assets/img/konfigurator/haube.png?v=20";
 
   applyLayer(baseLayer, preset.layers.base);
   applyLayer(ringLayer, preset.layers.ring);

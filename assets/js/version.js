@@ -5,5 +5,5 @@ document.addEventListener("DOMContentLoaded", () => {
     box.className = "version-badge";
     document.body.appendChild(box);
   }
-  box.textContent = "Konfigurator V19";
+  box.textContent = "Konfigurator V20";
 });
