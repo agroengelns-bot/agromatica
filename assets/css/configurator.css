@@ -258,3 +258,57 @@
     transform: translate(-50%, -50%) scale(0.44);
   }
 }
+
+
+/* V22 größere Produktvorschau */
+
+.configurator-layout{
+  grid-template-columns: 420px minmax(900px,1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.config-panel{
+  max-width:none;
+}
+
+.device-stage{
+  min-height: 760px;
+  padding: 32px;
+}
+
+.device-wrap{
+  min-height: 620px;
+}
+
+.product-preview{
+  transform: translate(-50%, -50%) scale(0.72);
+}
+
+.device-info{
+  width: 260px;
+}
+
+.match-grid{
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 1400px){
+  .product-preview{
+    transform: translate(-50%, -50%) scale(0.62);
+  }
+}
+
+@media (max-width: 1100px){
+  .configurator-layout{
+    grid-template-columns: 1fr;
+  }
+
+  .device-stage{
+    min-height: 620px;
+  }
+
+  .product-preview{
+    transform: translate(-50%, -50%) scale(0.55);
+  }
+}
