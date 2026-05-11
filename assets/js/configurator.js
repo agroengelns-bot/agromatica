@@ -9,9 +9,9 @@ const productRules = [
     hood: true,
     layerText: "Haube",
     preset: {
-      base: { x: 0, y: 62, scale: 0.97, opacity: 100, order: 3 },
-      ring: { x: 9, y: 22, scale: 0.92, opacity: 100, order: 2 },
-      hood: { x: 10, y: -6, scale: 0.99, opacity: 100, order: 1 }
+      base: { x: 0, y: 68, scale: 1.08, opacity: 100, order: 3 },
+      ring: { x: 9, y: 22, scale: 1.03, opacity: 100, order: 2 },
+      hood: { x: 10, y: -8, scale: 1.10, opacity: 100, order: 1 }
     }
   },
   {
@@ -23,9 +23,9 @@ const productRules = [
     hood: true,
     layerText: "Ring + Haube",
     preset: {
-      base: { x: 0, y: 62, scale: 0.97, opacity: 100, order: 3 },
-      ring: { x: 9, y: 22, scale: 0.92, opacity: 100, order: 2 },
-      hood: { x: 10, y: -30, scale: 0.99, opacity: 100, order: 1 }
+      base: { x: 0, y: 68, scale: 1.08, opacity: 100, order: 3 },
+      ring: { x: 9, y: 24, scale: 1.03, opacity: 100, order: 2 },
+      hood: { x: 10, y: -34, scale: 1.10, opacity: 100, order: 1 }
     }
   }
 ];
