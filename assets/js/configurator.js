@@ -19,6 +19,19 @@ const productPresets = {
   }
 };
 
+const shaftVariants = {
+  none: {
+    name: "Keine Welle",
+    file: null,
+    placement: { visible: false, x: 0, y: 0, scale: 100, order: 1 }
+  },
+  test2: {
+    name: "Test2",
+    file: "Test2.png",
+    placement: { visible: true, x: -20, y: 170, scale: 100, order: 3 }
+  }
+};
+
 const $ = (id) => document.getElementById(id);
 
 function getPreset(torque) {
@@ -55,34 +68,44 @@ function updateConfigurator() {
   const timeInput = $("time");
   const protectionInput = $("protection");
   const showHandwheelInput = $("showHandwheel");
+  const shaftTypeInput = $("shaftType");
 
   const baseLayer = $("baseLayer");
   const ringLayer = $("ringLayer");
   const hoodLayer = $("hoodLayer");
+  const shaftLayer = $("shaftLayer");
   const handwheelLayer = $("handwheelLayer");
 
-  if (!torqueInput || !baseLayer || !ringLayer || !hoodLayer || !handwheelLayer) return;
+  if (!torqueInput || !baseLayer || !ringLayer || !hoodLayer || !shaftLayer || !handwheelLayer) return;
 
   const torque = Number(torqueInput.value || 0);
   const time = Number(timeInput?.value || 0);
   const protection = protectionInput?.value || "";
   const handwheelVisible = showHandwheelInput ? showHandwheelInput.checked : true;
+  const selectedShaftKey = shaftTypeInput ? shaftTypeInput.value : "none";
+  const selectedShaft = shaftVariants[selectedShaftKey] || shaftVariants.none;
   const preset = getPreset(torque);
 
-  baseLayer.src = "assets/img/konfigurator/gehaeuse.png?v=21";
-  ringLayer.src = "assets/img/konfigurator/ring.png?v=21";
-  hoodLayer.src = "assets/img/konfigurator/haube.png?v=21";
-  handwheelLayer.src = "assets/img/konfigurator/handrad.png?v=21";
+  baseLayer.src = "assets/img/konfigurator/gehaeuse.png?v=28";
+  ringLayer.src = "assets/img/konfigurator/ring.png?v=28";
+  hoodLayer.src = "assets/img/konfigurator/haube.png?v=28";
+  handwheelLayer.src = "assets/img/konfigurator/handrad.png?v=28";
+
+  if (selectedShaft.file) {
+    shaftLayer.src = `assets/img/konfigurator/${selectedShaft.file}?v=28`;
+  }
 
   applyLayer(baseLayer, preset.layers.base);
   applyLayer(ringLayer, preset.layers.ring);
   applyLayer(hoodLayer, preset.layers.hood);
+  applyLayer(shaftLayer, selectedShaft.placement);
   applyLayer(handwheelLayer, {
     ...preset.layers.handwheel,
     visible: preset.layers.handwheel.visible && handwheelVisible
   });
 
   const activeParts = ["Gehäuse"];
+  if (selectedShaft.placement.visible) activeParts.push(selectedShaft.name);
   if (preset.layers.ring.visible) activeParts.push("Ring");
   if (preset.layers.hood.visible) activeParts.push("Haube");
   if (handwheelVisible) activeParts.push("Handrad");
@@ -100,7 +123,7 @@ function updateConfigurator() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  ["torque", "time", "protection", "showHandwheel"].forEach((id) => {
+  ["torque", "time", "protection", "showHandwheel", "shaftType"].forEach((id) => {
     const el = $(id);
     if (!el) return;
     el.addEventListener("input", updateConfigurator);
