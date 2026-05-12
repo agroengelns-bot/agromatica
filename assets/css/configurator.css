@@ -260,7 +260,87 @@
 }
 
 
-/* V28 Wellentyp-Auswahl */
+/* V27 Root-Cause-Fix:
+   Problem war NICHT die Produktgrafik,
+   sondern die feste Gesamtbreite des Containers.
+*/
+
+.config-section > .container{
+  max-width: 1650px !important;
+}
+
+.config-grid{
+  grid-template-columns: 420px minmax(1000px, 1fr) !important;
+  gap: 40px !important;
+}
+
+/* Rechte Gesamtkarte */
+.config-result{
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Inneres Vorschaufenster */
+.device-stage{
+  grid-template-columns: minmax(820px, 1fr) 260px !important;
+  width: 100% !important;
+  min-height: 620px !important;
+}
+
+/* Bereich links vom Infofeld */
+.device-wrap{
+  min-width: 820px !important;
+  overflow: visible !important;
+}
+
+/* Produktbühne */
+.product-preview{
+  width: 900px !important;
+  height: 760px !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) scale(0.60) !important;
+}
+
+@media (max-width: 1450px){
+
+  .config-section > .container{
+    max-width: 1380px !important;
+  }
+
+  .config-grid{
+    grid-template-columns: 380px minmax(820px, 1fr) !important;
+  }
+
+  .device-stage{
+    grid-template-columns: minmax(620px, 1fr) 240px !important;
+  }
+
+  .device-wrap{
+    min-width: 620px !important;
+  }
+
+  .product-preview{
+    transform: translate(-50%, -50%) scale(0.52) !important;
+  }
+}
+
+@media (max-width: 1100px){
+
+  .config-grid{
+    grid-template-columns: 1fr !important;
+  }
+
+  .device-stage{
+    grid-template-columns: 1fr !important;
+  }
+
+  .device-wrap{
+    min-width: 0 !important;
+  }
+}
+
+
+/* V28 auf Basis V27: Wellentyp-Auswahl */
 .product-shaft {
   z-index: 1;
 }

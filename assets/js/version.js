@@ -5,5 +5,5 @@ document.addEventListener("DOMContentLoaded", () => {
     box.className = "version-badge";
     document.body.appendChild(box);
   }
-  box.textContent = "Konfigurator V28 – Wellentyp Test2";
+  box.textContent = "Konfigurator V28 – V27 + Wellentyp Test2";
 });
