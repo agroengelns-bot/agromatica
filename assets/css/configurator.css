@@ -359,3 +359,111 @@
     transform: translate(-50%, -50%) scale(0.58);
   }
 }
+
+
+/* V24 Fix: Vorschaufenster wirklich breiter machen, nicht nur höher */
+
+.configurator .container,
+.configurator-section .container,
+main .container{
+  max-width: 1500px;
+}
+
+.configurator-layout{
+  grid-template-columns: 340px minmax(980px, 1fr) !important;
+  gap: 28px !important;
+  align-items: start;
+}
+
+.config-panel{
+  width: 340px;
+}
+
+.result-card,
+.device-stage{
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.device-stage{
+  min-height: 620px !important;
+  padding: 24px !important;
+}
+
+.device-wrap{
+  display: grid !important;
+  grid-template-columns: minmax(700px, 1fr) 280px !important;
+  gap: 24px !important;
+  min-height: 520px !important;
+  overflow: visible !important;
+}
+
+.preview-box,
+.device-preview,
+.product-stage{
+  width: 100% !important;
+  min-width: 700px !important;
+  overflow: visible !important;
+}
+
+.product-preview{
+  left: 42% !important;
+  transform: translate(-50%, -50%) scale(0.62) !important;
+}
+
+.device-info{
+  width: 280px !important;
+  min-width: 280px !important;
+}
+
+@media (max-width: 1400px){
+  .configurator .container,
+  .configurator-section .container,
+  main .container{
+    max-width: 1280px;
+  }
+
+  .configurator-layout{
+    grid-template-columns: 320px minmax(860px, 1fr) !important;
+  }
+
+  .device-wrap{
+    grid-template-columns: minmax(600px, 1fr) 260px !important;
+  }
+
+  .preview-box,
+  .device-preview,
+  .product-stage{
+    min-width: 600px !important;
+  }
+
+  .product-preview{
+    left: 40% !important;
+    transform: translate(-50%, -50%) scale(0.56) !important;
+  }
+}
+
+@media (max-width: 1100px){
+  .configurator-layout{
+    grid-template-columns: 1fr !important;
+  }
+
+  .config-panel{
+    width: auto;
+  }
+
+  .device-wrap{
+    grid-template-columns: 1fr !important;
+  }
+
+  .preview-box,
+  .device-preview,
+  .product-stage{
+    min-width: 0 !important;
+  }
+
+  .product-preview{
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(0.50) !important;
+  }
+}
