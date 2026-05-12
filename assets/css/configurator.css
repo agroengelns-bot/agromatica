@@ -260,21 +260,18 @@
 }
 
 
-/* V25 saubere Breiten-Korrektur: rechte Vorschaukarte und Bildfenster breiter */
+/* V26: richtige Klassen korrigiert – Vorschaufenster breiter */
 
-.configurator .container{
-  max-width: 1500px !important;
+.config-section > .container{
+  max-width: 1580px !important;
 }
 
-.configurator-layout{
-  display: grid !important;
-  grid-template-columns: 360px 1fr !important;
+.config-grid{
+  grid-template-columns: 360px minmax(1050px, 1fr) !important;
   gap: 32px !important;
-  align-items: start !important;
 }
 
 .config-panel{
-  width: 100% !important;
   max-width: 360px !important;
 }
 
@@ -284,72 +281,52 @@
 }
 
 .device-stage{
-  width: 100% !important;
-  max-width: none !important;
+  grid-template-columns: minmax(760px, 1fr) 260px !important;
+  gap: 22px !important;
   min-height: 560px !important;
-  padding: 24px !important;
+  padding: 28px !important;
+  overflow: hidden !important;
 }
 
 .device-wrap{
-  display: grid !important;
-  grid-template-columns: minmax(760px, 1fr) 280px !important;
-  gap: 24px !important;
-  align-items: stretch !important;
-  min-height: 480px !important;
-}
-
-.product-preview-frame,
-.product-preview-area,
-.product-view,
-.preview-frame{
-  width: 100% !important;
-  max-width: none !important;
+  min-height: 470px !important;
+  overflow: visible !important;
 }
 
 .product-preview{
-  left: 38% !important;
+  left: 50% !important;
   top: 50% !important;
-  transform: translate(-50%, -50%) scale(0.52) !important;
+  width: 900px !important;
+  height: 760px !important;
+  transform: translate(-50%, -50%) scale(0.58) !important;
 }
 
 .device-info{
-  width: 280px !important;
-  min-width: 280px !important;
+  width: 260px !important;
+  min-width: 260px !important;
 }
 
-.match-grid{
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 18px !important;
-}
-
-@media (max-width: 1300px){
-  .configurator .container{
-    max-width: 1180px !important;
+@media (max-width: 1450px){
+  .config-section > .container{
+    max-width: 1320px !important;
   }
 
-  .configurator-layout{
-    grid-template-columns: 330px 1fr !important;
-    gap: 24px !important;
+  .config-grid{
+    grid-template-columns: 340px minmax(880px, 1fr) !important;
+    gap: 26px !important;
   }
 
-  .device-wrap{
-    grid-template-columns: minmax(560px, 1fr) 250px !important;
+  .device-stage{
+    grid-template-columns: minmax(610px, 1fr) 250px !important;
   }
 
   .product-preview{
-    left: 38% !important;
-    transform: translate(-50%, -50%) scale(0.46) !important;
-  }
-
-  .device-info{
-    width: 250px !important;
-    min-width: 250px !important;
+    transform: translate(-50%, -50%) scale(0.52) !important;
   }
 }
 
-@media (max-width: 980px){
-  .configurator-layout{
+@media (max-width: 1100px){
+  .config-grid{
     grid-template-columns: 1fr !important;
   }
 
@@ -357,17 +334,20 @@
     max-width: none !important;
   }
 
-  .device-wrap{
+  .device-stage{
     grid-template-columns: 1fr !important;
-  }
-
-  .product-preview{
-    left: 50% !important;
-    transform: translate(-50%, -50%) scale(0.44) !important;
   }
 
   .device-info{
     width: 100% !important;
     min-width: 0 !important;
+  }
+
+  .device-wrap{
+    overflow: hidden !important;
+  }
+
+  .product-preview{
+    transform: translate(-50%, -50%) scale(0.44) !important;
   }
 }
