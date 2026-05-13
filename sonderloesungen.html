@@ -1,20 +1,227 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<title>Sonderlösungen</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonderlösungen | Agromatic</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #0b1f3a;
+      background: #f5f7fb;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e8ef;
+      padding: 22px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header a {
+      color: #0b3f91;
+      text-decoration: none;
+      font-weight: 700;
+      margin-left: 24px;
+    }
+
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 56px 32px 80px;
+    }
+
+    .version-badge {
+      display: inline-block;
+      background: #0b3f91;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: 54px;
+      line-height: 1.05;
+      margin: 0 0 18px;
+      color: #08295c;
+    }
+
+    .intro {
+      font-size: 20px;
+      line-height: 1.55;
+      max-width: 980px;
+      margin-bottom: 46px;
+      color: #253858;
+    }
+
+    .solution-card {
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 18px 45px rgba(8, 41, 92, 0.12);
+      margin-bottom: 42px;
+      overflow: hidden;
+      border: 1px solid #e6ebf2;
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .solution-image {
+      background: #eef3fa;
+      min-height: 360px;
+    }
+
+    .solution-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .solution-text {
+      padding: 44px;
+    }
+
+    .number {
+      display: inline-flex;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #0b3f91;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-right: 14px;
+    }
+
+    h2 {
+      font-size: 31px;
+      margin: 0 0 24px;
+      color: #0b3f91;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.65;
+      color: #1f2f46;
+      margin: 0 0 18px;
+    }
+
+    .chart-card {
+      padding: 34px 42px 44px;
+      text-align: center;
+    }
+
+    .chart-card img {
+      width: 100%;
+      max-width: 1150px;
+      height: auto;
+      display: block;
+      margin: 20px auto 0;
+      border-radius: 14px;
+    }
+
+    footer {
+      background: #08295c;
+      color: white;
+      padding: 32px 60px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      header { padding: 18px 24px; }
+      .solution-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 40px; }
+      .solution-text { padding: 30px; }
+      .page { padding: 38px 20px 60px; }
+    }
+  </style>
 </head>
 <body>
 
-<section class="sonderloesungen">
+<header>
+  <strong>AGROMATIC</strong>
+  <nav>
+    <a href="index.html">Start</a>
+    <a href="produkte.html">Produkte</a>
+    <a href="sonderloesungen.html">Sonderlösungen</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+</header>
 
-<h1>Sonderlösungen</h1>
+<main class="page">
+  <div class="version-badge">Sonderlösungen Version 04</div>
 
-<div class="solution-card">
-  <img src="assets/img/kraft-wegregelung-ventile.png" alt="Kraft-Wegregelung von Ventilen" style="width:100%;max-width:1200px;">
-</div>
+  <h1>Sonderlösungen</h1>
 
-</section>
+  <p class="intro">
+    Individuelle technische Lösungen für anspruchsvolle Anwendungen im Maschinenbau,
+    in der Antriebstechnik und bei industriellen Sonderanforderungen.
+  </p>
+
+  <section class="solution-card">
+    <div class="solution-grid">
+      <div class="solution-image">
+        <img src="assets/img/vibration-industrie.png" alt="Vibrationsstarke Industrie- und Bahnanwendungen">
+      </div>
+
+      <div class="solution-text">
+        <h2><span class="number">1</span>Vibrationsstarke Umgebungen</h2>
+
+        <p>
+          Antriebssysteme in Zentrifugen, vibrationsintensiven Industrieanlagen sowie
+          in der Bahntechnik sind dauerhaft starken mechanischen Belastungen,
+          Schwingungen und wechselnden Lastzuständen ausgesetzt.
+        </p>
+
+        <p>
+          Agromatic entwickelt hierfür vibrationsoptimierte Antriebssysteme sowie
+          speziell gefertigte Reglerlösungen für vibrationsintensive Umgebungen.
+          Die Lösungen wurden bereits erfolgreich in anspruchsvollen Industrieanwendungen
+          und bei Bahnzulieferern eingesetzt.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="solution-card chart-card">
+    <h2><span class="number">2</span>Kraft-Wegregelung von Ventilen</h2>
+
+    <p>
+      Die Kraft-Wegregelung ermöglicht eine präzise und reproduzierbare Ventilbetätigung
+      durch Überwachung und Regelung von Kraft und Weg.
+    </p>
+
+    <img src="assets/img/kraft-wegregelung-ventile.png" alt="Kraft-Wegregelung von Ventilen">
+  </section>
+
+  <section class="solution-card">
+    <div class="solution-text">
+      <h2><span class="number">3</span>Elektromagnetische Getriebeauskupplung</h2>
+
+      <p>
+        Für spezielle Sicherheits- und Serviceanforderungen können Antriebssysteme
+        mit elektromagnetischen Auskupplungen ausgestattet werden. Dadurch lassen sich
+        Bewegungen kontrolliert trennen oder manuell verstellen.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © Agromatic Regelungstechnik
+</footer>
 
 </body>
 </html>

@@ -1,20 +1,12 @@
-AGROMATICA WEBSITE UPDATE
+Agromatica Update
 
-Diese ZIP ist zum direkten Überschreiben der bestehenden GitHub-Desktop-Ordnerstruktur vorbereitet.
+Diese ZIP ist für GitHub Desktop vorbereitet.
 
-Geänderte/enthaltene Dateien:
-- index.html
+Inhalt:
 - sonderloesungen.html
 - assets/img/vibration-industrie.png
+- assets/img/kraft-wegregelung-ventile.png
 
-Änderungen:
-- Feld „Sonderlösungen“ auf der Startseite verlinkt auf sonderloesungen.html.
-- Produktbereich-Karte „Sonderlösungen“ auf der Startseite verlinkt auf sonderloesungen.html.
-- Bild für vibrationsstarke Umgebungen in sonderloesungen.html eingebunden.
-- Text „Spezielle Fertigung unserer Regler für vibrationsintensive Umgebungen“ integriert.
-
-Vorgehen:
-1. ZIP entpacken.
-2. Inhalt in den lokalen GitHub-Desktop-Projektordner kopieren.
-3. Bestehende Dateien überschreiben.
-4. In GitHub Desktop committen und pushen.
+Anwendung:
+ZIP entpacken und in den bestehenden agromatica-Ordner kopieren.
+Vorhandene Dateien überschreiben.
