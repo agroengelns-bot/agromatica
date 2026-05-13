@@ -1,24 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Produkte – Agromatic</title>
-  <meta name="description" content="Produktbereiche und Sonderlösungen von Agromatic.">
-  <link rel="stylesheet" href="assets/css/main.css"><link rel="stylesheet" href="assets/css/header.css"><link rel="stylesheet" href="assets/css/hero.css"><link rel="stylesheet" href="assets/css/content.css"><link rel="stylesheet" href="assets/css/footer.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGROMATIC</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+    color:#1f2f46;
+}
+
+header{
+    background:#ffffff;
+    border-bottom:1px solid #dfe5ef;
+    padding:22px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    color:#08295c;
+}
+
+nav a{
+    color:#0b3f91;
+    text-decoration:none;
+    margin-left:26px;
+    font-weight:700;
+    transition:0.2s;
+}
+
+nav a:hover{
+    opacity:0.7;
+}
+
+main{
+    max-width:1280px;
+    margin:0 auto;
+    padding:60px 30px;
+    min-height:70vh;
+}
+
+footer{
+    background:#08295c;
+    color:white;
+    padding:50px 30px;
+    margin-top:80px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    max-width:1280px;
+    margin:0 auto;
+}
+
+.footer-title{
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.footer-text{
+    line-height:1.7;
+    opacity:0.92;
+}
+
+.cert-box{
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px solid rgba(255,255,255,0.2);
+}
+
+@media(max-width:900px){
+    header{
+        flex-direction:column;
+        gap:18px;
+        padding:24px;
+    }
+
+    nav{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    nav a{
+        margin:8px 14px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
 </head>
+
 <body>
-<header class="site-header"><div class="container header-inner"><a class="logo" href="index.html"><img src="assets/img/logo.png" alt="Agromatic Logo"></a><nav class="main-nav"><a href="index.html">Start</a><a href="produkte.html">Produkte</a><a href="atex.html">ATEX</a><a href="anwendungen.html">Anwendungen</a><a href="unternehmen.html">Unternehmen</a><a href="kontakt.html">Anfrage senden</a></nav></div></header>
+
+<header>
+    <div class="logo">AGROMATIC</div>
+
+    <nav>
+        <a href="index.html">Start</a>
+        <a href="produkte.html">Produkte</a>
+        <a href="sonderloesungen.html">Sonderlösungen</a>
+        <a href="anwendungen.html">Anwendungen</a>
+        <a href="unternehmen.html">Unternehmen</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+</header>
+
 <main>
-<section class="hero subhero"><div class="container"><p class="eyebrow">Agromatic</p><h1>Produktbereiche</h1><p>Der passende elektrische Stellantrieb für Ihre industrielle Anwendung.</p></div></section>
-<section class="section"><div class="container"><p class="eyebrow">Produktbereiche</p><h2>Der passende Antrieb für Ihre Aufgabe</h2><p>Unsere Produktbereiche sind so aufgebaut, dass Sie schnell den richtigen Einstieg finden – von klassischen Drehbewegungen bis zu linearen Anwendungen und explosionsgeschützten Lösungen.</p><div class="cards-grid">
-<a class="card" href="dreh-schwenkantriebe.html"><span class="kicker">Drehmoment</span><h3>Dreh- und Schwenkantriebe</h3><p>Für präzise Stellbewegungen und hohe Drehmomente in industriellen Anwendungen.</p></a>
-<a class="card" href="linearantriebe.html"><span class="kicker">Linear</span><h3>Linearantriebe</h3><p>Robuste Lösungen für lineare Bewegungen auch unter anspruchsvollen Einsatzbedingungen.</p></a>
-<a class="card" href="atex.html"><span class="kicker">Sicherheit</span><h3>ATEX / IECEx</h3><p>Sichere und zuverlässige Antriebe für explosionsgefährdete Bereiche und kritische Prozessumgebungen.</p></a>
-<a class="card" href="sonderloesungen.html"><span class="kicker">Individuell</span><h3>Sonderlösungen</h3><p>Problemstellungen, extreme Umgebungen, stromlose Kraftabschaltung und elektromagnetische Getriebeauskupplung.</p></a>
-</div></div></section>
-<section class="section alt"><div class="container"><p class="eyebrow">ATEX / IECEx</p><h2>Sicherheit für sensible Anwendungsbereiche</h2><p>In explosionsgefährdeten Bereichen sind Sicherheit und Zuverlässigkeit entscheidend. Agromatic bietet elektrische Stellantriebe, die speziell für diese Anforderungen entwickelt wurden und sich in kritischen Anwendungen bewähren.</p><ul><li>Zuverlässiger Betrieb auch unter anspruchsvollen Bedingungen</li><li>Auslegung für sensible und sicherheitskritische Einsatzbereiche</li><li>Individuelle Anpassung an Ihre Anlage und Anwendung</li><li>Technische Beratung für projektspezifische Anforderungen</li></ul><a class="button" href="kontakt.html">ATEX-Beratung anfragen</a></div></section>
-<section class="section"><div class="container"><p class="eyebrow">Kontakt</p><h2>Sie planen ein Projekt oder suchen den passenden Stellantrieb?</h2><p>Sprechen Sie mit uns. Wir unterstützen Sie bei der Auswahl der passenden Lösung und beraten Sie kompetent zu technischen Anforderungen, Einsatzbereichen und projektspezifischen Besonderheiten.</p><h3>Agromatic Regelungstechnik GmbH</h3><p>Stukenbrocker Weg 38<br>33813 Oerlinghausen</p><p>Telefon: +49 5202 9739 0<br>E-Mail: info@agromatic.de</p><a class="button" href="kontakt.html">Jetzt anfragen</a></div></section>
+    <h1>AGROMATIC</h1>
+    <p>Bitte bestehenden Seiteninhalt beibehalten und nur Header/Footer ersetzen.</p>
 </main>
-<footer><div class="container footer-grid"><div><strong>Agromatic Regelungstechnik GmbH</strong><br>Stukenbrocker Weg 38 · 33813 Oerlinghausen</div><div class="small">info@agromatic.de · +49 5202 9739 0</div></div></footer>
-</body></html>
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+            <div class="footer-title">AGROMATIC Regelungstechnik</div>
+
+            <div class="footer-text">
+                Individuelle Lösungen für Antriebstechnik,
+                Sondermaschinenbau und industrielle Regelungssysteme.
+            </div>
+
+            <div class="cert-box">
+                Zertifiziert nach DIN EN ISO 9001
+            </div>
+
+            <div class="cert-box">
+                Langjährige Mitgliedschaft im Verband Deutscher Maschinen-
+                und Anlagenbau e.V. (VDMA)
+            </div>
+        </div>
+
+        <div>
+            <div class="footer-title">Navigation</div>
+
+            <div class="footer-text">
+                Produkte<br>
+                Sonderlösungen<br>
+                Anwendungen<br>
+                Unternehmen<br>
+                Kontakt
+            </div>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
