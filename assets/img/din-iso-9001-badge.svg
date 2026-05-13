@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="96" viewBox="0 0 160 96" role="img" aria-labelledby="title desc">
+  <title id="title">DIN ISO 9001 Badge</title>
+  <desc id="desc">Neutrales Badge für DIN EN ISO 9001 Qualitätsmanagement</desc>
+  <rect width="160" height="96" rx="14" fill="#ffffff"/>
+  <rect x="8" y="8" width="144" height="80" rx="10" fill="none" stroke="#112733" stroke-width="4"/>
+  <text x="80" y="34" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#112733">DIN ISO</text>
+  <text x="80" y="59" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#112733">9001</text>
+  <text x="80" y="77" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#49616b">QUALITÄTSMANAGEMENT</text>
+</svg>
