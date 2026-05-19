@@ -3,17 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dreh- und Schwenkantriebe – Agromatic</title>
-<link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/header.css">
-<link rel="stylesheet" href="assets/css/hero.css">
-<link rel="stylesheet" href="assets/css/content.css">
-<link rel="stylesheet" href="assets/css/configurator.css">
-<link rel="stylesheet" href="assets/css/footer.css">
+<title>Dreh-Schwenkantriebe | AGROMATIC</title>
+<style>
+:root{--blue:#08295c;--blue2:#0b3f91;--light:#f4f7fb;--text:#1d2c44;--orange:#f25a00}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--text)}.site-header{background:#fff;border-bottom:1px solid #dde4ef;padding:18px 56px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--blue);font-weight:800;font-size:25px}.brand img{height:42px;width:auto}.main-nav{display:flex;gap:24px;flex-wrap:wrap}.main-nav a{color:var(--blue2);text-decoration:none;font-weight:700}.main-nav a:hover{opacity:.75}.page{max-width:1400px;margin:0 auto;padding:54px 30px 80px}.version{display:inline-block;background:var(--blue2);color:#fff;padding:8px 16px;border-radius:999px;font-size:14px;font-weight:700;margin-bottom:22px}h1{font-size:56px;line-height:1.05;margin:0 0 20px;color:var(--blue)}.intro{font-size:20px;line-height:1.6;max-width:1050px;margin:0 0 46px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}.card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 18px 45px rgba(8,41,92,.10);border:1px solid #e6ebf2}.card-img{width:100%;height:320px;object-fit:cover;display:block}.chart-img{width:100%;height:auto;display:block;background:#fff}.placeholder{height:320px;background:#e9eef7;display:flex;align-items:center;justify-content:center;color:#6b7c96;font-size:20px;font-weight:700}.content{padding:32px}h2{margin:0 0 16px;color:var(--blue2);font-size:28px}.num{display:inline-flex;width:40px;height:40px;border-radius:50%;background:var(--blue2);color:#fff;align-items:center;justify-content:center;font-weight:800;margin-right:12px}p{line-height:1.7;font-size:17px}.site-footer{background:var(--blue);color:#fff;padding:46px 34px;margin-top:60px}.footer-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:36px}.footer-inner h3{margin-top:0}.footer-cert{border-left:1px solid rgba(255,255,255,.22);padding-left:30px}@media(max-width:950px){.site-header{padding:20px;flex-direction:column;gap:14px}.main-nav{justify-content:center;gap:14px}.grid{grid-template-columns:1fr}h1{font-size:40px}.page{padding:38px 18px 60px}.footer-inner{grid-template-columns:1fr}.footer-cert{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.22);padding-top:20px}}
+</style>
 </head>
 <body>
-<header><div class="container nav"><a class="logo" href="index.html"><img src="assets/img/logo.png" alt="Agromatic Logo"></a><nav><a href="index.html">Start</a><a class="active" href="produkte.html">Produkte</a><a href="atex.html">ATEX</a><a href="anwendungen.html">Anwendungen</a><a href="unternehmen.html">Unternehmen</a><a class="btn btn-primary" href="kontakt.html">Anfrage senden</a></nav></div></header>
-<section class="page-hero"><div class="container"><div class="eyebrow">Produktkonfigurator</div><h1>Dreh- und Schwenkantriebe</h1><p>Wählen Sie Drehmoment, Schutzklasse und Wellenanschluss. Das Gehäuse bleibt fix, optionale Elemente werden als Layer ergänzt.</p></div></section>
-<section class="config-section"><div class="container"><div class="section-header"><div class="eyebrow">Auslegung</div><h2>Grundgerät konfigurieren</h2><p class="section-copy">Der Konfigurator nutzt echte Produktbilder als vorbereitete Layer: Gehäuse, Ring und Haube werden je nach Drehmoment als vorbereitete Layer übereinander kombiniert.</p></div><div class="config-grid"><aside class="config-panel"><h2>Parameter</h2><div class="form-grid"><div class="field"><label for="torque">Drehmoment</label><input id="torque" type="number" min="0" value="100"><div class="hint">100 Nm = Gehäuse + Haube, ab 200 Nm = Gehäuse + Ring + Haube</div></div><div class="field"><label for="time">Stellzeit</label><input id="time" type="number" min="0" value="30"><div class="hint">Stellzeit wird angezeigt, steuert die Layer-Auswahl aber nicht.</div></div><div class="field"><label for="protection">Schutzklasse</label><select id="protection"><option value="IP54">IP54</option><option value="IP65" selected>IP65</option><option value="IP67">IP67</option><option value="IP68">IP68</option></select></div><div class="field checkbox-field"><label class="checkbox-label"><input id="showHandwheel" type="checkbox" checked>Handrad anzeigen</label><div class="hint">Blendet das Handrad in der Produktvorschau ein oder aus.</div></div><div class="field"><label for="shaftType">Wellentyp</label><select id="shaftType"><option value="none">Keine Welle</option><option value="test2">Test2</option></select></div><div class="note">Basis ist immer gehaeuse.png. 100 Nm zeigt Gehäuse + Haube, ab 200 Nm Gehäuse + Ring + Haube.</div></aside><section class="config-panel"><div class="result-head"><div><span class="badge" id="seriesBadge">100 Nm</span><h2 id="resultTitle">Gehäuse mit Haube</h2></div><a href="kontakt.html" class="btn btn-primary">Anfrage senden</a></div><div class="device-stage"><div class="device-wrap"><div class="product-preview" id="productPreview" aria-label="Layer-Darstellung des konfigurierten Antriebs"><img class="product-layer product-base is-active" id="baseLayer" src="assets/img/konfigurator/gehaeuse.png" alt="Gehäuse"><img class="product-layer product-ring" id="ringLayer" src="assets/img/konfigurator/ring.png" alt="Ring"><img class="product-layer product-hood" id="hoodLayer" src="assets/img/konfigurator/haube.png" alt="Haube"><img class="product-layer product-shaft" id="shaftLayer" src="assets/img/konfigurator/Test2.png" alt="Welle"><img class="product-layer product-handwheel" id="handwheelLayer" src="assets/img/konfigurator/handrad.png" alt="Handrad"></div></div><div class="device-info"><div class="spec"><strong>Drehmoment</strong><span id="torqueOut">100 Nm</span></div><div class="spec"><strong>Stellzeit</strong><span id="timeOut">30 s</span></div><div class="spec"><strong>Schutzklasse</strong><span id="protectionOut">IP65</span></div><div class="spec"><strong>Gehäuse</strong><span id="housingOut">Gehäuse</span></div><div class="spec"><strong>Layer</strong><span id="layersOut">Haube</span></div></div></div><div class="matches" id="matches"></div><p class="layer-note">Verwendet werden <code>gehaeuse.png</code>, <code>ring.png</code>, <code>haube.png</code> und optional <code>handrad.png</code>. Die Positionswerte stammen aus dem Layer-Tool.</p></section></div></div></section>
-<footer><div class="container footer-grid"><div><strong>Agromatic Regelungstechnik GmbH</strong><div class="small">Stukenbrocker Weg 38 · 33813 Oerlinghausen</div></div><div class="small"><a href="mailto:info@agromatic.de">info@agromatic.de</a> · <a href="tel:+49520297390">+49 5202 9739 0</a></div></div></footer>
-<script src="assets/js/main.js"></script><script src="assets/js/version.js"></script><script src="assets/js/configurator.js"></script></body></html>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="assets/img/logo.png" alt="AGROMATIC Logo"><span>AGROMATIC</span></a>
+  <nav class="main-nav">
+    <a href="index.html">Start</a>
+    <a href="produkte.html">Produkte</a>
+    <a href="sonderloesungen.html">Sonderlösungen</a>
+    <a href="anwendungen.html">Anwendungen</a>
+    <a href="unternehmen.html">Unternehmen</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+</header>
+<main class="page">
+<h1>Dreh- und Schwenkantriebe</h1><p class="intro">Robuste Antriebstechnik für industrielle Stellaufgaben.</p>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <h3>AGROMATIC Regelungstechnik</h3>
+      <p>Individuelle Lösungen für Antriebstechnik, industrielle Regelungssysteme und Sondermaschinenbau.</p>
+    </div>
+    <div class="footer-cert">
+      <p><strong>Zertifiziert nach DIN EN ISO 9001</strong></p>
+      <p>Langjährige Mitgliedschaft im Verband Deutscher Maschinen- und Anlagenbau e.V. (VDMA)</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

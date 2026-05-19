@@ -3,166 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AGROMATIC</title>
-
+<title>Anwendungen | AGROMATIC</title>
 <style>
-body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f5f7fb;
-    color:#1f2f46;
-}
-
-header{
-    background:#ffffff;
-    border-bottom:1px solid #dfe5ef;
-    padding:22px 60px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:sticky;
-    top:0;
-    z-index:1000;
-}
-
-.logo{
-    font-size:28px;
-    font-weight:800;
-    color:#08295c;
-}
-
-nav a{
-    color:#0b3f91;
-    text-decoration:none;
-    margin-left:26px;
-    font-weight:700;
-    transition:0.2s;
-}
-
-nav a:hover{
-    opacity:0.7;
-}
-
-main{
-    max-width:1280px;
-    margin:0 auto;
-    padding:60px 30px;
-    min-height:70vh;
-}
-
-footer{
-    background:#08295c;
-    color:white;
-    padding:50px 30px;
-    margin-top:80px;
-}
-
-.footer-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-    max-width:1280px;
-    margin:0 auto;
-}
-
-.footer-title{
-    font-size:22px;
-    font-weight:700;
-    margin-bottom:18px;
-}
-
-.footer-text{
-    line-height:1.7;
-    opacity:0.92;
-}
-
-.cert-box{
-    margin-top:18px;
-    padding-top:18px;
-    border-top:1px solid rgba(255,255,255,0.2);
-}
-
-@media(max-width:900px){
-    header{
-        flex-direction:column;
-        gap:18px;
-        padding:24px;
-    }
-
-    nav{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    nav a{
-        margin:8px 14px;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
-}
+:root{--blue:#08295c;--blue2:#0b3f91;--light:#f4f7fb;--text:#1d2c44;--orange:#f25a00}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--text)}.site-header{background:#fff;border-bottom:1px solid #dde4ef;padding:18px 56px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--blue);font-weight:800;font-size:25px}.brand img{height:42px;width:auto}.main-nav{display:flex;gap:24px;flex-wrap:wrap}.main-nav a{color:var(--blue2);text-decoration:none;font-weight:700}.main-nav a:hover{opacity:.75}.page{max-width:1400px;margin:0 auto;padding:54px 30px 80px}.version{display:inline-block;background:var(--blue2);color:#fff;padding:8px 16px;border-radius:999px;font-size:14px;font-weight:700;margin-bottom:22px}h1{font-size:56px;line-height:1.05;margin:0 0 20px;color:var(--blue)}.intro{font-size:20px;line-height:1.6;max-width:1050px;margin:0 0 46px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}.card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 18px 45px rgba(8,41,92,.10);border:1px solid #e6ebf2}.card-img{width:100%;height:320px;object-fit:cover;display:block}.chart-img{width:100%;height:auto;display:block;background:#fff}.placeholder{height:320px;background:#e9eef7;display:flex;align-items:center;justify-content:center;color:#6b7c96;font-size:20px;font-weight:700}.content{padding:32px}h2{margin:0 0 16px;color:var(--blue2);font-size:28px}.num{display:inline-flex;width:40px;height:40px;border-radius:50%;background:var(--blue2);color:#fff;align-items:center;justify-content:center;font-weight:800;margin-right:12px}p{line-height:1.7;font-size:17px}.site-footer{background:var(--blue);color:#fff;padding:46px 34px;margin-top:60px}.footer-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:36px}.footer-inner h3{margin-top:0}.footer-cert{border-left:1px solid rgba(255,255,255,.22);padding-left:30px}@media(max-width:950px){.site-header{padding:20px;flex-direction:column;gap:14px}.main-nav{justify-content:center;gap:14px}.grid{grid-template-columns:1fr}h1{font-size:40px}.page{padding:38px 18px 60px}.footer-inner{grid-template-columns:1fr}.footer-cert{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.22);padding-top:20px}}
 </style>
 </head>
-
 <body>
-
-<header>
-    <div class="logo">AGROMATIC</div>
-
-    <nav>
-        <a href="index.html">Start</a>
-        <a href="produkte.html">Produkte</a>
-        <a href="sonderloesungen.html">Sonderlösungen</a>
-        <a href="anwendungen.html">Anwendungen</a>
-        <a href="unternehmen.html">Unternehmen</a>
-        <a href="kontakt.html">Kontakt</a>
-    </nav>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="assets/img/logo.png" alt="AGROMATIC Logo"><span>AGROMATIC</span></a>
+  <nav class="main-nav">
+    <a href="index.html">Start</a>
+    <a href="produkte.html">Produkte</a>
+    <a href="sonderloesungen.html">Sonderlösungen</a>
+    <a href="anwendungen.html">Anwendungen</a>
+    <a href="unternehmen.html">Unternehmen</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
 </header>
-
-<main>
-    <h1>AGROMATIC</h1>
-    <p>Bitte bestehenden Seiteninhalt beibehalten und nur Header/Footer ersetzen.</p>
+<main class="page">
+<h1>Anwendungen</h1><p class="intro">AGROMATIC Lösungen kommen in Industrieanlagen, Maschinenbau, Ventiltechnik und anspruchsvollen Umgebungen zum Einsatz.</p>
 </main>
-
-<footer>
-
-    <div class="footer-grid">
-
-        <div>
-            <div class="footer-title">AGROMATIC Regelungstechnik</div>
-
-            <div class="footer-text">
-                Individuelle Lösungen für Antriebstechnik,
-                Sondermaschinenbau und industrielle Regelungssysteme.
-            </div>
-
-            <div class="cert-box">
-                Zertifiziert nach DIN EN ISO 9001
-            </div>
-
-            <div class="cert-box">
-                Langjährige Mitgliedschaft im Verband Deutscher Maschinen-
-                und Anlagenbau e.V. (VDMA)
-            </div>
-        </div>
-
-        <div>
-            <div class="footer-title">Navigation</div>
-
-            <div class="footer-text">
-                Produkte<br>
-                Sonderlösungen<br>
-                Anwendungen<br>
-                Unternehmen<br>
-                Kontakt
-            </div>
-        </div>
-
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <h3>AGROMATIC Regelungstechnik</h3>
+      <p>Individuelle Lösungen für Antriebstechnik, industrielle Regelungssysteme und Sondermaschinenbau.</p>
     </div>
-
+    <div class="footer-cert">
+      <p><strong>Zertifiziert nach DIN EN ISO 9001</strong></p>
+      <p>Langjährige Mitgliedschaft im Verband Deutscher Maschinen- und Anlagenbau e.V. (VDMA)</p>
+    </div>
+  </div>
 </footer>
-
 </body>
 </html>
