@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Produktkonfigurator – Agromatic</title>
+  <meta name="description" content="Agromatic Produktkonfigurator für elektrische Stellantriebe.">
+  <link rel="stylesheet" href="assets/css/main.css"><link rel="stylesheet" href="assets/css/header.css"><link rel="stylesheet" href="assets/css/hero.css"><link rel="stylesheet" href="assets/css/content.css"><link rel="stylesheet" href="assets/css/footer.css"><link rel="stylesheet" href="assets/css/configurator.css">
+</head>
+<body>
+<header class="site-header"><div class="container header-inner"><a class="logo" href="index.html"><img src="assets/img/logo.png" alt="Agromatic Logo"></a><nav class="main-nav"><a href="index.html">Start</a><a href="produkte.html">Produkte</a><a href="sonderloesungen.html">Sonderlösungen</a><a href="atex.html">ATEX</a><a href="anwendungen.html">Anwendungen</a><a href="unternehmen.html">Unternehmen</a><a href="kontakt.html">Anfrage senden</a></nav></div></header>
+<main>
+<section class="hero subhero"><div class="container"><p class="eyebrow">Agromatic</p><h1>Produktkonfigurator</h1><p>Konfigurieren Sie zentrale Varianten des elektrischen Stellantriebs.</p></div></section>
+<section class="section"><div class="container">
+  <div class="configurator">
+    <div class="config-panel">
+      <label>Drehmoment
+        <select id="torque"><option value="100">100 Nm</option><option value="200">200 Nm</option></select>
+      </label>
+      <label>Stellzeit
+        <select id="time"><option value="standard">Standard</option><option value="fast">Schnell</option><option value="slow">Langsam</option></select>
+      </label>
+      <label>Schutzart
+        <select id="protection"><option value="ip65">IP65</option><option value="ip67">IP67</option></select>
+      </label>
+      <label>Welle
+        <select id="shaftType"><option value="innenvierkant">Innenvierkant</option><option value="passfeder">Passfeder</option><option value="querbohrung">Querbohrung</option></select>
+      </label>
+      <label><input type="checkbox" id="showHandwheel" checked> Handrad anzeigen</label>
+    </div>
+    <div class="device-stage">
+      <div class="device-canvas">
+        <img id="baseLayer" alt="">
+        <img id="ringLayer" alt="">
+        <img id="hoodLayer" alt="">
+        <img id="shaftLayer" alt="">
+        <img id="handwheelLayer" alt="">
+      </div>
+      <aside class="result-panel">
+        <span id="seriesBadge"></span>
+        <h2 id="resultTitle"></h2>
+        <p><strong>Drehmoment:</strong> <span id="torqueOut"></span></p>
+        <p><strong>Stellzeit:</strong> <span id="timeOut"></span></p>
+        <p><strong>Schutzart:</strong> <span id="protectionOut"></span></p>
+        <p><strong>Gehäuse:</strong> <span id="housingOut"></span></p>
+        <p><strong>Layer:</strong> <span id="layersOut"></span></p>
+      </aside>
+    </div>
+    <div id="matches"></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="container footer-grid"><div><strong>Agromatic Regelungstechnik GmbH</strong><br>Stukenbrocker Weg 38 · 33813 Oerlinghausen<br><span class="small">Zertifiziert nach DIN EN ISO 9001</span><br><span class="small">Langjährige Mitgliedschaft im Verband Deutscher Maschinen- und Anlagenbau e.V. (VDMA)</span></div><div class="small">info@agromatic.de · +49 5202 9739 0</div></div></footer>
+<script src="assets/js/configurator.js"></script>
+</body></html>
