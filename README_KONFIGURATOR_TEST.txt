@@ -1,4 +1,4 @@
-Agromatic Konfigurator Teststand
+Agromatic Konfigurator Teststand V17
 
 Diese ZIP ist so aufgebaut, dass die enthaltenen Dateien direkt in den Repository-Ordner kopiert werden können.
 Vorhandene Dateien mit gleichem Namen überschreiben.
@@ -23,3 +23,9 @@ Nach dem Kopieren:
 2. Commit erstellen
 3. Push ausführen
 4. Website im Browser mit STRG+F5 neu laden
+
+V17 Anpassungen:
+- Sichtbarkeitshierarchie gesetzt: Welle > Zusatzgetriebe > Gehäuse > Ring > Hauben > Handrad.
+- Ring liegt jetzt hinter dem Gehäuse und vor der Haube.
+- 140-Nm-Haube-mit-Ring-Position korrigiert.
+- Master-JSON als assets/data/agromatic-master-config.json ergänzt.

@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator Test V16";
+const CONFIG_VERSION = "Konfigurator Test V17 – Layerhierarchie";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 
 const torqueRules = [
@@ -34,7 +34,7 @@ const torqueRules = [
     hood: "large",
     ring: true,
     ringPlacement: { x: 0, y: -172.3, scale: 100 },
-    hoodPlacement: { x: 0, y: -634.0, scale: 123.3 }
+    hoodPlacement: { x: 0, y: -520.0, scale: 123.3 }
   }
 ];
 
@@ -74,9 +74,11 @@ function getRule() {
 function renderMatches(rule, shaftLabel, gearboxActive) {
   const box = $("matches");
   if (!box) return;
-  const layerParts = ["Gehäuse"];
-  if (gearboxActive) layerParts.push("Zusatzgetriebe");
+  const layerParts = [];
+  // Sichtbarkeitshierarchie: 1 Welle, 2 Zusatzgetriebe, 3 Gehäuse, 4 Ring, 5 Hauben, 6 Handrad
   if (shaftLabel !== "ohne Welle") layerParts.push(shaftLabel);
+  if (gearboxActive) layerParts.push("Zusatzgetriebe");
+  layerParts.push("Gehäuse");
   if (rule.ring) layerParts.push("Ring");
   layerParts.push(rule.hood === "large" ? "große Haube" : "kleine Haube");
 

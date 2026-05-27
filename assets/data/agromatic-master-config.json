@@ -1,0 +1,114 @@
+{
+  "version": "agromatic-master-v17",
+  "projectLink": "https://github.com/agroengelns-bot/agromatica",
+  "layerOrderTopToBottom": [
+    "shaft",
+    "gearbox",
+    "base",
+    "ring",
+    "hood",
+    "handwheel"
+  ],
+  "zIndex": {
+    "shaft": 60,
+    "gearbox": 50,
+    "base": 40,
+    "ring": 30,
+    "hood": 20,
+    "handwheel": 10
+  },
+  "rules": [
+    {
+      "torque": 100,
+      "name": "100 Nm – kleine Haube",
+      "hood": "small",
+      "ring": false,
+      "hoodPlacement": {
+        "x": 0,
+        "y": -236.2,
+        "scale": 99.2
+      }
+    },
+    {
+      "torque": 120,
+      "name": "120 Nm – kleine Haube mit Ring",
+      "hood": "small",
+      "ring": true,
+      "ringPlacement": {
+        "x": 0,
+        "y": -172.3,
+        "scale": 100
+      },
+      "hoodPlacement": {
+        "x": 0,
+        "y": -409.2,
+        "scale": 99.2
+      }
+    },
+    {
+      "torque": 130,
+      "name": "130 Nm – große Haube",
+      "hood": "large",
+      "ring": false,
+      "hoodPlacement": {
+        "x": 0,
+        "y": -461.7,
+        "scale": 123.3
+      }
+    },
+    {
+      "torque": 140,
+      "name": "140 Nm – große Haube mit Ring",
+      "hood": "large",
+      "ring": true,
+      "ringPlacement": {
+        "x": 0,
+        "y": -172.3,
+        "scale": 100
+      },
+      "hoodPlacement": {
+        "x": 0,
+        "y": -520.0,
+        "scale": 123.3
+      }
+    }
+  ],
+  "shaftVariants": {
+    "none": {
+      "name": "ohne Welle",
+      "visible": false
+    },
+    "innenvierkant": {
+      "name": "Innenvierkant",
+      "src": "assets/img/konfigurator/welle-innenvierkant.png",
+      "placement": {
+        "x": 62,
+        "y": 281.3,
+        "scale": 49.1
+      }
+    },
+    "federwelle": {
+      "name": "Federwelle",
+      "src": "assets/img/konfigurator/welle-federwelle.png",
+      "placement": {
+        "x": -78,
+        "y": 134,
+        "scale": 27.3
+      }
+    }
+  },
+  "gearbox": {
+    "src": "assets/img/konfigurator/zusatzgetriebe.png",
+    "placement": {
+      "x": 0,
+      "y": 210,
+      "scale": 100
+    }
+  },
+  "images": {
+    "base": "assets/img/konfigurator/gehaeuse.png",
+    "ring": "assets/img/konfigurator/ring.png",
+    "hoodSmall": "assets/img/konfigurator/haube-klein.png",
+    "hoodLarge": "assets/img/konfigurator/haube-gross.png"
+  }
+}

@@ -1,4 +1,4 @@
-/* Agromatic Konfigurator – Teststand Layerlogik 100/120/130/140 Nm */
+/* Agromatic Konfigurator – Teststand Layerlogik 100/120/130/140 Nm – V17 */
 
 .config-section { padding-top: 70px; }
 
@@ -106,11 +106,12 @@
 }
 
 .product-layer.is-active { opacity: 1; }
-.product-shaft { z-index: 50; }
-.product-gearbox { z-index: 40; }
-.product-base { z-index: 30; }
-.product-ring { z-index: 35; }
+.product-shaft { z-index: 60; }
+.product-gearbox { z-index: 50; }
+.product-base { z-index: 40; }
+.product-ring { z-index: 30; }
 .product-hood { z-index: 20; }
+.product-handwheel { z-index: 10; }
 
 .device-info {
   border-left: 1px solid var(--line);
