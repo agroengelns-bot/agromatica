@@ -1,12 +1,10 @@
-/* Agromatic Konfigurator – Layer Reset mit gemeinsamem Nullpunkt */
+/* Agromatic Konfigurator – Teststand Layerlogik 100/120/130/140 Nm */
 
-.config-section {
-  padding-top: 70px;
-}
+.config-section { padding-top: 70px; }
 
 .config-grid {
   display: grid;
-  grid-template-columns: minmax(320px, 410px) 1fr;
+  grid-template-columns: minmax(300px, 410px) 1fr;
   gap: 28px;
   align-items: start;
 }
@@ -19,21 +17,9 @@
   padding: 28px;
 }
 
-.config-panel h2 {
-  font-size: 30px;
-  margin: 0 0 18px;
-}
-
-.form-grid {
-  display: grid;
-  gap: 18px;
-}
-
-.field label {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 7px;
-}
+.config-panel h2 { font-size: 30px; margin: 0 0 18px; }
+.form-grid { display: grid; gap: 18px; }
+.field label { display: block; font-weight: 700; margin-bottom: 7px; }
 
 .field input,
 .field select {
@@ -53,11 +39,7 @@
   box-shadow: 0 0 0 4px rgba(0, 155, 216, 0.12);
 }
 
-.hint {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 5px;
-}
+.hint { font-size: 13px; color: var(--muted); margin-top: 5px; }
 
 .note {
   margin-top: 16px;
@@ -77,10 +59,7 @@
   margin-bottom: 18px;
 }
 
-.result-head h2 {
-  font-size: 30px;
-  margin: 8px 0 0;
-}
+.result-head h2 { font-size: 30px; margin: 8px 0 0; }
 
 .device-stage {
   display: grid;
@@ -97,59 +76,41 @@
 }
 
 .device-wrap {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 470px;
-  overflow: hidden;
 }
 
 .product-preview {
-  /* Gleiche Render-Bühne wie im Layer-Tool: feste Pixel-Bühne, danach nur komplett skaliert. */
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 900px;
-  height: 760px;
-  overflow: hidden;
-  transform: translate(-50%, -50%) scale(0.58);
-  transform-origin: center center;
+  position: relative;
+  width: min(100%, 620px);
+  aspect-ratio: 1 / 1;
+  overflow: visible;
 }
 
-/* Layer-Tool-kompatibel: natürliche PNG-Größe, gemeinsamer Mittelpunkt, keine extra object-fit-Skalierung. */
 .product-layer {
+  --layer-x: 0%;
+  --layer-y: 0%;
+  --layer-scale: 1;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   opacity: 0;
   pointer-events: none;
   transform-origin: center center;
-  transform: translate(-50%, -50%) scale(1);
-  transition: opacity 0.22s ease, transform 0.22s ease;
-  user-select: none;
-  -webkit-user-drag: none;
+  transform: translate(var(--layer-x), var(--layer-y)) scale(var(--layer-scale));
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
-.product-layer.is-active {
-  opacity: 1;
-}
-
-.product-base,
-.product-ring,
-.product-hood,
-.product-handwheel {
-  z-index: 1;
-}
-
-.checkbox-field input[type="checkbox"] {
-  width: auto;
-  margin-right: 8px;
-}
-
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-}
+.product-layer.is-active { opacity: 1; }
+.product-shaft { z-index: 50; }
+.product-gearbox { z-index: 40; }
+.product-base { z-index: 30; }
+.product-ring { z-index: 35; }
+.product-hood { z-index: 20; }
 
 .device-info {
   border-left: 1px solid var(--line);
@@ -166,16 +127,8 @@
   border: 1px solid var(--line);
 }
 
-.spec strong {
-  display: block;
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.spec span {
-  font-size: 17px;
-  font-weight: 700;
-}
+.spec strong { display: block; font-size: 13px; color: var(--muted); }
+.spec span { font-size: 17px; font-weight: 700; }
 
 .matches {
   margin-top: 20px;
@@ -191,22 +144,11 @@
   background: #fff;
 }
 
-.match-card h3 {
-  font-size: 18px;
-  margin: 0 0 6px;
-}
+.match-card h3 { font-size: 18px; margin: 0 0 6px; }
+.match-card p { margin: 0; color: var(--muted); font-size: 14px; }
+.match-card a { color: var(--accent); font-weight: 700; }
 
-.match-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.layer-note {
-  font-size: 14px;
-  color: var(--muted);
-  margin-top: 16px;
-}
+.layer-note { font-size: 14px; color: var(--muted); margin-top: 16px; }
 
 .version-badge {
   position: fixed;
@@ -224,123 +166,19 @@
 
 @media (max-width: 980px) {
   .config-grid,
-  .device-stage {
-    grid-template-columns: 1fr;
-  }
-
+  .device-stage { grid-template-columns: 1fr; }
   .device-info {
     border-left: 0;
     border-top: 1px solid var(--line);
     padding-left: 0;
     padding-top: 18px;
   }
-
-  .matches {
-    grid-template-columns: 1fr;
-  }
+  .matches { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 620px) {
-  .config-panel {
-    padding: 20px;
-  }
-
-  .device-stage {
-    min-height: auto;
-    padding: 18px;
-  }
-
-  .device-wrap {
-    min-height: 360px;
-  }
-
-  .product-preview {
-    transform: translate(-50%, -50%) scale(0.44);
-  }
-}
-
-
-/* V27 Root-Cause-Fix:
-   Problem war NICHT die Produktgrafik,
-   sondern die feste Gesamtbreite des Containers.
-*/
-
-.config-section > .container{
-  max-width: 1650px !important;
-}
-
-.config-grid{
-  grid-template-columns: 420px minmax(1000px, 1fr) !important;
-  gap: 40px !important;
-}
-
-/* Rechte Gesamtkarte */
-.config-result{
-  width: 100% !important;
-  max-width: none !important;
-}
-
-/* Inneres Vorschaufenster */
-.device-stage{
-  grid-template-columns: minmax(820px, 1fr) 260px !important;
-  width: 100% !important;
-  min-height: 620px !important;
-}
-
-/* Bereich links vom Infofeld */
-.device-wrap{
-  min-width: 820px !important;
-  overflow: visible !important;
-}
-
-/* Produktbühne */
-.product-preview{
-  width: 900px !important;
-  height: 760px !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) scale(0.60) !important;
-}
-
-@media (max-width: 1450px){
-
-  .config-section > .container{
-    max-width: 1380px !important;
-  }
-
-  .config-grid{
-    grid-template-columns: 380px minmax(820px, 1fr) !important;
-  }
-
-  .device-stage{
-    grid-template-columns: minmax(620px, 1fr) 240px !important;
-  }
-
-  .device-wrap{
-    min-width: 620px !important;
-  }
-
-  .product-preview{
-    transform: translate(-50%, -50%) scale(0.52) !important;
-  }
-}
-
-@media (max-width: 1100px){
-
-  .config-grid{
-    grid-template-columns: 1fr !important;
-  }
-
-  .device-stage{
-    grid-template-columns: 1fr !important;
-  }
-
-  .device-wrap{
-    min-width: 0 !important;
-  }
-}
-
-
-/* V28 auf Basis V27: Wellentyp-Auswahl */
-.product-shaft {
-  z-index: 1;
+  .config-panel { padding: 20px; }
+  .device-stage { min-height: auto; padding: 18px; }
+  .device-wrap { min-height: 320px; }
+  .product-preview { width: min(100%, 420px); }
 }
