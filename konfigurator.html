@@ -23,8 +23,14 @@
       <label>Schutzart
         <select id="protection"><option value="ip65">IP65</option><option value="ip67">IP67</option></select>
       </label>
-      <label>Welle
-        <select id="shaftType"><option value="innenvierkant">Innenvierkant</option><option value="passfeder">Passfeder</option><option value="querbohrung">Querbohrung</option></select>
+      <label>Zusatzgetriebe / Wellenkombination
+        <select id="gearboxCombo">
+          <option value="none">Ohne Zusatzgetriebe</option>
+          <option value="q20">Q20</option>
+          <option value="q25">Q25</option>
+          <option value="pf20">PF20</option>
+          <option value="pf25">PF25</option>
+        </select>
       </label>
       <label><input type="checkbox" id="showHandwheel" checked> Handrad anzeigen</label>
     </div>
@@ -33,7 +39,7 @@
         <img id="baseLayer" alt="">
         <img id="ringLayer" alt="">
         <img id="hoodLayer" alt="">
-        <img id="shaftLayer" alt="">
+        <img id="gearboxLayer" alt=""><img id="shaftLayer" alt="">
         <img id="handwheelLayer" alt="">
       </div>
       <aside class="result-panel">
