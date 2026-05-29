@@ -1,6 +1,5 @@
 {
-  "version": "agromatic-master-config-v3-hood-ring-base-gearbox-combos",
-  "note": "Master-JSON auf Basis der neuen Layer-JSON: Haube/Ring/Gehäuse/Zusatzgetriebe. Website-Positionierung wurde nicht geändert.",
+  "version": "agromatic-master-config-v5-website-layerfix",
   "layerOrderTopToBottom": [
     "shaft",
     "gearbox",
@@ -19,12 +18,11 @@
   },
   "active": {
     "shaft": "none",
-    "gearbox": "none",
-    "base": "base_gehaeuse_master",
-    "ring": "ring_master",
-    "hood": "hood_haube_gross_master",
-    "handwheel": "none",
-    "gearboxShaft": "none"
+    "gearbox": "gearbox_zusatzgetriebe_1780037361737",
+    "base": "base_gehäuse_1780037309362",
+    "hood": "hood_haube1_1780037402417",
+    "ring": "ring_ring_1780037327897",
+    "handwheel": "none"
   },
   "mounts": {
     "shaftMount": "underHousing",
@@ -66,52 +64,61 @@
       "scale": 99.3
     }
   },
-  "renderRules": {
-    "housingIsFixedZeroPoint": true,
-    "noFreeShaftSelectionWhenGearboxActive": true,
-    "gearboxShaftCombosOnly": [
-      "q20",
-      "q25",
-      "pf20",
-      "pf25"
-    ],
-    "withGearboxCombo": {
-      "useComboImageAsLowerAssembly": true,
-      "comboImageContains": [
-        "base",
-        "gearbox",
-        "shaft"
-      ],
-      "overlayLayers": [
-        "ring",
-        "hood",
-        "handwheel"
-      ],
-      "doNotRenderSeparateBaseWhenComboImageActive": true,
-      "doNotRenderSeparateShaftWhenComboImageActive": true,
-      "doNotRenderSeparateGearboxWhenComboImageActive": true
-    },
-    "withoutGearbox": {
-      "renderLayers": [
-        "base",
-        "ring",
-        "hood",
-        "handwheel"
-      ],
-      "shaftSelectionMayBeHandledSeparately": true
-    }
-  },
-  "display": {
-    "previewObjectOffsetY": 0,
-    "note": "Offset bewusst noch nicht tiefer gesetzt; erst ändern, wenn freigegeben. Positiver Wert schiebt das Bild im Konfigurator nach unten."
-  },
   "variants": {
-    "shaftVariants": {},
+    "shaftVariants": {
+      "welle_20_querbohrung_zusatzgetriebe": {
+        "name": "20er mit Querbohrung",
+        "file": "welle_20_querbohrung_zusatzgetriebe.png",
+        "placement": {
+          "x": 0,
+          "y": 230,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 50
+        },
+        "mount": "underGearbox"
+      },
+      "welle_25_passfeder_zusatzgetriebe": {
+        "name": "25er mit Passfeder",
+        "file": "welle_25_passfeder_zusatzgetriebe.png",
+        "placement": {
+          "x": 0,
+          "y": 230,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 50
+        },
+        "mount": "underGearbox"
+      },
+      "welle_25_querbohrung_zusatzgetriebe": {
+        "name": "25er mit Querbohrung",
+        "file": "welle_25_querbohrung_zusatzgetriebe.png",
+        "placement": {
+          "x": 0,
+          "y": 230,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 50
+        },
+        "mount": "underGearbox"
+      },
+      "welle_25_passfeder_innenvierkant_zusatzgetriebe": {
+        "name": "25er mit Passfeder und Innenvierkant",
+        "file": "welle_25_passfeder_innenvierkant_zusatzgetriebe.png",
+        "placement": {
+          "x": 0,
+          "y": 230,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 50
+        },
+        "mount": "underGearbox"
+      }
+    },
     "gearboxVariants": {
-      "gearbox_lower_assembly_master": {
-        "name": "Zusatzgetriebe Grundvariante",
-        "file": "Zusatzgetriebe.png",
-        "sourceFile": "Zusaztgetriebe.png",
+      "gearbox_zusatzgetriebe_1780037361737": {
+        "name": "Zusatzgetriebe",
+        "file": "Zusaztgetriebe.png",
         "placement": {
           "visible": true,
           "x": -3,
@@ -120,119 +127,13 @@
           "opacity": 100,
           "zIndex": 40
         },
-        "placements": {
-          "underHousing": {
-            "visible": true,
-            "x": -3,
-            "y": 170,
-            "scale": 93.3,
-            "opacity": 100,
-            "zIndex": 40
-          }
-        }
-      },
-      "gearbox_combo_q20": {
-        "name": "Q20 – Querbohrung 20",
-        "file": "zusatzQ20.png",
-        "placement": {
-          "visible": true,
-          "x": -3,
-          "y": 170,
-          "scale": 93.3,
-          "opacity": 100,
-          "zIndex": 40
-        },
-        "placements": {
-          "underHousing": {
-            "visible": true,
-            "x": -3,
-            "y": 170,
-            "scale": 93.3,
-            "opacity": 100,
-            "zIndex": 40
-          }
-        },
-        "comboKey": "q20",
-        "renderMode": "comboLowerAssembly"
-      },
-      "gearbox_combo_q25": {
-        "name": "Q25 – Querbohrung 25",
-        "file": "ZusatzQ25.png",
-        "placement": {
-          "visible": true,
-          "x": -3,
-          "y": 170,
-          "scale": 93.3,
-          "opacity": 100,
-          "zIndex": 40
-        },
-        "placements": {
-          "underHousing": {
-            "visible": true,
-            "x": -3,
-            "y": 170,
-            "scale": 93.3,
-            "opacity": 100,
-            "zIndex": 40
-          }
-        },
-        "comboKey": "q25",
-        "renderMode": "comboLowerAssembly"
-      },
-      "gearbox_combo_pf20": {
-        "name": "PF20 – Passfeder 20",
-        "file": "zusatzPF20.png",
-        "placement": {
-          "visible": true,
-          "x": -3,
-          "y": 170,
-          "scale": 93.3,
-          "opacity": 100,
-          "zIndex": 40
-        },
-        "placements": {
-          "underHousing": {
-            "visible": true,
-            "x": -3,
-            "y": 170,
-            "scale": 93.3,
-            "opacity": 100,
-            "zIndex": 40
-          }
-        },
-        "comboKey": "pf20",
-        "renderMode": "comboLowerAssembly"
-      },
-      "gearbox_combo_pf25": {
-        "name": "PF25 – Passfeder 25",
-        "file": "ZusatzPF25.png",
-        "placement": {
-          "visible": true,
-          "x": -3,
-          "y": 170,
-          "scale": 93.3,
-          "opacity": 100,
-          "zIndex": 40
-        },
-        "placements": {
-          "underHousing": {
-            "visible": true,
-            "x": -3,
-            "y": 170,
-            "scale": 93.3,
-            "opacity": 100,
-            "zIndex": 40
-          }
-        },
-        "comboKey": "pf25",
-        "renderMode": "comboLowerAssembly"
+        "placements": {}
       }
     },
     "baseVariants": {
-      "base_gehaeuse_master": {
+      "base_gehäuse_1780037309362": {
         "name": "Gehäuse",
-        "file": "gehaeuse.png",
-        "sourceFile": "Gehäuse.png",
+        "file": "Gehäuse.png",
         "placement": {
           "visible": true,
           "x": 0,
@@ -241,48 +142,13 @@
           "opacity": 100,
           "zIndex": 30
         },
-        "placements": {
-          "default": {
-            "visible": true,
-            "x": 0,
-            "y": 0,
-            "scale": 100,
-            "opacity": 100,
-            "zIndex": 30
-          }
-        }
-      }
-    },
-    "ringVariants": {
-      "ring_master": {
-        "name": "Ring",
-        "file": "ring_1000_transparent_kongruent.png",
-        "websiteFile": "ring.png",
-        "placement": {
-          "visible": true,
-          "x": 0,
-          "y": -173.3,
-          "scale": 100,
-          "opacity": 100,
-          "zIndex": 25
-        },
-        "placements": {
-          "onHousing": {
-            "visible": true,
-            "x": 0,
-            "y": -173.3,
-            "scale": 100,
-            "opacity": 100,
-            "zIndex": 25
-          }
-        }
+        "placements": {}
       }
     },
     "hoodVariants": {
-      "hood_haube_gross_master": {
-        "name": "große Haube",
+      "hood_haube1_1780037402417": {
+        "name": "Haube1",
         "file": "haube_1000_transparent_kongruent.png",
-        "websiteFile": "haube-gross.png",
         "placement": {
           "visible": true,
           "x": 0,
@@ -292,14 +158,6 @@
           "zIndex": 20
         },
         "placements": {
-          "onRing": {
-            "visible": true,
-            "x": 0,
-            "y": -409.3,
-            "scale": 99.3,
-            "opacity": 100,
-            "zIndex": 20
-          },
           "onHousing": {
             "visible": true,
             "x": 0,
@@ -311,154 +169,71 @@
         }
       }
     },
+    "ringVariants": {
+      "ring_ring_1780037327897": {
+        "name": "Ring",
+        "file": "ring_1000_transparent_kongruent.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": -173.3,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 25
+        },
+        "placements": {}
+      }
+    },
     "handwheelVariants": {},
     "gearboxShaftVariants": {
       "none": {
-        "name": "ohne Zusatzgetriebe",
-        "mount": "none",
-        "renderMode": "separateLayers"
+        "name": "ohne Zusatzgetriebe / ohne gekoppelte Welle",
+        "mount": "none"
       },
       "q20": {
         "name": "Q20 – Querbohrung 20",
-        "label": "Q20",
-        "shaftType": "Querbohrung",
-        "shaftSize": "20",
-        "comboImage": "zusatzQ20.png",
-        "mount": "underGearbox",
-        "renderMode": "comboLowerAssembly",
-        "comboImageContains": [
-          "base",
-          "gearbox",
-          "shaft"
-        ],
-        "comboImageFile": "zusatzQ20.png",
-        "comboImagePath": "assets/img/konfigurator/zusatzQ20.png",
-        "placement": {
-          "visible": true,
-          "x": -3,
-          "y": 170,
-          "scale": 93.3,
-          "opacity": 100,
-          "zIndex": 40
-        },
-        "overlayRingKey": "ring_master",
-        "overlayHoodKey": "hood_haube_gross_master"
+        "gearboxFile": "zusatzQ20.png",
+        "mount": "underGearbox"
       },
       "q25": {
         "name": "Q25 – Querbohrung 25",
-        "label": "Q25",
-        "shaftType": "Querbohrung",
-        "shaftSize": "25",
-        "comboImage": "ZusatzQ25.png",
-        "mount": "underGearbox",
-        "renderMode": "comboLowerAssembly",
-        "comboImageContains": [
-          "base",
-          "gearbox",
-          "shaft"
-        ],
-        "comboImageFile": "ZusatzQ25.png",
-        "comboImagePath": "assets/img/konfigurator/ZusatzQ25.png",
-        "placement": {
-          "visible": true,
-          "x": -3,
-          "y": 170,
-          "scale": 93.3,
-          "opacity": 100,
-          "zIndex": 40
-        },
-        "overlayRingKey": "ring_master",
-        "overlayHoodKey": "hood_haube_gross_master"
+        "gearboxFile": "ZusatzQ25.png",
+        "mount": "underGearbox"
       },
       "pf20": {
         "name": "PF20 – Passfeder 20",
-        "label": "PF20",
-        "shaftType": "Passfeder",
-        "shaftSize": "20",
-        "comboImage": "zusatzPF20.png",
-        "mount": "underGearbox",
-        "renderMode": "comboLowerAssembly",
-        "comboImageContains": [
-          "base",
-          "gearbox",
-          "shaft"
-        ],
-        "comboImageFile": "zusatzPF20.png",
-        "comboImagePath": "assets/img/konfigurator/zusatzPF20.png",
-        "placement": {
-          "visible": true,
-          "x": -3,
-          "y": 170,
-          "scale": 93.3,
-          "opacity": 100,
-          "zIndex": 40
-        },
-        "overlayRingKey": "ring_master",
-        "overlayHoodKey": "hood_haube_gross_master"
+        "gearboxFile": "ZusatzPF20.png",
+        "mount": "underGearbox"
       },
       "pf25": {
         "name": "PF25 – Passfeder 25",
-        "label": "PF25",
-        "shaftType": "Passfeder",
-        "shaftSize": "25",
-        "comboImage": "ZusatzPF25.png",
-        "renamedFrom": "PF15",
-        "mount": "underGearbox",
-        "renderMode": "comboLowerAssembly",
-        "comboImageContains": [
-          "base",
-          "gearbox",
-          "shaft"
-        ],
-        "comboImageFile": "ZusatzPF25.png",
-        "comboImagePath": "assets/img/konfigurator/ZusatzPF25.png",
-        "placement": {
-          "visible": true,
-          "x": -3,
-          "y": 170,
-          "scale": 93.3,
-          "opacity": 100,
-          "zIndex": 40
-        },
-        "overlayRingKey": "ring_master",
-        "overlayHoodKey": "hood_haube_gross_master"
+        "gearboxFile": "ZusatzPF25.png",
+        "mount": "underGearbox"
       }
     }
   },
-  "decisionRules": {
-    "gearboxShaftOptions": [
-      {
-        "value": "none",
-        "label": "ohne Zusatzgetriebe"
-      },
-      {
-        "value": "q20",
-        "label": "Q20"
-      },
-      {
-        "value": "q25",
-        "label": "Q25"
-      },
-      {
-        "value": "pf20",
-        "label": "PF20"
-      },
-      {
-        "value": "pf25",
-        "label": "PF25"
-      }
-    ],
-    "whenGearboxShaftIsNone": {
-      "showBase": true,
-      "showRing": true,
-      "showHood": true,
-      "showComboImage": false
+  "websiteRenderRules": {
+    "mode": "layeredFromMasterJson",
+    "base": "gehaeuse.png",
+    "gearboxPlacement": {
+      "x": -3,
+      "y": 170,
+      "scale": 93.3
     },
-    "whenGearboxShaftIsCombo": {
-      "showBase": false,
-      "showRing": true,
-      "showHood": true,
-      "showComboImage": true
-    }
+    "ringPlacement": {
+      "x": 0,
+      "y": -173.3,
+      "scale": 100
+    },
+    "hoodOnRingPlacement": {
+      "x": 0,
+      "y": -409.3,
+      "scale": 99.3
+    },
+    "stageOffset": {
+      "translateYpx": 54,
+      "scale": 0.88
+    },
+    "note": "Website nutzt wieder getrennte Layer nach der neuesten JSON. Zusatzgetriebevarianten Q20, Q25, PF20, PF25 werden als gekoppelter Zusatzgetriebe-/Wellenlayer unter dem Gehäuse gerendert."
   }
 }

@@ -1,20 +1,37 @@
-const CONFIG_VERSION = "Konfigurator Test V21 – Gehäuse/PF25-Pfade korrigiert";
+const CONFIG_VERSION = "Konfigurator Test V23 – Master-JSON Layerpositionen";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
+
+const ASSET_BASE = "assets/img/konfigurator/";
+
+const masterConfig = {
+  anchors: {
+    gearbox_under_housing: { x: -3, y: 170, scale: 93.3 },
+    ring_on_housing: { x: 0, y: -173.3, scale: 100 },
+    hood_on_ring: { x: 0, y: -409.3, scale: 99.3 },
+    hood_on_housing: { x: 0, y: -95, scale: 100 },
+    shaft_under_gearbox: { x: 0, y: 230, scale: 100 }
+  },
+  placements: {
+    base: { x: 0, y: 0, scale: 100 },
+    gearbox: { x: -3, y: 170, scale: 93.3 },
+    ring: { x: 0, y: -173.3, scale: 100 },
+    hoodOnRing: { x: 0, y: -409.3, scale: 99.3 }
+  }
+};
 
 const torqueRules = [
   { torque: 100, label: "100 Nm", name: "100 Nm – kleine Haube", hood: "small", ring: false, hoodPlacement: { x: 0, y: -236.2, scale: 99.2 } },
-  { torque: 120, label: "120 Nm", name: "120 Nm – kleine Haube mit Ring", hood: "small", ring: true, ringPlacement: { x: 0, y: -172.3, scale: 100 }, hoodPlacement: { x: 0, y: -409.2, scale: 99.2 } },
+  { torque: 120, label: "120 Nm", name: "120 Nm – kleine Haube mit Ring", hood: "small", ring: true, ringPlacement: masterConfig.placements.ring, hoodPlacement: masterConfig.placements.hoodOnRing },
   { torque: 130, label: "130 Nm", name: "130 Nm – große Haube", hood: "large", ring: false, hoodPlacement: { x: 0, y: -461.7, scale: 123.3 } },
-  { torque: 140, label: "140 Nm", name: "140 Nm – große Haube mit Ring", hood: "large", ring: true, ringPlacement: { x: 0, y: -172.3, scale: 100 }, hoodPlacement: { x: 0, y: -520.0, scale: 123.3 } }
+  { torque: 140, label: "140 Nm", name: "140 Nm – große Haube mit Ring", hood: "large", ring: true, ringPlacement: masterConfig.placements.ring, hoodPlacement: masterConfig.placements.hoodOnRing }
 ];
 
-const basePlacement = { x: 0, y: 0, scale: 100 };
 const comboVariants = {
-  none: { label: "ohne Zusatzgetriebe", shaftLabel: "ohne Welle", src: "assets/img/konfigurator/gehaeuse.png", gearbox: false },
-  q20: { label: "Q20", shaftLabel: "Q20 – Querbohrung 20", src: "assets/img/konfigurator/zusatzQ20.png", gearbox: true },
-  q25: { label: "Q25", shaftLabel: "Q25 – Querbohrung 25", src: "assets/img/konfigurator/ZusatzQ25.png", gearbox: true },
-  pf20: { label: "PF20", shaftLabel: "PF20 – Passfeder 20", src: "assets/img/konfigurator/zusatzPF20.png", gearbox: true },
-  pf25: { label: "PF25", shaftLabel: "PF25 – Passfeder 25", src: "assets/img/konfigurator/ZusatzPF25.png", gearbox: true }
+  none: { label: "ohne Zusatzgetriebe", shaftLabel: "ohne Welle", src: null, gearbox: false },
+  q20: { label: "Q20", shaftLabel: "Q20 – Querbohrung 20", src: "zusatzQ20.png", gearbox: true },
+  q25: { label: "Q25", shaftLabel: "Q25 – Querbohrung 25", src: "ZusatzQ25.png", gearbox: true },
+  pf20: { label: "PF20", shaftLabel: "PF20 – Passfeder 20", src: "ZusatzPF20.png", gearbox: true },
+  pf25: { label: "PF25", shaftLabel: "PF25 – Passfeder 25", src: "ZusatzPF25.png", gearbox: true }
 };
 
 const $ = (id) => document.getElementById(id);
@@ -26,6 +43,12 @@ function setLayer(layer, placement, active = true) {
   layer.style.setProperty("--layer-x", `${placement.x / 10}%`);
   layer.style.setProperty("--layer-y", `${placement.y / 10}%`);
   layer.style.setProperty("--layer-scale", String(placement.scale / 100));
+}
+
+function setLayerImage(layer, fileName, alt) {
+  if (!layer || !fileName) return;
+  layer.src = ASSET_BASE + fileName;
+  layer.alt = alt || fileName;
 }
 
 function ensureVersionBadge() {
@@ -50,8 +73,7 @@ function renderMatches(rule, combo) {
   const box = $("matches");
   if (!box) return;
   const layerParts = [];
-  if (combo.gearbox) layerParts.push(combo.shaftLabel);
-  if (combo.gearbox) layerParts.push("Zusatzgetriebe");
+  if (combo.gearbox) layerParts.push(combo.shaftLabel, "Zusatzgetriebe");
   layerParts.push("Gehäuse");
   if (rule.ring) layerParts.push("Ring");
   layerParts.push(rule.hood === "large" ? "große Haube" : "kleine Haube");
@@ -82,22 +104,21 @@ function updateConfigurator() {
   const ringLayer = $("ringLayer");
   const hoodLayer = $("hoodLayer");
 
-  // Die Zusatzgetriebe-Bilder sind komplette Gerätebilder
-  // (Gehäuse + fest zugeordnete Welle/Zusatzgetriebe).
-  // Ohne Zusatzgetriebe wird immer das normale Gehäuse angezeigt.
-  if (baseLayer) {
-    baseLayer.src = combo.src || "assets/img/konfigurator/gehaeuse.png";
-    baseLayer.alt = combo.gearbox ? `Gehäuse mit ${combo.label}` : "Gehäuse";
-  }
-  setLayer(baseLayer, basePlacement, true);
+  setLayerImage(baseLayer, "gehaeuse.png", "Gehäuse");
+  setLayer(baseLayer, masterConfig.placements.base, true);
 
-  // Alte separate gearbox-/shaft-Layer deaktivieren, damit nichts falsch kombiniert wird.
-  setLayer(gearboxLayer, null, false);
+  if (combo.gearbox) {
+    setLayerImage(gearboxLayer, combo.src, combo.label + " Zusatzgetriebe/Welle");
+    setLayer(gearboxLayer, masterConfig.placements.gearbox, true);
+  } else {
+    setLayer(gearboxLayer, null, false);
+  }
+
   setLayer(shaftLayer, null, false);
   setLayer(ringLayer, rule.ringPlacement || null, rule.ring);
 
   if (hoodLayer) {
-    hoodLayer.src = rule.hood === "large" ? "assets/img/konfigurator/haube-gross.png" : "assets/img/konfigurator/haube-klein.png";
+    hoodLayer.src = rule.hood === "large" ? ASSET_BASE + "haube-gross.png" : ASSET_BASE + "haube-klein.png";
     hoodLayer.alt = rule.hood === "large" ? "Große Haube" : "Kleine Haube";
   }
   setLayer(hoodLayer, rule.hoodPlacement, true);
@@ -109,7 +130,7 @@ function updateConfigurator() {
   if ($("protectionOut")) $("protectionOut").textContent = protection;
   if ($("housingOut")) $("housingOut").textContent = combo.gearbox ? "Gehäuse + Zusatzgetriebe" : "Gehäuse";
   if ($("shaftOut")) $("shaftOut").textContent = combo.shaftLabel;
-  if ($("layersOut")) $("layersOut").textContent = `${combo.label}; ${rule.hood === "large" ? "große" : "kleine"} Haube${rule.ring ? " + Ring" : ""}`;
+  if ($("layersOut")) $("layersOut").textContent = `${combo.gearbox ? combo.label + "; " : ""}${rule.hood === "large" ? "große" : "kleine"} Haube${rule.ring ? " + Ring" : ""}`;
 
   renderMatches(rule, combo);
 }

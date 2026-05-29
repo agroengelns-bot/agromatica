@@ -1,4 +1,4 @@
-/* Agromatic Konfigurator – Teststand Layerlogik 100/120/130/140 Nm – V17 */
+/* Agromatic Konfigurator – V23 Layer aus Master-JSON */
 
 .config-section { padding-top: 70px; }
 
@@ -79,7 +79,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 470px;
+  min-height: 520px;
 }
 
 .product-preview {
@@ -87,6 +87,8 @@
   width: min(100%, 620px);
   aspect-ratio: 1 / 1;
   overflow: visible;
+  transform: translateY(54px) scale(0.88);
+  transform-origin: center center;
 }
 
 .product-layer {
@@ -181,5 +183,5 @@
   .config-panel { padding: 20px; }
   .device-stage { min-height: auto; padding: 18px; }
   .device-wrap { min-height: 320px; }
-  .product-preview { width: min(100%, 420px); }
+  .product-preview { width: min(100%, 420px); transform: translateY(36px) scale(0.86); }
 }
