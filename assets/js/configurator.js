@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator Test V20 – Zusatzgetriebe-Bilder eingebunden";
+const CONFIG_VERSION = "Konfigurator Test V21 – Gehäuse/PF25-Pfade korrigiert";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 
 const torqueRules = [
@@ -10,7 +10,7 @@ const torqueRules = [
 
 const basePlacement = { x: 0, y: 0, scale: 100 };
 const comboVariants = {
-  none: { label: "ohne Zusatzgetriebe", shaftLabel: "ohne Welle", src: "assets/img/konfigurator/Zusatzgetriebe.png", gearbox: false },
+  none: { label: "ohne Zusatzgetriebe", shaftLabel: "ohne Welle", src: "assets/img/konfigurator/gehaeuse.png", gearbox: false },
   q20: { label: "Q20", shaftLabel: "Q20 – Querbohrung 20", src: "assets/img/konfigurator/zusatzQ20.png", gearbox: true },
   q25: { label: "Q25", shaftLabel: "Q25 – Querbohrung 25", src: "assets/img/konfigurator/ZusatzQ25.png", gearbox: true },
   pf20: { label: "PF20", shaftLabel: "PF20 – Passfeder 20", src: "assets/img/konfigurator/zusatzPF20.png", gearbox: true },
@@ -82,15 +82,16 @@ function updateConfigurator() {
   const ringLayer = $("ringLayer");
   const hoodLayer = $("hoodLayer");
 
-  if (baseLayer && combo.src) {
-    baseLayer.src = combo.src;
-    baseLayer.alt = combo.label;
+  // Die Zusatzgetriebe-Bilder sind komplette Gerätebilder
+  // (Gehäuse + fest zugeordnete Welle/Zusatzgetriebe).
+  // Ohne Zusatzgetriebe wird immer das normale Gehäuse angezeigt.
+  if (baseLayer) {
+    baseLayer.src = combo.src || "assets/img/konfigurator/gehaeuse.png";
+    baseLayer.alt = combo.gearbox ? `Gehäuse mit ${combo.label}` : "Gehäuse";
   }
   setLayer(baseLayer, basePlacement, true);
 
-  // Die neuen Zusatzgetriebe-Bilder sind komplette Kombi-Layer
-  // (Zusatzgetriebe inklusive fest zugeordneter Welle).
-  // Deshalb werden die alten separaten gearbox-/shaft-Layer hier deaktiviert.
+  // Alte separate gearbox-/shaft-Layer deaktivieren, damit nichts falsch kombiniert wird.
   setLayer(gearboxLayer, null, false);
   setLayer(shaftLayer, null, false);
   setLayer(ringLayer, rule.ringPlacement || null, rule.ring);
