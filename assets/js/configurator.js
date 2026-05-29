@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator Test V19 – Kombi-Auswahl repariert";
+const CONFIG_VERSION = "Konfigurator Test V20 – Zusatzgetriebe-Bilder eingebunden";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 
 const torqueRules = [
@@ -8,13 +8,13 @@ const torqueRules = [
   { torque: 140, label: "140 Nm", name: "140 Nm – große Haube mit Ring", hood: "large", ring: true, ringPlacement: { x: 0, y: -172.3, scale: 100 }, hoodPlacement: { x: 0, y: -520.0, scale: 123.3 } }
 ];
 
-const gearboxPlacement = { x: 0, y: 210, scale: 100 };
+const basePlacement = { x: 0, y: 0, scale: 100 };
 const comboVariants = {
-  none: { label: "ohne Zusatzgetriebe", shaftLabel: "ohne Welle", shaft: null, gearbox: false },
-  q20: { label: "Q20", shaftLabel: "Q20", shaft: { x: 0, y: 390, scale: 49.1, src: "assets/img/konfigurator/welle-innenvierkant.png" }, gearbox: true },
-  q25: { label: "Q25", shaftLabel: "Q25", shaft: { x: 0, y: 390, scale: 49.1, src: "assets/img/konfigurator/welle-innenvierkant.png" }, gearbox: true },
-  pf20: { label: "PF20", shaftLabel: "PF20", shaft: { x: -78, y: 314, scale: 27.3, src: "assets/img/konfigurator/welle-federwelle.png" }, gearbox: true },
-  pf25: { label: "PF25", shaftLabel: "PF25", shaft: { x: -78, y: 314, scale: 27.3, src: "assets/img/konfigurator/welle-federwelle.png" }, gearbox: true }
+  none: { label: "ohne Zusatzgetriebe", shaftLabel: "ohne Welle", src: "assets/img/konfigurator/Zusatzgetriebe.png", gearbox: false },
+  q20: { label: "Q20", shaftLabel: "Q20 – Querbohrung 20", src: "assets/img/konfigurator/zusatzQ20.png", gearbox: true },
+  q25: { label: "Q25", shaftLabel: "Q25 – Querbohrung 25", src: "assets/img/konfigurator/ZusatzQ25.png", gearbox: true },
+  pf20: { label: "PF20", shaftLabel: "PF20 – Passfeder 20", src: "assets/img/konfigurator/zusatzPF20.png", gearbox: true },
+  pf25: { label: "PF25", shaftLabel: "PF25 – Passfeder 25", src: "assets/img/konfigurator/ZusatzPF25.png", gearbox: true }
 };
 
 const $ = (id) => document.getElementById(id);
@@ -50,7 +50,7 @@ function renderMatches(rule, combo) {
   const box = $("matches");
   if (!box) return;
   const layerParts = [];
-  if (combo.shaft) layerParts.push(combo.shaftLabel);
+  if (combo.gearbox) layerParts.push(combo.shaftLabel);
   if (combo.gearbox) layerParts.push("Zusatzgetriebe");
   layerParts.push("Gehäuse");
   if (rule.ring) layerParts.push("Ring");
@@ -82,8 +82,17 @@ function updateConfigurator() {
   const ringLayer = $("ringLayer");
   const hoodLayer = $("hoodLayer");
 
-  setLayer(baseLayer, { x: 0, y: 0, scale: 100 }, true);
-  setLayer(gearboxLayer, gearboxPlacement, combo.gearbox);
+  if (baseLayer && combo.src) {
+    baseLayer.src = combo.src;
+    baseLayer.alt = combo.label;
+  }
+  setLayer(baseLayer, basePlacement, true);
+
+  // Die neuen Zusatzgetriebe-Bilder sind komplette Kombi-Layer
+  // (Zusatzgetriebe inklusive fest zugeordneter Welle).
+  // Deshalb werden die alten separaten gearbox-/shaft-Layer hier deaktiviert.
+  setLayer(gearboxLayer, null, false);
+  setLayer(shaftLayer, null, false);
   setLayer(ringLayer, rule.ringPlacement || null, rule.ring);
 
   if (hoodLayer) {
@@ -91,12 +100,6 @@ function updateConfigurator() {
     hoodLayer.alt = rule.hood === "large" ? "Große Haube" : "Kleine Haube";
   }
   setLayer(hoodLayer, rule.hoodPlacement, true);
-
-  if (combo.shaft && shaftLayer) {
-    shaftLayer.src = combo.shaft.src;
-    shaftLayer.alt = combo.shaftLabel;
-  }
-  setLayer(shaftLayer, combo.shaft, Boolean(combo.shaft));
 
   if ($("seriesBadge")) $("seriesBadge").textContent = rule.label;
   if ($("resultTitle")) $("resultTitle").textContent = rule.name;

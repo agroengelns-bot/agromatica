@@ -1,6 +1,5 @@
 {
-  "version": "agromatic-master-v17",
-  "projectLink": "https://github.com/agroengelns-bot/agromatica",
+  "version": "agromatic-master-config-v3-q20-q25-pf20-pf25-images",
   "layerOrderTopToBottom": [
     "shaft",
     "gearbox",
@@ -9,7 +8,7 @@
     "hood",
     "handwheel"
   ],
-  "zIndex": {
+  "zIndexDefaults": {
     "shaft": 60,
     "gearbox": 50,
     "base": 40,
@@ -17,98 +16,478 @@
     "hood": 20,
     "handwheel": 10
   },
-  "rules": [
-    {
-      "torque": 100,
-      "name": "100 Nm – kleine Haube",
-      "hood": "small",
-      "ring": false,
-      "hoodPlacement": {
-        "x": 0,
-        "y": -236.2,
-        "scale": 99.2
-      }
-    },
-    {
-      "torque": 120,
-      "name": "120 Nm – kleine Haube mit Ring",
-      "hood": "small",
-      "ring": true,
-      "ringPlacement": {
-        "x": 0,
-        "y": -172.3,
-        "scale": 100
-      },
-      "hoodPlacement": {
-        "x": 0,
-        "y": -409.2,
-        "scale": 99.2
-      }
-    },
-    {
-      "torque": 130,
-      "name": "130 Nm – große Haube",
-      "hood": "large",
-      "ring": false,
-      "hoodPlacement": {
-        "x": 0,
-        "y": -461.7,
-        "scale": 123.3
-      }
-    },
-    {
-      "torque": 140,
-      "name": "140 Nm – große Haube mit Ring",
-      "hood": "large",
-      "ring": true,
-      "ringPlacement": {
-        "x": 0,
-        "y": -172.3,
-        "scale": 100
-      },
-      "hoodPlacement": {
-        "x": 0,
-        "y": -520.0,
-        "scale": 123.3
-      }
-    }
-  ],
-  "shaftVariants": {
-    "none": {
-      "name": "ohne Welle",
-      "visible": false
-    },
-    "innenvierkant": {
-      "name": "Innenvierkant",
-      "src": "assets/img/konfigurator/welle-innenvierkant.png",
-      "placement": {
-        "x": 62,
-        "y": 281.3,
-        "scale": 49.1
-      }
-    },
-    "federwelle": {
-      "name": "Federwelle",
-      "src": "assets/img/konfigurator/welle-federwelle.png",
-      "placement": {
-        "x": -78,
-        "y": 134,
-        "scale": 27.3
-      }
-    }
+  "active": {
+    "shaft": "none",
+    "gearbox": "none",
+    "base": "base_gehäuse_1779885087070",
+    "ring": "none",
+    "hood": "none",
+    "handwheel": "none",
+    "gearboxShaft": "none"
   },
-  "gearbox": {
-    "src": "assets/img/konfigurator/zusatzgetriebe.png",
-    "placement": {
+  "mounts": {
+    "shaftMount": "underGearbox",
+    "hoodMount": "onHousing"
+  },
+  "anchors": {
+    "baseZero": {
       "x": 0,
-      "y": 210,
+      "y": 0
+    },
+    "shaft_under_housing": {
+      "x": 62,
+      "y": 281.3,
+      "scale": 49.1
+    },
+    "gearbox_under_housing": {
+      "x": 0,
+      "y": 120,
+      "scale": 100
+    },
+    "shaft_under_gearbox": {
+      "x": 0,
+      "y": 230,
+      "scale": 100
+    },
+    "hood_on_housing": {
+      "x": 0,
+      "y": -461.7,
+      "scale": 123.3
+    },
+    "ring_on_housing": {
+      "x": 0,
+      "y": -115,
+      "scale": 100
+    },
+    "hood_on_ring": {
+      "x": 0,
+      "y": -160,
       "scale": 100
     }
   },
-  "images": {
-    "base": "assets/img/konfigurator/gehaeuse.png",
-    "ring": "assets/img/konfigurator/ring.png",
-    "hoodSmall": "assets/img/konfigurator/haube-klein.png",
-    "hoodLarge": "assets/img/konfigurator/haube-gross.png"
+  "variants": {
+    "shaftVariants": {
+      "shaft_innenvierkant_1779886853419": {
+        "name": "Innenvierkant",
+        "file": "SW_1000_only_scaled.png",
+        "placement": {
+          "visible": true,
+          "x": 62,
+          "y": 281.3,
+          "scale": 49.1,
+          "opacity": 100,
+          "zIndex": 50
+        },
+        "placements": {}
+      },
+      "shaft_federwelle_1779887457200": {
+        "name": "Federwelle",
+        "file": "Federwelle.png",
+        "placement": {
+          "visible": true,
+          "x": -78,
+          "y": 134,
+          "scale": 27.3,
+          "opacity": 100,
+          "zIndex": 50
+        },
+        "placements": {
+          "underHousing": {
+            "visible": true,
+            "x": -78,
+            "y": 134,
+            "scale": 27.3,
+            "opacity": 100,
+            "zIndex": 50
+          }
+        }
+      },
+      "shaft_q15_zusatzgetriebe": {
+        "name": "Welle Q15",
+        "file": "welle_q15_zusatzgetriebe.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": 230,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 60
+        },
+        "placements": {
+          "underGearbox": {
+            "visible": true,
+            "x": 0,
+            "y": 230,
+            "scale": 100,
+            "opacity": 100,
+            "zIndex": 60
+          }
+        },
+        "mount": "underGearbox",
+        "comboKey": "zg_q15",
+        "shaftType": "Q15"
+      },
+      "shaft_q20_zusatzgetriebe": {
+        "name": "Welle Q20",
+        "file": "welle_q20_zusatzgetriebe.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": 230,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 60
+        },
+        "placements": {
+          "underGearbox": {
+            "visible": true,
+            "x": 0,
+            "y": 230,
+            "scale": 100,
+            "opacity": 100,
+            "zIndex": 60
+          }
+        },
+        "mount": "underGearbox",
+        "comboKey": "zg_q20",
+        "shaftType": "Q20"
+      },
+      "shaft_pf20_zusatzgetriebe": {
+        "name": "Welle PF20",
+        "file": "welle_pf20_zusatzgetriebe.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": 230,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 60
+        },
+        "placements": {
+          "underGearbox": {
+            "visible": true,
+            "x": 0,
+            "y": 230,
+            "scale": 100,
+            "opacity": 100,
+            "zIndex": 60
+          }
+        },
+        "mount": "underGearbox",
+        "comboKey": "zg_pf20",
+        "shaftType": "PF20"
+      },
+      "shaft_pf25_zusatzgetriebe": {
+        "name": "Welle PF25",
+        "file": "welle_pf25_zusatzgetriebe.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": 230,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 60
+        },
+        "placements": {
+          "underGearbox": {
+            "visible": true,
+            "x": 0,
+            "y": 230,
+            "scale": 100,
+            "opacity": 100,
+            "zIndex": 60
+          }
+        },
+        "mount": "underGearbox",
+        "comboKey": "zg_pf25",
+        "shaftType": "PF25"
+      }
+    },
+    "gearboxVariants": {
+      "gearbox_pf20_uploaded": {
+        "name": "Zusatzgetriebe PF20",
+        "file": "ZusPF20.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 40
+        },
+        "placements": {
+          "underHousing": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "scale": 100,
+            "opacity": 100,
+            "zIndex": 40
+          }
+        },
+        "comboKey": "zg_pf20",
+        "shaftType": "PF20",
+        "sourceJson": "PF20.json"
+      },
+      "gearbox_q20_uploaded": {
+        "name": "Zusatzgetriebe Q20",
+        "file": "zusatzQ20.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 40
+        },
+        "placements": {
+          "underHousing": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "scale": 100,
+            "opacity": 100,
+            "zIndex": 40
+          }
+        },
+        "comboKey": "zg_q20",
+        "shaftType": "Q20",
+        "sourceJson": "Q20.json"
+      },
+      "gearbox_q15_uploaded": {
+        "name": "Zusatzgetriebe Q15",
+        "file": "ZusatzQ25.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 40
+        },
+        "placements": {
+          "underHousing": {
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "scale": 100,
+            "opacity": 100,
+            "zIndex": 40
+          }
+        },
+        "comboKey": "zg_q15",
+        "shaftType": "Q15",
+        "sourceJson": "Q25.json"
+      },
+      "gearbox_pf25_uploaded": {
+        "name": "Zusatzgetriebe PF25",
+        "file": "ZusatzPF15.png",
+        "placement": {
+          "visible": true,
+          "x": -5,
+          "y": 198,
+          "scale": 90.6,
+          "opacity": 100,
+          "zIndex": 40
+        },
+        "placements": {
+          "underHousing": {
+            "visible": true,
+            "x": -5,
+            "y": 198,
+            "scale": 90.6,
+            "opacity": 100,
+            "zIndex": 40
+          }
+        },
+        "comboKey": "zg_pf25",
+        "shaftType": "PF25",
+        "sourceJson": "zusatzPF15).json"
+      }
+    },
+    "baseVariants": {
+      "base_gehäuse_1779885087070": {
+        "name": "Gehäuse",
+        "file": "Gehäuse.png",
+        "placement": {
+          "visible": true,
+          "x": 2,
+          "y": 173,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 30
+        },
+        "placements": {}
+      },
+      "base_gehäuse_1779886835467": {
+        "name": "Gehäuse",
+        "file": "Gehäuse.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": 0,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 30
+        },
+        "placements": {}
+      }
+    },
+    "ringVariants": {
+      "ring_ring_1779885055774": {
+        "name": "Ring",
+        "file": "ring_1000_transparent_kongruent.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": 0.7,
+          "scale": 100,
+          "opacity": 100,
+          "zIndex": 25
+        },
+        "placements": {}
+      }
+    },
+    "hoodVariants": {
+      "hood_haube1_1779885035630": {
+        "name": "Haube1",
+        "file": "haube_1000_transparent_kongruent.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": -236.2,
+          "scale": 99.2,
+          "opacity": 100,
+          "zIndex": 20
+        },
+        "placements": {
+          "onRing": {
+            "visible": true,
+            "x": 0,
+            "y": -236.2,
+            "scale": 99.2,
+            "opacity": 100,
+            "zIndex": 20
+          }
+        }
+      },
+      "hood_haube2_1779886876018": {
+        "name": "Haube2",
+        "file": "Fa.png",
+        "placement": {
+          "visible": true,
+          "x": 0,
+          "y": -461.7,
+          "scale": 123.3,
+          "opacity": 100,
+          "zIndex": 20
+        },
+        "placements": {
+          "onHousing": {
+            "visible": true,
+            "x": 0,
+            "y": -461.7,
+            "scale": 123.3,
+            "opacity": 100,
+            "zIndex": 20
+          }
+        }
+      }
+    },
+    "handwheelVariants": {},
+    "gearboxShaftVariants": {
+      "none": {
+        "name": "ohne Zusatzgetriebe / ohne Welle",
+        "imageFile": "Zusatzgetriebe.png",
+        "mount": "none"
+      },
+      "q20": {
+        "name": "Q20 – Querbohrung 20",
+        "imageFile": "zusatzQ20.png",
+        "mount": "underGearbox"
+      },
+      "q25": {
+        "name": "Q25 – Querbohrung 25",
+        "imageFile": "ZusatzQ25.png",
+        "mount": "underGearbox"
+      },
+      "pf20": {
+        "name": "PF20 – Passfeder 20",
+        "imageFile": "zusatzPF20.png",
+        "mount": "underGearbox"
+      },
+      "pf25": {
+        "name": "PF25 – Passfeder 25",
+        "imageFile": "ZusatzPF25.png",
+        "mount": "underGearbox"
+      }
+    }
+  },
+  "configurationRules": {
+    "gearboxShaftMode": "fixedCombo",
+    "description": "Bei Zusatzgetriebe wird genau eine gekoppelte Wellenvariante aktiviert. Freie Mischkombinationen sind nicht zulässig.",
+    "allowedGearboxShaftOptions": [
+      "Q15",
+      "Q20",
+      "PF20",
+      "PF25"
+    ],
+    "selectionField": "gearboxShaft",
+    "onSelect": {
+      "zg_q15": {
+        "setActiveGearbox": "gearbox_q15_uploaded",
+        "setActiveShaft": "shaft_q15_zusatzgetriebe",
+        "setShaftMount": "underGearbox"
+      },
+      "zg_q20": {
+        "setActiveGearbox": "gearbox_q20_uploaded",
+        "setActiveShaft": "shaft_q20_zusatzgetriebe",
+        "setShaftMount": "underGearbox"
+      },
+      "zg_pf20": {
+        "setActiveGearbox": "gearbox_pf20_uploaded",
+        "setActiveShaft": "shaft_pf20_zusatzgetriebe",
+        "setShaftMount": "underGearbox"
+      },
+      "zg_pf25": {
+        "setActiveGearbox": "gearbox_pf25_uploaded",
+        "setActiveShaft": "shaft_pf25_zusatzgetriebe",
+        "setShaftMount": "underGearbox"
+      }
+    },
+    "sourceNotes": {
+      "PF20": {
+        "uploaded_json": "PF20.json",
+        "gearbox_file": "ZusPF20.png"
+      },
+      "Q20": {
+        "uploaded_json": "Q20.json",
+        "gearbox_file": "zusatzQ20.png"
+      },
+      "Q15": {
+        "uploaded_json": "Q25.json",
+        "gearbox_file": "ZusatzQ25.png"
+      },
+      "PF25": {
+        "uploaded_json": "zusatzPF15).json",
+        "gearbox_file": "ZusatzPF15.png"
+      }
+    },
+    "importNotes": [
+      "Die hochgeladenen Zusatzgetriebe-JSONs wurden in gearboxVariants übernommen.",
+      "Die Wellentypen Q15, Q20, PF20 und PF25 wurden als feste Entscheidungsvarianten in gearboxShaftVariants angelegt.",
+      "Hinweis: Die hochgeladene Datei Q25.json wurde gemäß Nutzerwunsch als Option Q15 eingebunden; bei Bedarf Name/Key auf Q25 ändern.",
+      "Hinweis: Die hochgeladene Datei zusatzPF15).json enthält intern ZusPF25 und wurde als PF25 eingebunden."
+    ]
+  },
+  "decisionRules": {
+    "gearboxMode": "fixedComboImage",
+    "allowedGearboxShaftVariants": [
+      "q20",
+      "q25",
+      "pf20",
+      "pf25"
+    ],
+    "note": "Zusatzgetriebe wird als festes Kombibild mit genau einem Wellentyp gerendert; keine freie Wellenauswahl bei Zusatzgetriebe."
   }
 }
