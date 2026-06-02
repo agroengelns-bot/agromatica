@@ -1,5 +1,5 @@
 {
-  "version": "agromatic-master-config-v29-pf20-dateipfad-fix",
+  "version": "agromatic-master-config-v30-pf20-visible-no-alt-label",
   "schema": "gearboxMode-and-shaftType",
   "notes": "Master JSON mit getrennten Auswahlkriterien: Zusatzgetriebe mit/ohne, Welle, Haubenaufbau. Gehäuse bleibt fixer Nullpunkt 0/0/100%. Haubenoptionen: kleine Haube, kleine Haube mit Ring, große Haube, große Haube mit Ring. V26: Haube 2 mit Ring wieder mit vollständiger JSON; Höhenversatz reduziert. | V27: Zusatzvierkant nach oben korrigiert; PF20-Bild ersetzt. | V29: PF20-Dateiname auf lowercase canonical zusatz-pf20.png umgestellt; Uppercase-Kopie bleibt als Fallback.",
   "layerOrderTopToBottom": [
@@ -488,8 +488,8 @@
         }
       },
       "gearbox_pf20": {
-        "name": "Zusatzgetriebe + PF20",
-        "file": "zusatz-pf20.png",
+        "name": "PF20",
+        "file": "zusatzpf20.png",
         "placement": {
           "visible": true,
           "x": -5,

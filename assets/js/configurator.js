@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator V29 – PF20 Dateipfad-Fix";
+const CONFIG_VERSION = "Konfigurator V30 – PF20 sichtbar ohne Alt-Text";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 const ASSET_BASE = "assets/img/konfigurator/";
 const CONFIG_URL = "assets/data/agromatic-master-config.json";
@@ -6,11 +6,11 @@ const CONFIG_URL = "assets/data/agromatic-master-config.json";
 const IMAGE_ALIASES = {
   "Gehäuse.png": "gehaeuse.png",
   "Gehäuse": "gehaeuse.png",
-  "ZusPF20.png": "ZusatzPF20.png",
-  "ZusatzPF20.png": "zusatz-pf20.png",
-  "zusatzPF20.png": "zusatz-pf20.png",
-  "zusatzpf20.png": "zusatz-pf20.png",
-  "zusatz-pf20.png": "zusatz-pf20.png",
+  "ZusPF20.png": "zusatzpf20.png",
+  "ZusatzPF20.png": "zusatzpf20.png",
+  "zusatzPF20.png": "zusatzpf20.png",
+  "zusatzpf20.png": "zusatzpf20.png",
+  "zusatz-pf20.png": "zusatzpf20.png",
   "haube_1000_transparent_kongruent.png": "haube-klein.png",
   "Fa.png": "haube-gross.png",
   "ring_1000_transparent_kongruent.png": "ring.png",
@@ -97,14 +97,20 @@ function setLayer(layer, variant, mount) {
     layer.removeAttribute("src");
     return;
   }
+  layer.alt = "";
+  layer.onerror = () => {
+    console.warn("Konfigurator-Bild nicht gefunden:", variant.file, "=>", resolveFile(variant.file));
+    layer.classList.remove("is-active");
+    layer.removeAttribute("src");
+  };
+  layer.onload = () => layer.classList.add("is-active");
   layer.src = ASSET_BASE + resolveFile(variant.file) + "?v=" + encodeURIComponent(CONFIG_VERSION);
-  layer.alt = variant.name || variant.file;
   layer.style.setProperty("--layer-x", `${placement.x / 10}%`);
   layer.style.setProperty("--layer-y", `${placement.y / 10}%`);
   layer.style.setProperty("--layer-scale", String(placement.scale / 100));
   layer.style.opacity = String(placement.opacity / 100);
   layer.style.zIndex = String(placement.zIndex);
-  layer.classList.add("is-active");
+  // Sichtbar wird der Layer erst nach erfolgreichem Laden.
 }
 
 function optionList(select, items, selected) {
