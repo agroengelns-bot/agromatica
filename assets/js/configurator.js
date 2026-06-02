@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator V28 – PF20 sichtbar / Master-JSON V27";
+const CONFIG_VERSION = "Konfigurator V29 – PF20 Dateipfad-Fix";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 const ASSET_BASE = "assets/img/konfigurator/";
 const CONFIG_URL = "assets/data/agromatic-master-config.json";
@@ -7,9 +7,10 @@ const IMAGE_ALIASES = {
   "Gehäuse.png": "gehaeuse.png",
   "Gehäuse": "gehaeuse.png",
   "ZusPF20.png": "ZusatzPF20.png",
-  "ZusatzPF20.png": "ZusatzPF20.png",
-  "zusatzPF20.png": "ZusatzPF20.png",
-  "zusatzpf20.png": "ZusatzPF20.png",
+  "ZusatzPF20.png": "zusatz-pf20.png",
+  "zusatzPF20.png": "zusatz-pf20.png",
+  "zusatzpf20.png": "zusatz-pf20.png",
+  "zusatz-pf20.png": "zusatz-pf20.png",
   "haube_1000_transparent_kongruent.png": "haube-klein.png",
   "Fa.png": "haube-gross.png",
   "ring_1000_transparent_kongruent.png": "ring.png",
