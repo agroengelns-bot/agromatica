@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator V24 – Master-JSON V5";
+const CONFIG_VERSION = "Konfigurator V28 – PF20 sichtbar / Master-JSON V27";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 const ASSET_BASE = "assets/img/konfigurator/";
 const CONFIG_URL = "assets/data/agromatic-master-config.json";
@@ -7,6 +7,9 @@ const IMAGE_ALIASES = {
   "Gehäuse.png": "gehaeuse.png",
   "Gehäuse": "gehaeuse.png",
   "ZusPF20.png": "ZusatzPF20.png",
+  "ZusatzPF20.png": "ZusatzPF20.png",
+  "zusatzPF20.png": "ZusatzPF20.png",
+  "zusatzpf20.png": "ZusatzPF20.png",
   "haube_1000_transparent_kongruent.png": "haube-klein.png",
   "Fa.png": "haube-gross.png",
   "ring_1000_transparent_kongruent.png": "ring.png",
@@ -93,7 +96,7 @@ function setLayer(layer, variant, mount) {
     layer.removeAttribute("src");
     return;
   }
-  layer.src = ASSET_BASE + resolveFile(variant.file);
+  layer.src = ASSET_BASE + resolveFile(variant.file) + "?v=" + encodeURIComponent(CONFIG_VERSION);
   layer.alt = variant.name || variant.file;
   layer.style.setProperty("--layer-x", `${placement.x / 10}%`);
   layer.style.setProperty("--layer-y", `${placement.y / 10}%`);
