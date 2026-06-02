@@ -1,5 +1,5 @@
 {
-  "version": "agromatic-master-config-v5-website-integrated",
+  "version": "agromatic-master-config-v5.1-hood-ring-offset-fix",
   "schema": "gearboxMode-and-shaftType",
   "notes": "Master JSON mit getrennten Auswahlkriterien: Zusatzgetriebe mit/ohne, Welle, Haubenaufbau. Gehäuse bleibt fixer Nullpunkt 0/0/100%. Haubenoptionen: kleine Haube, kleine Haube mit Ring, große Haube, große Haube mit Ring.",
   "layerOrderTopToBottom": [
@@ -192,12 +192,12 @@
     },
     "hood_large_on_ring": {
       "x": 0,
-      "y": -463.8,
+      "y": -637.1,
       "scale": 123.6
     },
     "hood_small_on_housing": {
       "x": 0,
-      "y": -409.4,
+      "y": -236.1,
       "scale": 99.2
     },
     "hood_small_on_ring": {
@@ -253,7 +253,7 @@
         "placement": {
           "visible": true,
           "x": 0,
-          "y": -409.4,
+          "y": -236.1,
           "scale": 99.2,
           "opacity": 100,
           "zIndex": 20
@@ -262,7 +262,7 @@
           "onHousing": {
             "visible": true,
             "x": 0,
-            "y": -409.4,
+            "y": -236.1,
             "scale": 99.2,
             "opacity": 100,
             "zIndex": 20
@@ -300,7 +300,7 @@
           "onRing": {
             "visible": true,
             "x": 0,
-            "y": -463.8,
+            "y": -637.1,
             "scale": 123.6,
             "opacity": 100,
             "zIndex": 20
