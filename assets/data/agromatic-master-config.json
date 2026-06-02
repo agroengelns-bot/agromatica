@@ -1,7 +1,7 @@
 {
-  "version": "agromatic-master-config-v26-haube2-ringversatz-reduziert",
+  "version": "agromatic-master-config-v27-zusatzvierkant-pf20-fix",
   "schema": "gearboxMode-and-shaftType",
-  "notes": "Master JSON mit getrennten Auswahlkriterien: Zusatzgetriebe mit/ohne, Welle, Haubenaufbau. Gehäuse bleibt fixer Nullpunkt 0/0/100%. Haubenoptionen: kleine Haube, kleine Haube mit Ring, große Haube, große Haube mit Ring. V26: Haube 2 mit Ring wieder mit vollständiger JSON; Höhenversatz reduziert.",
+  "notes": "Master JSON mit getrennten Auswahlkriterien: Zusatzgetriebe mit/ohne, Welle, Haubenaufbau. Gehäuse bleibt fixer Nullpunkt 0/0/100%. Haubenoptionen: kleine Haube, kleine Haube mit Ring, große Haube, große Haube mit Ring. V26: Haube 2 mit Ring wieder mit vollständiger JSON; Höhenversatz reduziert. | V27: Zusatzvierkant nach oben korrigiert; PF20-Bild ersetzt.",
   "layerOrderTopToBottom": [
     "shaft",
     "gearbox",
@@ -426,18 +426,18 @@
         "file": "Zusaztgetriebe.png",
         "placement": {
           "visible": true,
-          "x": -5,
-          "y": 201,
-          "scale": 90,
+          "x": -3,
+          "y": 170,
+          "scale": 93.3,
           "opacity": 100,
           "zIndex": 40
         },
         "placements": {
           "underHousing": {
             "visible": true,
-            "x": -5,
-            "y": 201,
-            "scale": 90,
+            "x": -3,
+            "y": 170,
+            "scale": 93.3,
             "opacity": 100,
             "zIndex": 40
           }
