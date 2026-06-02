@@ -1,54 +1,118 @@
-const CONFIG_VERSION = "Konfigurator Test V23 – Master-JSON Layerpositionen";
+const CONFIG_VERSION = "Konfigurator V24 – Master-JSON V5";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
-
 const ASSET_BASE = "assets/img/konfigurator/";
+const CONFIG_URL = "assets/data/agromatic-master-config.json";
 
-const masterConfig = {
-  anchors: {
-    gearbox_under_housing: { x: -3, y: 170, scale: 93.3 },
-    ring_on_housing: { x: 0, y: -173.3, scale: 100 },
-    hood_on_ring: { x: 0, y: -409.3, scale: 99.3 },
-    hood_on_housing: { x: 0, y: -95, scale: 100 },
-    shaft_under_gearbox: { x: 0, y: 230, scale: 100 }
-  },
-  placements: {
-    base: { x: 0, y: 0, scale: 100 },
-    gearbox: { x: -3, y: 170, scale: 93.3 },
-    ring: { x: 0, y: -173.3, scale: 100 },
-    hoodOnRing: { x: 0, y: -409.3, scale: 99.3 }
-  }
+const IMAGE_ALIASES = {
+  "Gehäuse.png": "gehaeuse.png",
+  "Gehäuse": "gehaeuse.png",
+  "ZusPF20.png": "ZusatzPF20.png",
+  "haube_1000_transparent_kongruent.png": "haube-klein.png",
+  "Fa.png": "haube-gross.png",
+  "ring_1000_transparent_kongruent.png": "ring.png",
+  "SW_1000_only_scaled.png": "welle-innenvierkant.png",
+  "Federwelle.png": "welle-federwelle.png"
 };
 
-const torqueRules = [
-  { torque: 100, label: "100 Nm", name: "100 Nm – kleine Haube", hood: "small", ring: false, hoodPlacement: { x: 0, y: -236.2, scale: 99.2 } },
-  { torque: 120, label: "120 Nm", name: "120 Nm – kleine Haube mit Ring", hood: "small", ring: true, ringPlacement: masterConfig.placements.ring, hoodPlacement: masterConfig.placements.hoodOnRing },
-  { torque: 130, label: "130 Nm", name: "130 Nm – große Haube", hood: "large", ring: false, hoodPlacement: { x: 0, y: -461.7, scale: 123.3 } },
-  { torque: 140, label: "140 Nm", name: "140 Nm – große Haube mit Ring", hood: "large", ring: true, ringPlacement: masterConfig.placements.ring, hoodPlacement: masterConfig.placements.hoodOnRing }
-];
+let config = null;
 
-const comboVariants = {
-  none: { label: "ohne Zusatzgetriebe", shaftLabel: "ohne Welle", src: null, gearbox: false },
-  q20: { label: "Q20", shaftLabel: "Q20 – Querbohrung 20", src: "zusatzQ20.png", gearbox: true },
-  q25: { label: "Q25", shaftLabel: "Q25 – Querbohrung 25", src: "ZusatzQ25.png", gearbox: true },
-  pf20: { label: "PF20", shaftLabel: "PF20 – Passfeder 20", src: "ZusatzPF20.png", gearbox: true },
-  pf25: { label: "PF25", shaftLabel: "PF25 – Passfeder 25", src: "ZusatzPF25.png", gearbox: true }
+const fallbackConfig = {
+  version: "fallback-v24",
+  selectionRules: {
+    gearboxMode: {
+      none: { label: "ohne Zusatzgetriebe" },
+      withGearbox: { label: "mit Zusatzgetriebe" }
+    },
+    shaftType: {
+      vierkant: { label: "Vierkant" },
+      federwelle: { label: "Federwelle / Passfeder" },
+      q20: { label: "Q20" },
+      q25: { label: "Q25" },
+      pf20: { label: "PF20" },
+      pf25: { label: "PF25" }
+    },
+    hoodSetup: {
+      small: { label: "kleine Haube", hoodKey: "hood_small", ringKey: "none", hoodMount: "onHousing" },
+      small_with_ring: { label: "kleine Haube mit Ring", hoodKey: "hood_small", ringKey: "ring_standard", hoodMount: "onRing" },
+      large: { label: "große Haube", hoodKey: "hood_large", ringKey: "none", hoodMount: "onHousing" },
+      large_with_ring: { label: "große Haube mit Ring", hoodKey: "hood_large", ringKey: "ring_standard", hoodMount: "onRing" }
+    },
+    resolver: {
+      none: {
+        vierkant: { shaftKey: "shaft_vierkant", gearboxKey: "none" },
+        federwelle: { shaftKey: "shaft_federwelle", gearboxKey: "none" },
+        q20: { shaftKey: "shaft_q20", gearboxKey: "none" },
+        q25: { shaftKey: "shaft_q25", gearboxKey: "none" },
+        pf20: { shaftKey: "shaft_pf20", gearboxKey: "none" },
+        pf25: { shaftKey: "shaft_pf25", gearboxKey: "none" }
+      },
+      withGearbox: {
+        vierkant: { shaftKey: "none", gearboxKey: "gearbox_vierkant" },
+        federwelle: { shaftKey: "none", gearboxKey: "gearbox_pf25" },
+        q20: { shaftKey: "none", gearboxKey: "gearbox_q20" },
+        q25: { shaftKey: "none", gearboxKey: "gearbox_q25" },
+        pf20: { shaftKey: "none", gearboxKey: "gearbox_pf20" },
+        pf25: { shaftKey: "none", gearboxKey: "gearbox_pf25" }
+      }
+    }
+  },
+  variants: { baseVariants: {}, ringVariants: {}, hoodVariants: {}, shaftVariants: {}, gearboxVariants: {} }
+};
+
+const torqueLabels = {
+  small: { label: "100 Nm", title: "100 Nm – kleine Haube" },
+  small_with_ring: { label: "120 Nm", title: "120 Nm – kleine Haube mit Ring" },
+  large: { label: "130 Nm", title: "130 Nm – große Haube" },
+  large_with_ring: { label: "140 Nm", title: "140 Nm – große Haube mit Ring" }
 };
 
 const $ = (id) => document.getElementById(id);
 
-function setLayer(layer, placement, active = true) {
+function resolveFile(fileName) {
+  if (!fileName) return null;
+  return IMAGE_ALIASES[fileName] || fileName;
+}
+
+function normalizePlacement(placement) {
+  if (!placement || placement.visible === false) return null;
+  return {
+    visible: placement.visible !== false,
+    x: Number(placement.x || 0),
+    y: Number(placement.y || 0),
+    scale: Number(placement.scale || 100),
+    opacity: Number(placement.opacity ?? 100),
+    zIndex: Number(placement.zIndex || 1)
+  };
+}
+
+function setLayer(layer, variant, mount) {
   if (!layer) return;
-  layer.classList.toggle("is-active", Boolean(active && placement));
-  if (!placement) return;
+  const placement = normalizePlacement((mount && variant?.placements?.[mount]) || variant?.placement);
+  if (!variant || !variant.file || !placement) {
+    layer.classList.remove("is-active");
+    layer.removeAttribute("src");
+    return;
+  }
+  layer.src = ASSET_BASE + resolveFile(variant.file);
+  layer.alt = variant.name || variant.file;
   layer.style.setProperty("--layer-x", `${placement.x / 10}%`);
   layer.style.setProperty("--layer-y", `${placement.y / 10}%`);
   layer.style.setProperty("--layer-scale", String(placement.scale / 100));
+  layer.style.opacity = String(placement.opacity / 100);
+  layer.style.zIndex = String(placement.zIndex);
+  layer.classList.add("is-active");
 }
 
-function setLayerImage(layer, fileName, alt) {
-  if (!layer || !fileName) return;
-  layer.src = ASSET_BASE + fileName;
-  layer.alt = alt || fileName;
+function optionList(select, items, selected) {
+  if (!select) return;
+  select.innerHTML = "";
+  Object.entries(items || {}).forEach(([key, item]) => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = item.label || item.name || key;
+    if (key === selected) option.selected = true;
+    select.appendChild(option);
+  });
 }
 
 function ensureVersionBadge() {
@@ -59,30 +123,14 @@ function ensureVersionBadge() {
   document.body.appendChild(badge);
 }
 
-function getRule() {
-  const value = Number($("torque")?.value || 100);
-  return torqueRules.find((rule) => rule.torque === value) || torqueRules[0];
-}
-
-function getCombo() {
-  const value = $("gearboxCombo")?.value || "none";
-  return comboVariants[value] || comboVariants.none;
-}
-
-function renderMatches(rule, combo) {
+function renderMatches(summary) {
   const box = $("matches");
   if (!box) return;
-  const layerParts = [];
-  if (combo.gearbox) layerParts.push(combo.shaftLabel, "Zusatzgetriebe");
-  layerParts.push("Gehäuse");
-  if (rule.ring) layerParts.push("Ring");
-  layerParts.push(rule.hood === "large" ? "große Haube" : "kleine Haube");
-
   box.innerHTML = "";
   [
-    { title: "Aktive Regel", copy: rule.name },
-    { title: "Zusatzgetriebe/Welle", copy: combo.label },
-    { title: "Aktive Layer", copy: layerParts.join(" + ") },
+    { title: "Haube", copy: summary.hoodLabel },
+    { title: "Zusatzgetriebe", copy: summary.gearboxLabel },
+    { title: "Aktive Layer", copy: summary.layers.join(" + ") },
     { title: "Projekt", copy: `<a href="${PROJECT_LINK}" target="_blank" rel="noopener">GitHub / Website öffnen</a>` }
   ].forEach((item) => {
     const card = document.createElement("div");
@@ -93,55 +141,81 @@ function renderMatches(rule, combo) {
 }
 
 function updateConfigurator() {
-  const rule = getRule();
-  const combo = getCombo();
+  const cfg = config || fallbackConfig;
+  const rules = cfg.selectionRules || fallbackConfig.selectionRules;
+  const variants = cfg.variants || fallbackConfig.variants;
+
+  const hoodSetupKey = $("hoodSetup")?.value || cfg.active?.hoodSetup || "large_with_ring";
+  const gearboxMode = $("gearboxMode")?.value || cfg.active?.gearboxMode || "none";
+  const shaftType = $("shaftType")?.value || cfg.active?.shaftType || "vierkant";
   const protection = $("protection")?.value || "IP65";
   const time = Number($("time")?.value || 30);
 
-  const baseLayer = $("baseLayer");
-  const gearboxLayer = $("gearboxLayer");
-  const shaftLayer = $("shaftLayer");
-  const ringLayer = $("ringLayer");
-  const hoodLayer = $("hoodLayer");
+  const hoodSetup = rules.hoodSetup?.[hoodSetupKey] || rules.hoodSetup.large_with_ring;
+  const resolver = rules.resolver?.[gearboxMode]?.[shaftType] || rules.resolver.none.vierkant;
 
-  setLayerImage(baseLayer, "gehaeuse.png", "Gehäuse");
-  setLayer(baseLayer, masterConfig.placements.base, true);
+  const baseVariant = variants.baseVariants?.base_gehaeuse || Object.values(variants.baseVariants || {})[0];
+  const ringVariant = hoodSetup.ringKey && hoodSetup.ringKey !== "none" ? variants.ringVariants?.[hoodSetup.ringKey] : null;
+  const hoodVariant = variants.hoodVariants?.[hoodSetup.hoodKey];
+  const shaftVariant = resolver.shaftKey && resolver.shaftKey !== "none" ? variants.shaftVariants?.[resolver.shaftKey] : null;
+  const gearboxVariant = resolver.gearboxKey && resolver.gearboxKey !== "none" ? variants.gearboxVariants?.[resolver.gearboxKey] : null;
 
-  if (combo.gearbox) {
-    setLayerImage(gearboxLayer, combo.src, combo.label + " Zusatzgetriebe/Welle");
-    setLayer(gearboxLayer, masterConfig.placements.gearbox, true);
-  } else {
-    setLayer(gearboxLayer, null, false);
-  }
+  setLayer($("baseLayer"), baseVariant);
+  setLayer($("gearboxLayer"), gearboxVariant, "underHousing");
+  setLayer($("shaftLayer"), shaftVariant, "underHousing");
+  setLayer($("ringLayer"), ringVariant, "onHousing");
+  setLayer($("hoodLayer"), hoodVariant, hoodSetup.hoodMount || "onHousing");
 
-  setLayer(shaftLayer, null, false);
-  setLayer(ringLayer, rule.ringPlacement || null, rule.ring);
+  const torque = torqueLabels[hoodSetupKey] || { label: "", title: hoodSetup.label || "Konfiguration" };
+  const shaftLabel = rules.shaftType?.[shaftType]?.label || shaftVariant?.name || shaftType;
+  const gearboxLabel = rules.gearboxMode?.[gearboxMode]?.label || gearboxMode;
+  const layers = [];
+  if (gearboxVariant) layers.push(gearboxVariant.name || "Zusatzgetriebe");
+  if (shaftVariant) layers.push(shaftVariant.name || shaftLabel);
+  layers.push(baseVariant?.name || "Gehäuse");
+  if (ringVariant) layers.push(ringVariant.name || "Ring");
+  if (hoodVariant) layers.push(hoodSetup.label || hoodVariant.name || "Haube");
 
-  if (hoodLayer) {
-    hoodLayer.src = rule.hood === "large" ? ASSET_BASE + "haube-gross.png" : ASSET_BASE + "haube-klein.png";
-    hoodLayer.alt = rule.hood === "large" ? "Große Haube" : "Kleine Haube";
-  }
-  setLayer(hoodLayer, rule.hoodPlacement, true);
-
-  if ($("seriesBadge")) $("seriesBadge").textContent = rule.label;
-  if ($("resultTitle")) $("resultTitle").textContent = rule.name;
-  if ($("torqueOut")) $("torqueOut").textContent = rule.label;
+  if ($("seriesBadge")) $("seriesBadge").textContent = torque.label || "Konfiguration";
+  if ($("resultTitle")) $("resultTitle").textContent = torque.title || hoodSetup.label;
+  if ($("torqueOut")) $("torqueOut").textContent = torque.label || "nach Auswahl";
   if ($("timeOut")) $("timeOut").textContent = `${time} s`;
   if ($("protectionOut")) $("protectionOut").textContent = protection;
-  if ($("housingOut")) $("housingOut").textContent = combo.gearbox ? "Gehäuse + Zusatzgetriebe" : "Gehäuse";
-  if ($("shaftOut")) $("shaftOut").textContent = combo.shaftLabel;
-  if ($("layersOut")) $("layersOut").textContent = `${combo.gearbox ? combo.label + "; " : ""}${rule.hood === "large" ? "große" : "kleine"} Haube${rule.ring ? " + Ring" : ""}`;
+  if ($("housingOut")) $("housingOut").textContent = gearboxVariant ? "Gehäuse + Zusatzgetriebe" : "Gehäuse";
+  if ($("shaftOut")) $("shaftOut").textContent = shaftLabel;
+  if ($("layersOut")) $("layersOut").textContent = layers.join(" + ");
 
-  renderMatches(rule, combo);
+  renderMatches({ hoodLabel: hoodSetup.label, gearboxLabel, layers });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  ensureVersionBadge();
-  ["torque", "time", "protection", "gearboxCombo"].forEach((id) => {
+async function loadConfig() {
+  try {
+    const response = await fetch(CONFIG_URL, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    config = await response.json();
+  } catch (error) {
+    console.warn("Master-JSON konnte nicht geladen werden, Fallback aktiv:", error);
+    config = fallbackConfig;
+  }
+}
+
+function initControls() {
+  const cfg = config || fallbackConfig;
+  const rules = cfg.selectionRules || fallbackConfig.selectionRules;
+  optionList($("hoodSetup"), rules.hoodSetup, cfg.active?.hoodSetup || "large_with_ring");
+  optionList($("gearboxMode"), rules.gearboxMode, cfg.active?.gearboxMode || "none");
+  optionList($("shaftType"), rules.shaftType, cfg.active?.shaftType || "vierkant");
+  ["hoodSetup", "gearboxMode", "shaftType", "time", "protection"].forEach((id) => {
     const el = $(id);
     if (!el) return;
     el.addEventListener("input", updateConfigurator);
     el.addEventListener("change", updateConfigurator);
   });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  ensureVersionBadge();
+  await loadConfig();
+  initControls();
   updateConfigurator();
 });

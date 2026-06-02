@@ -1,4 +1,4 @@
-/* Agromatic Konfigurator – V23 Layer aus Master-JSON */
+/* Agromatic Konfigurator – V24 Master-JSON V5 integriert */
 
 .config-section { padding-top: 70px; }
 
@@ -65,7 +65,7 @@
   display: grid;
   grid-template-columns: 1fr 260px;
   gap: 20px;
-  min-height: 560px;
+  min-height: 600px;
   border: 1px solid var(--line);
   border-radius: 22px;
   background:
@@ -79,7 +79,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 520px;
+  min-height: 560px;
 }
 
 .product-preview {
@@ -87,7 +87,7 @@
   width: min(100%, 620px);
   aspect-ratio: 1 / 1;
   overflow: visible;
-  transform: translateY(54px) scale(0.88);
+  transform: translateY(80px) scale(0.82);
   transform-origin: center center;
 }
 
@@ -183,5 +183,5 @@
   .config-panel { padding: 20px; }
   .device-stage { min-height: auto; padding: 18px; }
   .device-wrap { min-height: 320px; }
-  .product-preview { width: min(100%, 420px); transform: translateY(36px) scale(0.86); }
+  .product-preview { width: min(100%, 420px); transform: translateY(56px) scale(0.80); }
 }
