@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator V31 – Handradoptionen";
+const CONFIG_VERSION = "Konfigurator V40 – PF20 nutzt ZusPF20.png";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 const ASSET_BASE = "assets/img/konfigurator/";
 const CONFIG_URL = "assets/data/agromatic-master-config.json";
@@ -6,11 +6,11 @@ const CONFIG_URL = "assets/data/agromatic-master-config.json";
 const IMAGE_ALIASES = {
   "Gehäuse.png": "gehaeuse.png",
   "Gehäuse": "gehaeuse.png",
-  "ZusPF20.png": "zusatzPF20.png",
-  "ZusatzPF20.png": "zusatzPF20.png",
-  "zusatzPF20.png": "zusatzPF20.png",
-  "zusatzpf20.png": "zusatzPF20.png",
-  "zusatz-pf20.png": "zusatzPF20.png",
+  "ZusPF20.png": "ZusPF20.png",
+  "ZusatzPF20.png": "ZusPF20.png",
+  "zusatzPF20.png": "ZusPF20.png",
+  "zusatzpf20.png": "ZusPF20.png",
+  "zusatz-pf20.png": "ZusPF20.png",
   "haube_1000_transparent_kongruent.png": "haube-klein.png",
   "Fa.png": "haube-gross.png",
   "ring_1000_transparent_kongruent.png": "ring.png",
