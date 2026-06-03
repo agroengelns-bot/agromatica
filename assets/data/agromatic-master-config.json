@@ -1,7 +1,7 @@
 {
-  "version": "agromatic-master-config-v35-pf20-case-und-bild-fix",
+  "version": "agromatic-master-config-v36-zusatzPF20-direkt",
   "schema": "gearboxMode-and-shaftType",
-  "notes": "Master JSON mit getrennten Auswahlkriterien: Zusatzgetriebe mit/ohne, Welle, Haubenaufbau. Gehäuse bleibt fixer Nullpunkt 0/0/100%. Haubenoptionen: kleine Haube, kleine Haube mit Ring, große Haube, große Haube mit Ring. V26: Haube 2 mit Ring wieder mit vollständiger JSON; Höhenversatz reduziert. | V27: Zusatzvierkant nach oben korrigiert; PF20-Bild ersetzt. | V34: PF20-Dateiname auf zusatzPF20.png umgestellt; alter Dateiname zusatzPF20.png wird nicht mehr verwendet. | V31: Handrad aus separater JSON übernommen; Haubenparameter daraus nicht übernommen. Optionen: mit Handrad, mit Stellungsanzeige. | V33: Handradposition aus Layer-Tool übernommen: x=307.8, y=-16.2, scale=100. | V34: ZusatzPF20 eingebaut; Koordinaten/Skalierung von ZusatzPF25 übernommen; zusatzPF20.png aus der Master-JSON entfernt. | V35: PF20 verwendet zusatzPF20.png; zusätzlich wird zusatzpf20.png als identische Fallback-Datei mitgeliefert, damit GitHub-Pages/Browser-Cache/Filename-Case-Probleme PF20 nicht ausblenden.",
+  "notes": "V36: PF20 verweist direkt auf zusatzPF20.png. zusatz-pf20.png und lowercase zusatzpf20.png werden nicht mehr verwendet.",
   "layerOrderTopToBottom": [
     "shaft",
     "gearbox",
