@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator V40 – PF20 nutzt ZusPF20.png";
+const CONFIG_VERSION = "Konfigurator V42 – alle Layer sauber ausblenden";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 const ASSET_BASE = "assets/img/konfigurator/";
 const CONFIG_URL = "assets/data/agromatic-master-config.json";
@@ -91,28 +91,61 @@ function normalizePlacement(placement) {
   };
 }
 
+
+function deactivateLayer(layer) {
+  if (!layer) return;
+  layer.classList.remove("is-active");
+  layer.style.display = "none";
+  layer.style.opacity = "0";
+  layer.style.visibility = "hidden";
+  layer.style.border = "0";
+  layer.style.outline = "0";
+  layer.style.background = "transparent";
+  layer.style.boxShadow = "none";
+  layer.removeAttribute("src");
+  layer.removeAttribute("alt");
+}
+
+function activateLayer(layer) {
+  if (!layer) return;
+  layer.classList.add("is-active");
+  layer.style.display = "block";
+  layer.style.visibility = "visible";
+  layer.style.border = "0";
+  layer.style.outline = "0";
+  layer.style.background = "transparent";
+  layer.style.boxShadow = "none";
+  layer.alt = "";
+}
+
 function setLayer(layer, variant, mount) {
   if (!layer) return;
+
   const placement = normalizePlacement((mount && variant?.placements?.[mount]) || variant?.placement);
-  if (!variant || !variant.file || !placement) {
-    layer.classList.remove("is-active");
-    layer.removeAttribute("src");
+
+  // V42: Alle nicht aktiven oder ungültigen Layer komplett ausblenden.
+  // Dadurch bleiben beim Ausblenden keine leeren Bildrahmen/Alt-Text-Rahmen stehen.
+  if (!variant || !variant.file || !placement || placement.visible === false) {
+    deactivateLayer(layer);
     return;
   }
-  layer.alt = "";
+
   layer.onerror = () => {
     console.warn("Konfigurator-Bild nicht gefunden:", variant.file, "=>", resolveFile(variant.file));
-    layer.classList.remove("is-active");
-    layer.removeAttribute("src");
+    deactivateLayer(layer);
   };
-  layer.onload = () => layer.classList.add("is-active");
+
+  layer.onload = () => {
+    activateLayer(layer);
+  };
+
+  activateLayer(layer);
   layer.src = ASSET_BASE + resolveFile(variant.file) + "?v=" + encodeURIComponent(CONFIG_VERSION);
   layer.style.setProperty("--layer-x", `${placement.x / 10}%`);
   layer.style.setProperty("--layer-y", `${placement.y / 10}%`);
   layer.style.setProperty("--layer-scale", String(placement.scale / 100));
   layer.style.opacity = String(placement.opacity / 100);
   layer.style.zIndex = String(placement.zIndex);
-  // Sichtbar wird der Layer erst nach erfolgreichem Laden.
 }
 
 function optionList(select, items, selected) {
@@ -266,3 +299,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
   window.addEventListener('load', cleanLayerImages);
 })();
+
+
+// V42 Nachlauf: Alle Layer ohne aktive Klasse bekommen sicher keinen Bildrahmen.
+function cleanupInactiveLayers() {
+  document.querySelectorAll(".product-layer, .config-layer, .layer-img, img[data-layer]").forEach((layer) => {
+    if (!layer.classList.contains("is-active")) {
+      deactivateLayer(layer);
+    }
+  });
+}
+
+window.addEventListener("load", cleanupInactiveLayers);
+document.addEventListener("change", () => setTimeout(cleanupInactiveLayers, 0));

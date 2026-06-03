@@ -1,7 +1,7 @@
 {
-  "version": "agromatic-master-config-v40-pf20-zuspf20",
+  "version": "agromatic-master-config-v42-all-layer-rahmen-fix",
   "schema": "gearboxMode-and-shaftType",
-  "notes": "V40: PF20 mit Zusatzgetriebe verweist auf die im Repository vorhandene Datei ZusPF20.png. Alte Varianten zusatzPF20.png / zusatzpf20.png / zusatz-pf20.png werden nicht als Ziel verwendet.",
+  "notes": "V42: Website blendet alle inaktiven Layer vollständig aus; keine Rahmen/Platzhalter bei ausgeblendeten Bildern.",
   "layerOrderTopToBottom": [
     "shaft",
     "gearbox",
