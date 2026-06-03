@@ -1,7 +1,7 @@
 {
-  "version": "agromatic-master-config-v43-broken-img-cleanup",
+  "version": "agromatic-master-config-v44-layer-sichtbarkeit-fix",
   "schema": "gearboxMode-and-shaftType",
-  "notes": "V43: Harte Bereinigung gegen sichtbare leere/broken IMG-Rahmen im Preview.",
+  "notes": "V44: V43-Cleanup zurückgenommen. Aktive Layer bleiben sichtbar; nicht aktive Layer werden per setLayer ausgeblendet. PF20 bleibt auf ZusPF20.png.",
   "layerOrderTopToBottom": [
     "shaft",
     "gearbox",

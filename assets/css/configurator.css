@@ -225,72 +225,18 @@
 }
 
 
-/* V41: inaktive Layer vollständig entfernen, damit kein leerer PNG-/Alt-Text-Rahmen sichtbar bleibt. */
-.product-layer:not(.is-active) {
-  display: none !important;
-  opacity: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  background: transparent !important;
-  background-image: none !important;
-  box-shadow: none !important;
-}
-
-.product-handwheel:not(.is-active) {
-  display: none !important;
-}
-
-
-/* V42: Keine sichtbaren Browserrahmen oder Platzhalter bei ausgeblendeten Layern. */
+/* V44: keine Browser-Rahmen an Layerbildern; Sichtbarkeit wird ausschließlich per JS/setLayer gesteuert. */
 .product-layer,
 .config-layer,
 .layer-img,
-img[data-layer] {
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  background-image: none !important;
-}
-
-.product-layer:not(.is-active),
-.config-layer:not(.is-active),
-.layer-img:not(.is-active),
-img[data-layer]:not(.is-active) {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  background: transparent !important;
-  background-image: none !important;
-  box-shadow: none !important;
-}
-
-
-/* V43: Browser-Rahmen von leeren/broken IMG-Layern komplett unterdrücken. */
-.product-visual img,
+img[data-layer],
 .configurator-preview img,
 .product-preview img,
-#configuratorPreview img,
-#previewLayers img,
-.layer-stack img,
-.configurator-stage img {
-  border: none !important;
-  outline: none !important;
+.product-visual img,
+.layer-stack img {
+  border: 0 !important;
+  outline: 0 !important;
   box-shadow: none !important;
   background: transparent !important;
   background-image: none !important;
-}
-
-.product-visual img:not(.is-active),
-.configurator-preview img:not(.is-active),
-.product-preview img:not(.is-active),
-#configuratorPreview img:not(.is-active),
-#previewLayers img:not(.is-active),
-.layer-stack img:not(.is-active),
-.configurator-stage img:not(.is-active) {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
 }

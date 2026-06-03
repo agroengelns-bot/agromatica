@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator V43 – Broken-Image-Rahmen entfernt";
+const CONFIG_VERSION = "Konfigurator V44 – Layer sichtbar, Rahmen aus";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 const ASSET_BASE = "assets/img/konfigurator/";
 const CONFIG_URL = "assets/data/agromatic-master-config.json";
@@ -91,90 +91,54 @@ function normalizePlacement(placement) {
   };
 }
 
-
-function deactivateLayer(layer) {
-  if (!layer) return;
-  layer.classList.remove("is-active");
-  layer.style.display = "none";
-  layer.style.opacity = "0";
-  layer.style.visibility = "hidden";
-  layer.style.border = "0";
-  layer.style.outline = "0";
-  layer.style.background = "transparent";
-  layer.style.boxShadow = "none";
-  layer.removeAttribute("src");
-  layer.removeAttribute("alt");
-}
-
-function activateLayer(layer) {
-  if (!layer) return;
-  layer.classList.add("is-active");
-  layer.style.display = "block";
-  layer.style.visibility = "visible";
-  layer.style.border = "0";
-  layer.style.outline = "0";
-  layer.style.background = "transparent";
-  layer.style.boxShadow = "none";
-  layer.alt = "";
-}
-
 function setLayer(layer, variant, mount) {
   if (!layer) return;
 
   const placement = normalizePlacement((mount && variant?.placements?.[mount]) || variant?.placement);
 
-  const hideLayer = () => {
+  // Nur wirklich nicht benötigte Layer komplett ausblenden.
+  // Aktive Layer werden NICHT durch einen globalen Cleanup entfernt.
+  if (!variant || !variant.file || !placement || placement.visible === false) {
     layer.classList.remove("is-active");
     layer.style.display = "none";
     layer.style.visibility = "hidden";
     layer.style.opacity = "0";
-    layer.style.border = "0";
-    layer.style.outline = "0";
-    layer.style.boxShadow = "none";
-    layer.style.background = "transparent";
-    layer.style.backgroundImage = "none";
     layer.removeAttribute("src");
     layer.removeAttribute("alt");
-  };
-
-  if (!variant || !variant.file || !placement || placement.visible === false) {
-    hideLayer();
-    setTimeout(hardCleanupBrokenPreviewImages, 0);
     return;
   }
 
   layer.removeAttribute("alt");
+  layer.style.display = "block";
+  layer.style.visibility = "visible";
   layer.style.border = "0";
   layer.style.outline = "0";
   layer.style.boxShadow = "none";
   layer.style.background = "transparent";
   layer.style.backgroundImage = "none";
-  layer.style.display = "block";
-  layer.style.visibility = "visible";
-  layer.style.opacity = String((placement.opacity ?? 100) / 100);
-  layer.style.zIndex = String(placement.zIndex ?? 1);
-  layer.style.setProperty("--layer-x", `${(placement.x ?? 0) / 10}%`);
-  layer.style.setProperty("--layer-y", `${(placement.y ?? 0) / 10}%`);
-  layer.style.setProperty("--layer-scale", String((placement.scale ?? 100) / 100));
 
   layer.onerror = () => {
     console.warn("Konfigurator-Bild nicht gefunden:", variant.file, "=>", resolveFile(variant.file));
-    hideLayer();
-    setTimeout(hardCleanupBrokenPreviewImages, 0);
+    layer.classList.remove("is-active");
+    layer.style.display = "none";
+    layer.style.visibility = "hidden";
+    layer.style.opacity = "0";
+    layer.removeAttribute("src");
+    layer.removeAttribute("alt");
   };
 
   layer.onload = () => {
-    if (layer.naturalWidth > 0) {
-      layer.classList.add("is-active");
-      layer.style.display = "block";
-      layer.style.visibility = "visible";
-    } else {
-      hideLayer();
-    }
-    setTimeout(hardCleanupBrokenPreviewImages, 0);
+    layer.classList.add("is-active");
+    layer.style.display = "block";
+    layer.style.visibility = "visible";
   };
 
   layer.src = ASSET_BASE + resolveFile(variant.file) + "?v=" + encodeURIComponent(CONFIG_VERSION);
+  layer.style.setProperty("--layer-x", `${placement.x / 10}%`);
+  layer.style.setProperty("--layer-y", `${placement.y / 10}%`);
+  layer.style.setProperty("--layer-scale", String(placement.scale / 100));
+  layer.style.opacity = String((placement.opacity ?? 100) / 100);
+  layer.style.zIndex = String(placement.zIndex ?? 1);
 }
 
 function optionList(select, items, selected) {
@@ -328,60 +292,3 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
   window.addEventListener('load', cleanLayerImages);
 })();
-
-
-// V42 Nachlauf: Alle Layer ohne aktive Klasse bekommen sicher keinen Bildrahmen.
-function cleanupInactiveLayers() {
-  document.querySelectorAll(".product-layer, .config-layer, .layer-img, img[data-layer]").forEach((layer) => {
-    if (!layer.classList.contains("is-active")) {
-      deactivateLayer(layer);
-    }
-  });
-}
-
-window.addEventListener("load", cleanupInactiveLayers);
-document.addEventListener("change", () => setTimeout(cleanupInactiveLayers, 0));
-
-
-// V43: harter Cleanup gegen sichtbare Browser-Rahmen von leeren/broken IMG-Layern.
-function hardCleanupBrokenPreviewImages() {
-  const previewSelectors = [
-    ".product-visual",
-    ".configurator-preview",
-    ".product-preview",
-    "#configuratorPreview",
-    "#previewLayers",
-    ".layer-stack",
-    ".configurator-stage"
-  ];
-
-  previewSelectors.forEach((selector) => {
-    document.querySelectorAll(selector + " img").forEach((img) => {
-      const hasSrc = img.hasAttribute("src") && img.getAttribute("src") && img.getAttribute("src").trim() !== "";
-      const broken = hasSrc && img.complete && img.naturalWidth === 0;
-      const inactive = !img.classList.contains("is-active");
-
-      img.removeAttribute("alt");
-      img.style.border = "0";
-      img.style.outline = "0";
-      img.style.boxShadow = "none";
-      img.style.background = "transparent";
-      img.style.backgroundImage = "none";
-
-      if (!hasSrc || broken || inactive) {
-        img.classList.remove("is-active");
-        img.style.display = "none";
-        img.style.visibility = "hidden";
-        img.style.opacity = "0";
-        img.removeAttribute("src");
-        img.removeAttribute("alt");
-      }
-    });
-  });
-}
-
-// Bei jeder Änderung und nach jedem Rendern aufräumen.
-window.addEventListener("load", hardCleanupBrokenPreviewImages);
-document.addEventListener("DOMContentLoaded", hardCleanupBrokenPreviewImages);
-document.addEventListener("change", () => setTimeout(hardCleanupBrokenPreviewImages, 20));
-setInterval(hardCleanupBrokenPreviewImages, 500);
