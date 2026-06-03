@@ -205,3 +205,21 @@
   accent-color: var(--accent);
 }
 .product-handwheel { z-index: 10; }
+
+
+/* V37: Layer-Bilder dürfen keinen sichtbaren Platzhalterrahmen oder karierten Hintergrund zeigen. */
+.configurator-preview img,
+.configurator-preview .layer-img,
+.configurator-preview .config-layer,
+.product-preview img,
+.product-preview .layer-img,
+.product-preview .config-layer,
+#configuratorPreview img,
+#previewLayers img,
+.layer-stack img {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  background-image: none !important;
+}

@@ -237,3 +237,32 @@ document.addEventListener("DOMContentLoaded", async () => {
   initControls();
   updateConfigurator();
 });
+
+
+// V37: Falls ein Layer-Bild nicht geladen werden kann, keinen sichtbaren Rahmen/Alt-Text anzeigen.
+(function(){
+  function cleanLayerImages(){
+    document.querySelectorAll('img').forEach(function(img){
+      if (img.closest('.configurator-card') || img.closest('.configurator-preview') || img.closest('#configuratorPreview') || img.closest('#previewLayers') || img.className.indexOf('layer') !== -1) {
+        img.removeAttribute('alt');
+        img.style.border = '0';
+        img.style.outline = '0';
+        img.style.background = 'transparent';
+        img.style.boxShadow = 'none';
+        img.onerror = function(){
+          this.style.display = 'none';
+          this.removeAttribute('src');
+        };
+        if (!img.complete && img.naturalWidth === 0) {
+          // Laden läuft noch, nicht anfassen.
+        }
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', cleanLayerImages);
+  } else {
+    cleanLayerImages();
+  }
+  window.addEventListener('load', cleanLayerImages);
+})();

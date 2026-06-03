@@ -1,7 +1,7 @@
 {
-  "version": "agromatic-master-config-v36-zusatzPF20-direkt",
+  "version": "agromatic-master-config-v37-pf20-auswahl-und-rahmenfix",
   "schema": "gearboxMode-and-shaftType",
-  "notes": "V36: PF20 verweist direkt auf zusatzPF20.png. zusatz-pf20.png und lowercase zusatzpf20.png werden nicht mehr verwendet.",
+  "notes": "V37: PF20 mit Zusatzgetriebe verweist auf zusatzPF20.png. Sichtbare Rahmen/Platzhalter werden per Website-CSS/JS entfernt. Hinweis: ZusatzPF20 erscheint nur bei Auswahl 'mit Zusatzgetriebe'.",
   "layerOrderTopToBottom": [
     "shaft",
     "gearbox",
