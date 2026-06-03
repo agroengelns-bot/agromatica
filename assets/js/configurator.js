@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator V30 – PF20 sichtbar ohne Alt-Text";
+const CONFIG_VERSION = "Konfigurator V31 – Handradoptionen";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 const ASSET_BASE = "assets/img/konfigurator/";
 const CONFIG_URL = "assets/data/agromatic-master-config.json";
@@ -15,7 +15,9 @@ const IMAGE_ALIASES = {
   "Fa.png": "haube-gross.png",
   "ring_1000_transparent_kongruent.png": "ring.png",
   "SW_1000_only_scaled.png": "welle-innenvierkant.png",
-  "Federwelle.png": "welle-federwelle.png"
+  "Federwelle.png": "welle-federwelle.png",
+  "Handrad.png": "handrad.png",
+  "handrad.png": "handrad.png"
 };
 
 let config = null;
@@ -60,7 +62,7 @@ const fallbackConfig = {
       }
     }
   },
-  variants: { baseVariants: {}, ringVariants: {}, hoodVariants: {}, shaftVariants: {}, gearboxVariants: {} }
+  variants: { baseVariants: {}, ringVariants: {}, hoodVariants: {}, shaftVariants: {}, gearboxVariants: {}, handwheelVariants: {} }
 };
 
 const torqueLabels = {
@@ -160,6 +162,8 @@ function updateConfigurator() {
   const shaftType = $("shaftType")?.value || cfg.active?.shaftType || "vierkant";
   const protection = $("protection")?.value || "IP65";
   const time = Number($("time")?.value || 30);
+  const handwheelEnabled = Boolean($("handwheelEnabled")?.checked);
+  const positionIndicatorEnabled = Boolean($("positionIndicatorEnabled")?.checked);
 
   const hoodSetup = rules.hoodSetup?.[hoodSetupKey] || rules.hoodSetup.large_with_ring;
   const resolver = rules.resolver?.[gearboxMode]?.[shaftType] || rules.resolver.none.vierkant;
@@ -169,12 +173,14 @@ function updateConfigurator() {
   const hoodVariant = variants.hoodVariants?.[hoodSetup.hoodKey];
   const shaftVariant = resolver.shaftKey && resolver.shaftKey !== "none" ? variants.shaftVariants?.[resolver.shaftKey] : null;
   const gearboxVariant = resolver.gearboxKey && resolver.gearboxKey !== "none" ? variants.gearboxVariants?.[resolver.gearboxKey] : null;
+  const handwheelVariant = handwheelEnabled ? (variants.handwheelVariants?.handwheel_handrad || Object.values(variants.handwheelVariants || {})[0]) : null;
 
   setLayer($("baseLayer"), baseVariant);
   setLayer($("gearboxLayer"), gearboxVariant, "underHousing");
   setLayer($("shaftLayer"), shaftVariant, "underHousing");
   setLayer($("ringLayer"), ringVariant, "onHousing");
   setLayer($("hoodLayer"), hoodVariant, hoodSetup.hoodMount || "onHousing");
+  setLayer($("handwheelLayer"), handwheelVariant);
 
   const torque = torqueLabels[hoodSetupKey] || { label: "", title: hoodSetup.label || "Konfiguration" };
   const shaftLabel = rules.shaftType?.[shaftType]?.label || shaftVariant?.name || shaftType;
@@ -185,6 +191,8 @@ function updateConfigurator() {
   layers.push(baseVariant?.name || "Gehäuse");
   if (ringVariant) layers.push(ringVariant.name || "Ring");
   if (hoodVariant) layers.push(hoodSetup.label || hoodVariant.name || "Haube");
+  if (handwheelVariant) layers.push(handwheelVariant.name || "Handrad");
+  if (positionIndicatorEnabled) layers.push("Stellungsanzeige");
 
   if ($("seriesBadge")) $("seriesBadge").textContent = torque.label || "Konfiguration";
   if ($("resultTitle")) $("resultTitle").textContent = torque.title || hoodSetup.label;
@@ -195,7 +203,7 @@ function updateConfigurator() {
   if ($("shaftOut")) $("shaftOut").textContent = shaftLabel;
   if ($("layersOut")) $("layersOut").textContent = layers.join(" + ");
 
-  renderMatches({ hoodLabel: hoodSetup.label, gearboxLabel, layers });
+  renderMatches({ hoodLabel: hoodSetup.label, gearboxLabel: gearboxLabel + (handwheelEnabled ? " · mit Handrad" : "") + (positionIndicatorEnabled ? " · mit Stellungsanzeige" : ""), layers });
 }
 
 async function loadConfig() {
@@ -215,7 +223,7 @@ function initControls() {
   optionList($("hoodSetup"), rules.hoodSetup, cfg.active?.hoodSetup || "large_with_ring");
   optionList($("gearboxMode"), rules.gearboxMode, cfg.active?.gearboxMode || "none");
   optionList($("shaftType"), rules.shaftType, cfg.active?.shaftType || "vierkant");
-  ["hoodSetup", "gearboxMode", "shaftType", "time", "protection"].forEach((id) => {
+  ["hoodSetup", "gearboxMode", "shaftType", "handwheelEnabled", "positionIndicatorEnabled", "time", "protection"].forEach((id) => {
     const el = $(id);
     if (!el) return;
     el.addEventListener("input", updateConfigurator);
