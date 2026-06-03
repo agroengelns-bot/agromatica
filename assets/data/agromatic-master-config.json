@@ -1,7 +1,7 @@
 {
-  "version": "agromatic-master-config-v31-handrad-optionen",
+  "version": "agromatic-master-config-v33-handrad-koordinaten",
   "schema": "gearboxMode-and-shaftType",
-  "notes": "Master JSON mit getrennten Auswahlkriterien: Zusatzgetriebe mit/ohne, Welle, Haubenaufbau. Gehäuse bleibt fixer Nullpunkt 0/0/100%. Haubenoptionen: kleine Haube, kleine Haube mit Ring, große Haube, große Haube mit Ring. V26: Haube 2 mit Ring wieder mit vollständiger JSON; Höhenversatz reduziert. | V27: Zusatzvierkant nach oben korrigiert; PF20-Bild ersetzt. | V29: PF20-Dateiname auf lowercase canonical zusatz-pf20.png umgestellt; Uppercase-Kopie bleibt als Fallback. | V31: Handrad aus separater JSON übernommen; Haubenparameter daraus nicht übernommen. Optionen: mit Handrad, mit Stellungsanzeige.",
+  "notes": "Master JSON mit getrennten Auswahlkriterien: Zusatzgetriebe mit/ohne, Welle, Haubenaufbau. Gehäuse bleibt fixer Nullpunkt 0/0/100%. Haubenoptionen: kleine Haube, kleine Haube mit Ring, große Haube, große Haube mit Ring. V26: Haube 2 mit Ring wieder mit vollständiger JSON; Höhenversatz reduziert. | V27: Zusatzvierkant nach oben korrigiert; PF20-Bild ersetzt. | V29: PF20-Dateiname auf lowercase canonical zusatz-pf20.png umgestellt; Uppercase-Kopie bleibt als Fallback. | V31: Handrad aus separater JSON übernommen; Haubenparameter daraus nicht übernommen. Optionen: mit Handrad, mit Stellungsanzeige. | V33: Handradposition aus Layer-Tool übernommen: x=307.8, y=-16.2, scale=100.",
   "layerOrderTopToBottom": [
     "shaft",
     "gearbox",
@@ -550,13 +550,22 @@
         "file": "handrad.png",
         "placement": {
           "visible": true,
-          "x": 0,
-          "y": 0,
+          "x": 307.8,
+          "y": -16.2,
           "scale": 100,
           "opacity": 100,
           "zIndex": 10
         },
-        "placements": {}
+        "placements": {
+          "free": {
+            "visible": true,
+            "x": 307.8,
+            "y": -16.2,
+            "scale": 100,
+            "opacity": 100,
+            "zIndex": 10
+          }
+        }
       }
     }
   },
@@ -576,8 +585,8 @@
       "enabledBy": "withHandwheel",
       "variantKey": "handwheel_handrad",
       "file": "handrad.png",
-      "x": 0,
-      "y": 0,
+      "x": 307.8,
+      "y": -16.2,
       "scale": 100
     }
   }
