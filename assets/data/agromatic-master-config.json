@@ -1,7 +1,7 @@
 {
-  "version": "agromatic-master-config-v42-all-layer-rahmen-fix",
+  "version": "agromatic-master-config-v43-broken-img-cleanup",
   "schema": "gearboxMode-and-shaftType",
-  "notes": "V42: Website blendet alle inaktiven Layer vollständig aus; keine Rahmen/Platzhalter bei ausgeblendeten Bildern.",
+  "notes": "V43: Harte Bereinigung gegen sichtbare leere/broken IMG-Rahmen im Preview.",
   "layerOrderTopToBottom": [
     "shaft",
     "gearbox",

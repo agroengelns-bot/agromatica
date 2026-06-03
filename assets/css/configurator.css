@@ -266,3 +266,31 @@ img[data-layer]:not(.is-active) {
   background-image: none !important;
   box-shadow: none !important;
 }
+
+
+/* V43: Browser-Rahmen von leeren/broken IMG-Layern komplett unterdrücken. */
+.product-visual img,
+.configurator-preview img,
+.product-preview img,
+#configuratorPreview img,
+#previewLayers img,
+.layer-stack img,
+.configurator-stage img {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.product-visual img:not(.is-active),
+.configurator-preview img:not(.is-active),
+.product-preview img:not(.is-active),
+#configuratorPreview img:not(.is-active),
+#previewLayers img:not(.is-active),
+.layer-stack img:not(.is-active),
+.configurator-stage img:not(.is-active) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}

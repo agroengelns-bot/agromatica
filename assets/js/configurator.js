@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator V42 – alle Layer sauber ausblenden";
+const CONFIG_VERSION = "Konfigurator V43 – Broken-Image-Rahmen entfernt";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 const ASSET_BASE = "assets/img/konfigurator/";
 const CONFIG_URL = "assets/data/agromatic-master-config.json";
@@ -123,29 +123,58 @@ function setLayer(layer, variant, mount) {
 
   const placement = normalizePlacement((mount && variant?.placements?.[mount]) || variant?.placement);
 
-  // V42: Alle nicht aktiven oder ungültigen Layer komplett ausblenden.
-  // Dadurch bleiben beim Ausblenden keine leeren Bildrahmen/Alt-Text-Rahmen stehen.
+  const hideLayer = () => {
+    layer.classList.remove("is-active");
+    layer.style.display = "none";
+    layer.style.visibility = "hidden";
+    layer.style.opacity = "0";
+    layer.style.border = "0";
+    layer.style.outline = "0";
+    layer.style.boxShadow = "none";
+    layer.style.background = "transparent";
+    layer.style.backgroundImage = "none";
+    layer.removeAttribute("src");
+    layer.removeAttribute("alt");
+  };
+
   if (!variant || !variant.file || !placement || placement.visible === false) {
-    deactivateLayer(layer);
+    hideLayer();
+    setTimeout(hardCleanupBrokenPreviewImages, 0);
     return;
   }
 
+  layer.removeAttribute("alt");
+  layer.style.border = "0";
+  layer.style.outline = "0";
+  layer.style.boxShadow = "none";
+  layer.style.background = "transparent";
+  layer.style.backgroundImage = "none";
+  layer.style.display = "block";
+  layer.style.visibility = "visible";
+  layer.style.opacity = String((placement.opacity ?? 100) / 100);
+  layer.style.zIndex = String(placement.zIndex ?? 1);
+  layer.style.setProperty("--layer-x", `${(placement.x ?? 0) / 10}%`);
+  layer.style.setProperty("--layer-y", `${(placement.y ?? 0) / 10}%`);
+  layer.style.setProperty("--layer-scale", String((placement.scale ?? 100) / 100));
+
   layer.onerror = () => {
     console.warn("Konfigurator-Bild nicht gefunden:", variant.file, "=>", resolveFile(variant.file));
-    deactivateLayer(layer);
+    hideLayer();
+    setTimeout(hardCleanupBrokenPreviewImages, 0);
   };
 
   layer.onload = () => {
-    activateLayer(layer);
+    if (layer.naturalWidth > 0) {
+      layer.classList.add("is-active");
+      layer.style.display = "block";
+      layer.style.visibility = "visible";
+    } else {
+      hideLayer();
+    }
+    setTimeout(hardCleanupBrokenPreviewImages, 0);
   };
 
-  activateLayer(layer);
   layer.src = ASSET_BASE + resolveFile(variant.file) + "?v=" + encodeURIComponent(CONFIG_VERSION);
-  layer.style.setProperty("--layer-x", `${placement.x / 10}%`);
-  layer.style.setProperty("--layer-y", `${placement.y / 10}%`);
-  layer.style.setProperty("--layer-scale", String(placement.scale / 100));
-  layer.style.opacity = String(placement.opacity / 100);
-  layer.style.zIndex = String(placement.zIndex);
 }
 
 function optionList(select, items, selected) {
@@ -312,3 +341,47 @@ function cleanupInactiveLayers() {
 
 window.addEventListener("load", cleanupInactiveLayers);
 document.addEventListener("change", () => setTimeout(cleanupInactiveLayers, 0));
+
+
+// V43: harter Cleanup gegen sichtbare Browser-Rahmen von leeren/broken IMG-Layern.
+function hardCleanupBrokenPreviewImages() {
+  const previewSelectors = [
+    ".product-visual",
+    ".configurator-preview",
+    ".product-preview",
+    "#configuratorPreview",
+    "#previewLayers",
+    ".layer-stack",
+    ".configurator-stage"
+  ];
+
+  previewSelectors.forEach((selector) => {
+    document.querySelectorAll(selector + " img").forEach((img) => {
+      const hasSrc = img.hasAttribute("src") && img.getAttribute("src") && img.getAttribute("src").trim() !== "";
+      const broken = hasSrc && img.complete && img.naturalWidth === 0;
+      const inactive = !img.classList.contains("is-active");
+
+      img.removeAttribute("alt");
+      img.style.border = "0";
+      img.style.outline = "0";
+      img.style.boxShadow = "none";
+      img.style.background = "transparent";
+      img.style.backgroundImage = "none";
+
+      if (!hasSrc || broken || inactive) {
+        img.classList.remove("is-active");
+        img.style.display = "none";
+        img.style.visibility = "hidden";
+        img.style.opacity = "0";
+        img.removeAttribute("src");
+        img.removeAttribute("alt");
+      }
+    });
+  });
+}
+
+// Bei jeder Änderung und nach jedem Rendern aufräumen.
+window.addEventListener("load", hardCleanupBrokenPreviewImages);
+document.addEventListener("DOMContentLoaded", hardCleanupBrokenPreviewImages);
+document.addEventListener("change", () => setTimeout(hardCleanupBrokenPreviewImages, 20));
+setInterval(hardCleanupBrokenPreviewImages, 500);
