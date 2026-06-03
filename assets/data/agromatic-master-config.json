@@ -571,6 +571,14 @@
     "stagePlacementHint": {
       "previewYOffsetPx": 80,
       "previewScale": "auto-fit"
+    },
+    "handwheel": {
+      "enabledBy": "withHandwheel",
+      "variantKey": "handwheel_handrad",
+      "file": "handrad.png",
+      "x": 0,
+      "y": 0,
+      "scale": 100
     }
   }
 }
