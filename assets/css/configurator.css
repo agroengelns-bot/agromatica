@@ -225,13 +225,10 @@
 }
 
 
-/* V44: keine Browser-Rahmen an Layerbildern; Sichtbarkeit wird ausschließlich per JS/setLayer gesteuert. */
+/* V45: Layer sichtbar, ohne Browser-/Platzhalterrahmen. Sichtbarkeit steuert JS direkt. */
 .product-layer,
-.config-layer,
-.layer-img,
-img[data-layer],
-.configurator-preview img,
 .product-preview img,
+.configurator-preview img,
 .product-visual img,
 .layer-stack img {
   border: 0 !important;
@@ -239,4 +236,12 @@ img[data-layer],
   box-shadow: none !important;
   background: transparent !important;
   background-image: none !important;
+}
+
+.product-layer {
+  display: none;
+}
+
+.product-layer.is-active {
+  display: block;
 }

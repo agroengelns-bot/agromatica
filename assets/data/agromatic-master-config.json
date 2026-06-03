@@ -1,7 +1,7 @@
 {
-  "version": "agromatic-master-config-v44-layer-sichtbarkeit-fix",
+  "version": "agromatic-master-config-v45-layer-onload-fix",
   "schema": "gearboxMode-and-shaftType",
-  "notes": "V44: V43-Cleanup zurückgenommen. Aktive Layer bleiben sichtbar; nicht aktive Layer werden per setLayer ausgeblendet. PF20 bleibt auf ZusPF20.png.",
+  "notes": "V45: Aktive Layer werden sofort sichtbar gesetzt; keine Abhängigkeit mehr vom onload-Event. PF20 bleibt auf ZusPF20.png.",
   "layerOrderTopToBottom": [
     "shaft",
     "gearbox",

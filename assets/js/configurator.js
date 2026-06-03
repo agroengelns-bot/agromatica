@@ -1,4 +1,4 @@
-const CONFIG_VERSION = "Konfigurator V44 – Layer sichtbar, Rahmen aus";
+const CONFIG_VERSION = "Konfigurator V45 – Layer sofort sichtbar";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
 const ASSET_BASE = "assets/img/konfigurator/";
 const CONFIG_URL = "assets/data/agromatic-master-config.json";
@@ -96,8 +96,6 @@ function setLayer(layer, variant, mount) {
 
   const placement = normalizePlacement((mount && variant?.placements?.[mount]) || variant?.placement);
 
-  // Nur wirklich nicht benötigte Layer komplett ausblenden.
-  // Aktive Layer werden NICHT durch einen globalen Cleanup entfernt.
   if (!variant || !variant.file || !placement || placement.visible === false) {
     layer.classList.remove("is-active");
     layer.style.display = "none";
@@ -108,6 +106,11 @@ function setLayer(layer, variant, mount) {
     return;
   }
 
+  const src = ASSET_BASE + resolveFile(variant.file) + "?v=" + encodeURIComponent(CONFIG_VERSION);
+
+  // V45: Aktive Layer sofort sichtbar setzen.
+  // Nicht mehr auf onload warten, weil gecachte Bilder sonst ohne erneutes onload unsichtbar bleiben können.
+  layer.classList.add("is-active");
   layer.removeAttribute("alt");
   layer.style.display = "block";
   layer.style.visibility = "visible";
@@ -116,6 +119,11 @@ function setLayer(layer, variant, mount) {
   layer.style.boxShadow = "none";
   layer.style.background = "transparent";
   layer.style.backgroundImage = "none";
+  layer.style.setProperty("--layer-x", `${placement.x / 10}%`);
+  layer.style.setProperty("--layer-y", `${placement.y / 10}%`);
+  layer.style.setProperty("--layer-scale", String(placement.scale / 100));
+  layer.style.opacity = String((placement.opacity ?? 100) / 100);
+  layer.style.zIndex = String(placement.zIndex ?? 1);
 
   layer.onerror = () => {
     console.warn("Konfigurator-Bild nicht gefunden:", variant.file, "=>", resolveFile(variant.file));
@@ -127,18 +135,9 @@ function setLayer(layer, variant, mount) {
     layer.removeAttribute("alt");
   };
 
-  layer.onload = () => {
-    layer.classList.add("is-active");
-    layer.style.display = "block";
-    layer.style.visibility = "visible";
-  };
-
-  layer.src = ASSET_BASE + resolveFile(variant.file) + "?v=" + encodeURIComponent(CONFIG_VERSION);
-  layer.style.setProperty("--layer-x", `${placement.x / 10}%`);
-  layer.style.setProperty("--layer-y", `${placement.y / 10}%`);
-  layer.style.setProperty("--layer-scale", String(placement.scale / 100));
-  layer.style.opacity = String((placement.opacity ?? 100) / 100);
-  layer.style.zIndex = String(placement.zIndex ?? 1);
+  if (layer.getAttribute("src") !== src) {
+    layer.src = src;
+  }
 }
 
 function optionList(select, items, selected) {
