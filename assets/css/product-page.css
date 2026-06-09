@@ -233,3 +233,17 @@
     position: static;
   }
 }
+
+
+.scroll-anchor {
+  height: 1px;
+  margin-top: -1px;
+  scroll-margin-top: 38vh;
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 760px) {
+  .scroll-anchor {
+    scroll-margin-top: 22vh;
+  }
+}
