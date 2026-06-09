@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="assets/css/header.css">
   <link rel="stylesheet" href="assets/css/hero.css">
   <link rel="stylesheet" href="assets/css/content.css">
+  <link rel="stylesheet" href="assets/css/configurator.css">
   <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/configurator-entry.css">
 </head>
@@ -35,9 +36,9 @@
       <div>
         <p class="eyebrow">Produktkonfigurator</p>
         <h1>Antriebsvarianten visuell zusammenstellen</h1>
-        <p>Der Konfigurator dient als visuelle Voranfrage für Agromatic-Stellantriebe. Er soll N- und NK-Reihen, ATEX Zone 2/22, IECEx / ATEX Zone 1 und perspektivisch auch Linearantriebe in einer gemeinsamen Struktur abbilden.</p>
+        <p>Der funktionierende Layer-Konfigurator ist hier wieder eingebunden. Er startet mit Dreh- und Schwenkantrieben und kann strukturell später um Linearantriebe erweitert werden.</p>
         <div class="button-row">
-          <a class="btn btn-primary" href="#konfigurator-struktur">Konfigurator starten</a>
+          <a class="btn btn-primary" href="#konfigurator-live">Konfigurator starten</a>
           <a class="btn btn-secondary" href="kontakt.html">Technische Anfrage senden</a>
         </div>
       </div>
@@ -53,48 +54,37 @@
     </div>
   </section>
 
-  <section id="konfigurator-struktur" class="configurator-section">
+  <section class="configurator-family-overview">
     <div class="container">
-      <div class="section-header section-header-full">
-        <p class="eyebrow">Einstieg</p>
-        <h2>Welche Antriebsfamilie möchten Sie konfigurieren?</h2>
-        <p class="section-copy">Die technische Auslegung wird nicht automatisch versprochen. Der Konfigurator sammelt die wichtigsten Varianten und dient als Grundlage für die Beratung.</p>
-      </div>
-
       <div class="configurator-family-grid">
         <article class="configurator-family-card is-active">
-          <span class="badge">Stufe 1</span>
+          <span class="badge">aktiver Konfigurator</span>
           <h3>Dreh- und Schwenkantriebe</h3>
           <p>N- und NK-Reihen, Wellenvarianten, Zusatzgetriebe, Haube, Ring, Handrad und Stellungsanzeige.</p>
           <div class="configurator-options">
             <span>Standard</span><span>ATEX Zone 2/22</span><span>IECEx / ATEX Zone 1</span>
           </div>
-          <a class="btn btn-primary" href="dreh-schwenkantriebe.html#konfigurator-teaser">Dreh-/Schwenk konfigurieren</a>
         </article>
 
         <article class="configurator-family-card">
-          <span class="badge">Stufe 2</span>
+          <span class="badge">nächste Ausbaustufe</span>
           <h3>Linearantriebe</h3>
-          <p>K, KA und V sowie K/KA/V Z2/22 und NEx-K/NEx-KA/NEx-V. Die Layerlogik wird separat aufgebaut.</p>
+          <p>K, KA und V sowie K/KA/V Z2/22 und NEx-K/NEx-KA/NEx-V. Die Layerlogik wird separat ergänzt.</p>
           <div class="configurator-options">
             <span>K</span><span>KA</span><span>V</span><span>Ex-Ausführungen</span>
           </div>
-          <a class="btn btn-secondary" href="linearantriebe.html#konfigurator-teaser">Linearantriebe ansehen</a>
         </article>
-      </div>
-
-      <div class="configurator-note">
-        <h3>Hinweis zur aktuellen Einbindung</h3>
-        <p>Diese Seite bindet den Konfigurator strategisch in die Website ein. Die bestehende Layer-Konfigurator-Logik sollte als nächster Schritt hierher verschoben oder unterhalb dieser Einstiegsseite integriert werden, damit die Produktseiten sauber bleiben.</p>
       </div>
     </div>
   </section>
+
+<section id="konfigurator-live" class="config-section"><div class="container"><div class="section-header"><div class="eyebrow">Auslegung</div><h2>Grundgerät konfigurieren</h2><p class="section-copy">Der Konfigurator nutzt transparente PNG-Layer. Das Gehäuse bleibt fixer Nullpunkt; Zusatzgetriebe und Wellenform werden getrennt ausgewählt.</p></div><div class="config-grid"><aside class="config-panel"><h2>Parameter</h2><div class="form-grid"><div class="field"><label for="hoodSetup">Haube</label><select id="hoodSetup"><option value="small">kleine Haube</option><option value="small_with_ring">kleine Haube mit Ring</option><option value="large">große Haube</option><option selected="" value="large_with_ring">große Haube mit Ring</option></select><div class="hint">Haubenaufbau nach Master-JSON: klein/groß, mit oder ohne Ring.</div></div><div class="field"><label for="gearboxMode">Zusatzgetriebe</label><select id="gearboxMode"><option selected="" value="none">ohne Zusatzgetriebe</option><option value="withGearbox">mit Zusatzgetriebe</option></select><div class="hint">Mit Zusatzgetriebe wird ein fertiges Kombibild Zusatzgetriebe + Welle verwendet.</div></div><div class="field"><label for="shaftType">Welle</label><select id="shaftType"><option selected="" value="vierkant">Vierkant</option><option value="federwelle">Federwelle / Passfeder</option><option value="q20">Q20</option><option value="q25">Q25</option><option value="pf20">PF20</option><option value="pf25">PF25</option></select><div class="hint">Die Wellenform bleibt gleiches Auswahlkriterium – mit oder ohne Zusatzgetriebe entscheidet nur den Bildsatz.</div></div><div class="field option-checks"><label class="check-row"><input id="handwheelEnabled" type="checkbox"/> <span>mit Handrad</span></label><label class="check-row"><input id="positionIndicatorEnabled" type="checkbox"/> <span>mit Stellungsanzeige</span></label><div class="hint">Handrad und Stellungsanzeige sind Zusatzoptionen. Beim Handrad-Haken erscheint das Handrad als eigener Layer im Bild.</div></div><div class="field"><label for="time">Stellzeit</label><input id="time" min="0" type="number" value="30"/><div class="hint">Stellzeit wird angezeigt, steuert die Layer-Auswahl aktuell nicht.</div></div><div class="field"><label for="protection">Schutzklasse</label><select id="protection"><option value="IP54">IP54</option><option selected="" value="IP65">IP65</option><option value="IP67">IP67</option><option value="IP68">IP68</option></select></div></div><div class="note">Der Konfigurator ist hier als zentrales Werkzeug eingebunden. Er dient zur visuellen Vorauswahl und technischen Voranfrage.</div></aside><section class="config-panel"><div class="result-head"><div><span class="badge" id="seriesBadge">100 Nm</span><h2 id="resultTitle">100 Nm – kleine Haube</h2></div><a class="btn btn-primary" href="kontakt.html">Anfrage senden</a></div><div class="device-stage"><div class="device-wrap"><div aria-label="Layer-Darstellung des konfigurierten Antriebs" class="product-preview" id="productPreview"><img alt="Welle" class="product-layer product-shaft" id="shaftLayer" src="assets/img/konfigurator/welle-innenvierkant.png"/><img alt="Zusatzgetriebe" class="product-layer product-gearbox" id="gearboxLayer" src="assets/img/konfigurator/zusatzgetriebe.png"/><img alt="Gehäuse" class="product-layer product-base is-active" id="baseLayer" src="assets/img/konfigurator/gehaeuse.png"/><img alt="Ring" class="product-layer product-ring" id="ringLayer" src="assets/img/konfigurator/ring.png"/><img alt="Haube" class="product-layer product-hood" id="hoodLayer" src="assets/img/konfigurator/haube-klein.png"/><img alt="" class="product-layer product-handwheel" id="handwheelLayer" src="assets/img/konfigurator/handrad.png"/></div></div><div class="device-info"><div class="spec"><strong>Drehmoment</strong><span id="torqueOut">100 Nm</span></div><div class="spec"><strong>Stellzeit</strong><span id="timeOut">30 s</span></div><div class="spec"><strong>Schutzklasse</strong><span id="protectionOut">IP65</span></div><div class="spec"><strong>Gehäuse</strong><span id="housingOut">Gehäuse</span></div><div class="spec"><strong>Welle</strong><span id="shaftOut">ohne Welle</span></div><div class="spec"><strong>Layer</strong><span id="layersOut">kleine Haube</span></div></div></div><div class="matches" id="matches"></div><p class="layer-note">Die Auswahl kommt aus <code>assets/data/agromatic-master-config.json</code>. Zusatzgetriebe und Welle sind getrennte Kriterien; bei „mit Zusatzgetriebe“ wird das passende Kombibild geladen.</p></section></div></div></section>
 
   <section class="cta-band">
     <div class="container">
       <div class="cta-box product-cta-box">
         <p class="eyebrow">Beratung</p>
-        <h2>Konfigurator als Voranfrage nutzen</h2>
+        <h2>Konfiguration als Voranfrage nutzen</h2>
         <p class="section-copy">Für ein belastbares Angebot prüfen wir zusätzlich Drehmoment, Stellkraft, Stellweg, Einbaulage, Schutzart, Umgebung und Steuerung.</p>
         <a class="btn btn-primary" href="kontakt.html">Anfrage senden</a>
       </div>
@@ -108,5 +98,8 @@
     <div class="small">info@agromatic.de · +49 5202 9739 0</div>
   </div>
 </footer>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/version.js"></script>
+<script src="assets/js/configurator.js"></script>
 </body>
 </html>

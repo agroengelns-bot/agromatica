@@ -61,3 +61,12 @@
   .configurator-family-grid { grid-template-columns: 1fr; }
   .configurator-teaser-box { align-items: flex-start; flex-direction: column; }
 }
+
+
+.configurator-family-overview {
+  padding: 56px 0 12px;
+}
+
+#konfigurator-live {
+  scroll-margin-top: 110px;
+}
