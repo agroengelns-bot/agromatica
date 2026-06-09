@@ -154,3 +154,21 @@
   .spec-list { grid-template-columns: 1fr; }
   .compare-table th, .compare-table td { padding: 14px 16px; }
 }
+
+
+.configurator-teaser-section { padding: 56px 0; }
+.configurator-teaser-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(16, 41, 55, 0.08);
+}
+.configurator-teaser-box h2,
+.configurator-teaser-box p { margin: 0; }
+@media (max-width: 860px) {
+  .configurator-teaser-box { align-items: flex-start; flex-direction: column; }
+}

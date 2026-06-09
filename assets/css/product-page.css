@@ -234,16 +234,19 @@
   }
 }
 
-
-.scroll-anchor {
-  height: 1px;
-  margin-top: -1px;
-  scroll-margin-top: 38vh;
-  grid-column: 1 / -1;
+.configurator-teaser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 34px 0;
+  padding: 28px;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(16, 41, 55, 0.08);
 }
-
+.configurator-teaser h2,
+.configurator-teaser p { margin: 0; }
 @media (max-width: 760px) {
-  .scroll-anchor {
-    scroll-margin-top: 22vh;
-  }
+  .configurator-teaser { align-items: flex-start; flex-direction: column; }
 }
