@@ -9,7 +9,9 @@
   <style>
     .version-badge{display:inline-block;margin-bottom:18px;padding:7px 13px;border-radius:999px;background:#0b3f91;color:#fff;font-weight:700;font-size:13px}
     .solution-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-    .solution-card{background:#fff;border:1px solid #e3e8f0;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(8,41,92,.08)}
+    .solution-card{background:#fff;border:1px solid #e3e8f0;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(8,41,92,.08);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;transform-origin:center;will-change:transform}
+    .solution-card:hover,.solution-card:focus-within{transform:scale(1.035);box-shadow:0 22px 48px rgba(8,41,92,.18);border-color:#b8cce6;z-index:2}
+    @media (prefers-reduced-motion: reduce){.solution-card{transition:none}.solution-card:hover,.solution-card:focus-within{transform:none}}
     .solution-card img,.solution-placeholder{width:100%;height:280px;object-fit:cover;display:block;background:#eef3f8}
     .solution-placeholder{display:flex;align-items:center;justify-content:center;color:#6f7f95;font-weight:700}
     .solution-card-content{padding:26px}
