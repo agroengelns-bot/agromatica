@@ -6,113 +6,56 @@
   <title>Sonderlösungen – Agromatic</title>
   <meta name="description" content="Agromatic Sonderlösungen für vibrationsstarke Umgebungen, kraft-weg-geregelte Ventilantriebe, IO-Link Signaltechnik und elektromagnetische Getriebeauskupplungen.">
   <link rel="stylesheet" href="assets/css/main.css"><link rel="stylesheet" href="assets/css/header.css"><link rel="stylesheet" href="assets/css/hero.css"><link rel="stylesheet" href="assets/css/content.css"><link rel="stylesheet" href="assets/css/footer.css">
+
+
   <style>
     .version-badge{display:inline-block;margin-bottom:18px;padding:7px 13px;border-radius:999px;background:#0b3f91;color:#fff;font-weight:700;font-size:13px}
-    .solution-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-    .solution-card{background:#fff;border:1px solid #e3e8f0;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(8,41,92,.08)}
-    .solution-card img,.solution-placeholder{width:100%;height:280px;object-fit:cover;display:block;background:#eef3f8}
+    .solution-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;overflow:visible;padding:18px;margin:-18px}
+    .solution-card{position:relative;display:flex;flex-direction:column;height:620px;background:#fff;border:1px solid #e3e8f0;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(8,41,92,.08);transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;transform-origin:center center;will-change:transform;cursor:pointer}
+    .solution-card:nth-child(1){transform-origin:left top}
+    .solution-card:nth-child(2){transform-origin:right top}
+    .solution-card:nth-child(3){transform-origin:left bottom}
+    .solution-card:nth-child(4){transform-origin:right bottom}
+    .solution-card:hover,.solution-card:focus-within{transform:scale(1.42);box-shadow:0 34px 80px rgba(8,41,92,.24);border-color:#b8cce6;z-index:20}
+    @media (prefers-reduced-motion: reduce){.solution-card{transition:none}.solution-card:hover,.solution-card:focus-within{transform:none}}
+    .solution-card img,.solution-placeholder{width:100%;height:340px;object-fit:contain;display:block;background:#f6f8fb;padding:14px;box-sizing:border-box}
     .solution-placeholder{display:flex;align-items:center;justify-content:center;color:#6f7f95;font-weight:700}
-    .solution-card-content{padding:26px}
+    .solution-card-content{padding:26px;flex:1}
     .solution-card h2{font-size:24px;margin:0 0 12px;color:#0b3f91}
     .solution-card p{margin:0;line-height:1.6}
-    @media(max-width:900px){.solution-grid{grid-template-columns:1fr}.solution-card img,.solution-placeholder{height:230px}}
+    @media(max-width:1100px){.solution-card:hover,.solution-card:focus-within{transform:scale(1.24)}}
+    @media(max-width:900px){.solution-grid{grid-template-columns:1fr;padding:0;margin:0}.solution-card{height:auto}.solution-card img,.solution-placeholder{height:260px;padding:12px}.solution-card:hover,.solution-card:focus-within{transform:scale(1.03)}}
+
+    .solution-card-kraftweg{z-index:1}
+    .solution-card-kraftweg:hover,.solution-card-kraftweg:focus-within{transform:scale(2.0);z-index:30}
+    .solution-card-kraftweg img{height:360px;object-fit:contain;background:#f6f8fb;padding:12px}
+    .solution-card-kraftweg:hover img,.solution-card-kraftweg:focus-within img{height:430px}
+    @media(max-width:1100px){.solution-card-kraftweg:hover,.solution-card-kraftweg:focus-within{transform:scale(1.55)}}
+    @media(max-width:900px){.solution-card-kraftweg:hover,.solution-card-kraftweg:focus-within{transform:scale(1.03)}.solution-card-kraftweg img{height:280px}.solution-card-kraftweg:hover img,.solution-card-kraftweg:focus-within img{height:280px}}
   </style>
-
-<style>
-/* Sonderlösungen: Hoveranimation und passende Grafikgröße */
-@media (hover:hover) and (pointer:fine){
-  body,
-  section,
-  .container,
-  .cards-grid,
-  .grid-2,
-  .grid-3,
-  .grid-4{
-    overflow:visible!important;
-  }
-
-  .cards-grid > .card,
-  .cards-grid > .card-link,
-  .grid-2 > .card,
-  .grid-2 > .card-link,
-  .grid-3 > .card,
-  .grid-3 > .card-link,
-  .grid-4 > .card,
-  .grid-4 > .card-link{
-    position:relative!important;
-    z-index:1;
-    transform-origin:center center;
-    transition:transform .25s ease, box-shadow .25s ease;
-    will-change:transform;
-  }
-
-  .cards-grid > .card:hover,
-  .cards-grid > .card-link:hover,
-  .grid-2 > .card:hover,
-  .grid-2 > .card-link:hover,
-  .grid-3 > .card:hover,
-  .grid-3 > .card-link:hover,
-  .grid-4 > .card:hover,
-  .grid-4 > .card-link:hover{
-    z-index:100!important;
-    box-shadow:0 30px 80px rgba(13,56,79,.24)!important;
-  }
-
-  .cards-grid > :nth-child(1):hover,
-  .cards-grid > :nth-child(3):hover,
-  .cards-grid > :nth-child(4):hover,
-  .grid-2 > :nth-child(1):hover,
-  .grid-2 > :nth-child(3):hover,
-  .grid-2 > :nth-child(4):hover,
-  .grid-3 > :nth-child(1):hover,
-  .grid-3 > :nth-child(3):hover,
-  .grid-3 > :nth-child(4):hover,
-  .grid-4 > :nth-child(1):hover,
-  .grid-4 > :nth-child(3):hover,
-  .grid-4 > :nth-child(4):hover{
-    transform:scale(2)!important;
-  }
-
-  .cards-grid > :nth-child(2):hover,
-  .grid-2 > :nth-child(2):hover,
-  .grid-3 > :nth-child(2):hover,
-  .grid-4 > :nth-child(2):hover{
-    transform:scale(4)!important;
-  }
-}
-
-/* Sonderlösungen: Bilder innerhalb der Kacheln vollständig sichtbar halten */
-.cards-grid > * img,
-.grid-2 > * img,
-.grid-3 > * img,
-.grid-4 > * img{
-  max-width:100%!important;
-  max-height:220px!important;
-  width:auto!important;
-  height:auto!important;
-  object-fit:contain!important;
-  display:block!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
-}
-
-.cards-grid > :nth-child(2) img,
-.grid-2 > :nth-child(2) img,
-.grid-3 > :nth-child(2) img,
-.grid-4 > :nth-child(2) img{
-  max-width:78%!important;
-  max-height:185px!important;
-}
-</style>
-
 </head>
 <body>
-<header class="site-header"><div class="container header-inner"><a class="logo" href="index.html"><img src="assets/img/logo.png" alt="Agromatic Logo"></a><nav class="main-nav"><a href="index.html">Start</a><a href="produkte.html">Produkte</a><a href="sonderloesungen.html">Sonderlösungen</a><a href="atex.html">ATEX</a><a href="anwendungen.html">Anwendungen</a><a href="unternehmen.html">Unternehmen</a><a href="kontakt.html">Anfrage senden</a></nav></div></header>
+<header>
+  <div class="container nav">
+    <a class="logo" href="index.html"><img src="assets/img/logo.png" alt="Agromatic Logo"></a>
+    <nav>
+      <a href="index.html">Start</a>
+      <a href="produkte.html">Produkte</a>
+      <a href="zubehoer-regelungstechnik.html">Zubehör</a>
+      <a href="konfigurator.html">Konfigurator</a>
+      <a class="active" aria-current="page" href="sonderloesungen.html">Sonderlösungen</a>
+      <a href="produkte.html#atex-produktfamilien">ATEX</a>
+      <a href="anwendungen.html">Anwendungen</a>
+      <a href="unternehmen.html">Unternehmen</a>
+      <a class="btn btn-primary" href="kontakt.html">Anfrage senden</a>
+    </nav>
+  </div>
+</header>
 <main>
-<section class="hero subhero"><div class="container"><span class="version-badge">Sonderlösungen Version 07</span><p class="eyebrow">Agromatic</p><h1>Sonderlösungen</h1><p>Technische Sonderlösungen für industrielle Antriebstechnik, Ventilsysteme und anspruchsvolle Maschinenbauanwendungen.</p></div></section>
+<section class="hero subhero"><div class="container"><span class="version-badge">Sonderlösungen Version 17</span><p class="eyebrow">Agromatic</p><h1>Sonderlösungen</h1><p>Technische Sonderlösungen für industrielle Antriebstechnik, Ventilsysteme und anspruchsvolle Maschinenbauanwendungen.</p></div></section>
 <section class="section"><div class="container"><div class="solution-grid">
   <article class="solution-card"><img src="assets/img/vibration-industrie.png" alt="Vibrationsstarke Industrie- und Bahnanwendungen"><div class="solution-card-content"><h2>01 | Vibrationsstarke Umgebungen</h2><p>Vibrationsoptimierte Antriebssysteme und speziell gefertigte Reglerlösungen für Zentrifugen, Bahntechnik und dynamische Industrieanwendungen.</p></div></article>
-  <article class="solution-card"><img src="assets/img/kraft-wegregelung-ventile.png" alt="Kraft-Weg-geregelter Ventilantrieb"><div class="solution-card-content"><h2>02 | Kraft-Weg-geregelter Ventilantrieb</h2><p>Nach Erreichen der definierten Anpresskraft wird der Motor in Schließrichtung mechanisch abgeschaltet; die Haltekraft bleibt nicht nur über die Selbsthemmung der Spindel, sondern mechanisch mit Elastizität gespeichert und ohne Motorstrom erhalten.</p></div></article>
+  <article class="solution-card solution-card-kraftweg"><img src="assets/img/kraft-wegregelung-ventile.png" alt="Kraft-Weg-geregelter Ventilantrieb"><div class="solution-card-content"><h2>02 | Kraft-Weg-geregelter Ventilantrieb</h2><p>Nach Erreichen der definierten Anpresskraft wird der Motor in Schließrichtung mechanisch abgeschaltet; die Haltekraft bleibt nicht nur über die Selbsthemmung der Spindel, sondern mechanisch mit Elastizität gespeichert und ohne Motorstrom erhalten.</p></div></article>
   <article class="solution-card"><img src="assets/img/sps-gesteuerte-antriebe-signaltechnik.png" alt="Direkt über SPS gesteuerte Antriebe"><div class="solution-card-content"><h2>03 | IO-Link Signaltechnik</h2><p>Industrielle Signal- und Kommunikationslösungen zur intelligenten Integration von Sensorik, Antrieben und Automatisierungssystemen.</p></div></article>
   <article class="solution-card"><div class="solution-placeholder">Bild folgt</div><div class="solution-card-content"><h2>04 | Elektromagnetische Getriebeauskupplung</h2><p>Spezielle Auskupplungssysteme für sicherheitsrelevante Anwendungen und kontrollierte mechanische Trennung von Antriebssystemen.</p></div></article>
 </div></div></section>
