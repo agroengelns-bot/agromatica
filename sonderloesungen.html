@@ -19,15 +19,68 @@
   </style>
 
 <style>
-/* Nur Sonderlösungen: Grafik in Kachel 2 kleiner, damit sie nicht abgeschnitten wird */
+/* Sonderlösungen: Hover und Grafik-Fix */
+@media (hover:hover) and (pointer:fine){
+  .cards-grid,
+  .grid-2,
+  .grid-4{
+    overflow:visible;
+  }
+
+  .cards-grid > .card,
+  .grid-2 > .card,
+  .grid-4 > .card{
+    position:relative;
+    z-index:1;
+    transition:transform .25s ease, box-shadow .25s ease;
+    transform-origin:center center;
+  }
+
+  .cards-grid > .card:hover,
+  .grid-2 > .card:hover,
+  .grid-4 > .card:hover{
+    z-index:50;
+    box-shadow:0 28px 70px rgba(13,56,79,.22);
+  }
+
+  .cards-grid > .card:nth-child(1):hover,
+  .cards-grid > .card:nth-child(3):hover,
+  .cards-grid > .card:nth-child(4):hover,
+  .grid-2 > .card:nth-child(1):hover,
+  .grid-2 > .card:nth-child(3):hover,
+  .grid-2 > .card:nth-child(4):hover,
+  .grid-4 > .card:nth-child(1):hover,
+  .grid-4 > .card:nth-child(3):hover,
+  .grid-4 > .card:nth-child(4):hover{
+    transform:scale(2);
+  }
+
+  .cards-grid > .card:nth-child(2):hover,
+  .grid-2 > .card:nth-child(2):hover,
+  .grid-4 > .card:nth-child(2):hover{
+    transform:scale(4);
+  }
+}
+
+/* Sonderlösungen: Grafiken in den Kacheln passend einfügen */
+.cards-grid > .card img,
+.grid-2 > .card img,
+.grid-4 > .card img{
+  max-width:100%;
+  max-height:220px;
+  object-fit:contain;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Kachel 2 etwas kleiner, damit die Grafik nicht abgeschnitten wird */
 .cards-grid > .card:nth-child(2) img,
 .grid-2 > .card:nth-child(2) img,
 .grid-4 > .card:nth-child(2) img{
-  max-width:82%;
-  max-height:82%;
+  max-width:78%;
+  max-height:190px;
   object-fit:contain;
-  margin-left:auto;
-  margin-right:auto;
 }
 </style>
 
