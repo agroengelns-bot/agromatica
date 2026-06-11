@@ -1,0 +1,112 @@
+:root {
+  --agromatic-blue: #0877e8;
+  --agromatic-navy: #071938;
+  --tile-bg: rgba(255, 255, 255, 0.92);
+  --tile-border: rgba(7, 25, 56, 0.14);
+  --tile-shadow: 0 10px 24px rgba(7, 25, 56, 0.16);
+  --tile-shadow-hover: 0 18px 38px rgba(8, 119, 232, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #eef5fb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero {
+  position: relative;
+  width: min(100vw, 1600px);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #fff;
+}
+
+.hero__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-tiles {
+  position: absolute;
+  left: 35.8%;
+  bottom: 4.5%;
+  display: flex;
+  gap: 0.55rem;
+  z-index: 5;
+}
+
+.feature-tile {
+  width: clamp(8.2rem, 9vw, 10rem);
+  min-height: clamp(5.3rem, 6vw, 6.5rem);
+  padding: 0.75rem 0.65rem;
+  display: grid;
+  place-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--tile-border);
+  border-radius: 0.45rem;
+  background: var(--tile-bg);
+  color: var(--agromatic-navy);
+  box-shadow: var(--tile-shadow);
+  cursor: pointer;
+
+  /* Wiederhergestellter Hover-Effekt der Ursprungsversion:
+     Kachel wird beim Mouseover sichtbar größer. */
+  transform: translateY(0) scale(1);
+  transform-origin: center bottom;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.feature-tile:hover,
+.feature-tile:focus-visible {
+  transform: translateY(-8px) scale(1.12);
+  border-color: var(--agromatic-blue);
+  background: #fff;
+  box-shadow: var(--tile-shadow-hover);
+  outline: none;
+  z-index: 10;
+}
+
+.feature-tile--active {
+  border-color: var(--agromatic-blue);
+  color: #052b8f;
+}
+
+.feature-tile__icon {
+  font-size: clamp(1.7rem, 2.5vw, 2.4rem);
+  line-height: 1;
+  color: var(--agromatic-blue);
+}
+
+.feature-tile__label {
+  font-size: clamp(0.78rem, 0.9vw, 1rem);
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .feature-tiles {
+    left: 4%;
+    right: 4%;
+    bottom: 2.5%;
+    justify-content: center;
+  }
+
+  .feature-tile {
+    width: 22vw;
+    min-width: 4.9rem;
+  }
+}
