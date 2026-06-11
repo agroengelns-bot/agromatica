@@ -10,13 +10,6 @@
     .version-badge{display:inline-block;margin-bottom:18px;padding:7px 13px;border-radius:999px;background:#0b3f91;color:#fff;font-weight:700;font-size:13px}
     .solution-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
     .solution-card{background:#fff;border:1px solid #e3e8f0;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(8,41,92,.08)}
-    @media (hover:hover) and (pointer:fine){
-      .solution-grid{overflow:visible}
-      .solution-card{position:relative;z-index:1;transition:transform .25s ease,box-shadow .25s ease;transform-origin:center center}
-      .solution-card:hover{z-index:50;box-shadow:0 18px 45px rgba(8,41,92,.18)}
-      .solution-card:nth-child(1):hover,.solution-card:nth-child(3):hover,.solution-card:nth-child(4):hover{transform:scale(1.5)}
-      .solution-card:nth-child(2):hover{transform:scale(3)}
-    }
     .solution-card img,.solution-placeholder{width:100%;height:280px;object-fit:cover;display:block;background:#eef3f8}
     .solution-placeholder{display:flex;align-items:center;justify-content:center;color:#6f7f95;font-weight:700}
     .solution-card-content{padding:26px}
@@ -24,6 +17,20 @@
     .solution-card p{margin:0;line-height:1.6}
     @media(max-width:900px){.solution-grid{grid-template-columns:1fr}.solution-card img,.solution-placeholder{height:230px}}
   </style>
+
+<style>
+/* Nur Sonderlösungen: Grafik in Kachel 2 kleiner, damit sie nicht abgeschnitten wird */
+.cards-grid > .card:nth-child(2) img,
+.grid-2 > .card:nth-child(2) img,
+.grid-4 > .card:nth-child(2) img{
+  max-width:82%;
+  max-height:82%;
+  object-fit:contain;
+  margin-left:auto;
+  margin-right:auto;
+}
+</style>
+
 </head>
 <body>
 <header class="site-header"><div class="container header-inner"><a class="logo" href="index.html"><img src="assets/img/logo.png" alt="Agromatic Logo"></a><nav class="main-nav"><a href="index.html">Start</a><a href="produkte.html">Produkte</a><a href="sonderloesungen.html">Sonderlösungen</a><a href="atex.html">ATEX</a><a href="anwendungen.html">Anwendungen</a><a href="unternehmen.html">Unternehmen</a><a href="kontakt.html">Anfrage senden</a></nav></div></header>
