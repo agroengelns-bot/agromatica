@@ -1,25 +1,18 @@
-// Platz für spätere Interaktionen, z. B. mobile Navigation oder Formulare.
-
-(function () {
-  function addIsoFooterCertificate() {
-    var footerGrid = document.querySelector('footer .footer-grid');
-    if (!footerGrid || footerGrid.querySelector('.footer-certification')) return;
-
-    var cert = document.createElement('div');
-    cert.className = 'footer-certification';
-    cert.innerHTML =
-      '<img src="assets/img/din-iso-9001-badge.svg" alt="DIN ISO 9001 Zertifizierung" class="footer-certification__badge">' +
-      '<div class="footer-certification__text">' +
-        '<strong>DIN EN ISO 9001</strong>' +
-        '<span>Qualitätsmanagement · Verband Deutscher Maschinen- und Anlagenbau e.V.</span>' +
-      '</div>';
-
-    footerGrid.appendChild(cert);
+(function(){
+  function addLegalLinks(){
+    var footers = document.querySelectorAll('footer');
+    footers.forEach(function(footer){
+      if (footer.querySelector('.legal-links') || footer.querySelector('.footer-legal')) return;
+      var container = footer.querySelector('.container') || footer;
+      var block = document.createElement('div');
+      block.className = 'small legal-links';
+      block.innerHTML = '<strong>Rechtliches</strong><br><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a>';
+      container.appendChild(block);
+    });
   }
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addIsoFooterCertificate);
+    document.addEventListener('DOMContentLoaded', addLegalLinks);
   } else {
-    addIsoFooterCertificate();
+    addLegalLinks();
   }
-}());
+})();
