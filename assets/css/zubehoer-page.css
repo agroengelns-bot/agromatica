@@ -1,22 +1,27 @@
-/* Zubehör & Regelungstechnik */
-.zube-hero{background:linear-gradient(135deg,#0b3f91 0%,#08295c 100%);color:#fff;padding:92px 0}
-.zube-hero .eyebrow{color:#bcd2ef}
-.zube-hero h1{max-width:980px;margin:0 0 18px;font-size:clamp(38px,5vw,66px);line-height:1.05}
-.zube-hero p{max-width:860px;font-size:20px;line-height:1.55;color:rgba(255,255,255,.9)}
-.zube-section{padding:72px 0;background:#fff}
-.zube-section.alt{background:#f5f8fc}
+/* Zubehör & Regelungstechnik – optisch an Produktseiten angepasst */
+.zube-hero{overflow:hidden}
+.zube-hero-grid{align-items:center}
+.zube-hero-image{display:flex;align-items:center;justify-content:center;min-height:320px}
+.zube-hero-image img{width:100%;max-width:560px;max-height:420px;object-fit:contain;border-radius:18px}
+.button-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.zube-section{padding:76px 0;background:#fff}
+.zube-section.alt{background:linear-gradient(135deg,#eaf7fc,#ffffff);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .zube-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.zube-card{background:#fff;border:1px solid #dfe7f2;border-radius:24px;padding:28px;box-shadow:0 14px 34px rgba(8,41,92,.08);min-height:260px}
-.zube-card h2{margin:0 0 14px;color:#0b3f91;font-size:24px}
-.zube-card p{margin:0;line-height:1.65}
-.zube-card .tag{display:inline-block;margin-bottom:14px;padding:7px 11px;border-radius:999px;background:#eef4fb;color:#0b3f91;font-weight:700;font-size:13px}
+.zube-card{display:flex;flex-direction:column;gap:12px;min-height:100%;padding:28px;border-radius:26px;background:#fff;box-shadow:0 18px 50px rgba(16,41,55,.08);border:1px solid rgba(20,68,84,.08)}
+.zube-card h2{margin:0;color:var(--text);font-size:24px;line-height:1.18}
+.zube-card p{margin:0;color:#57666f;line-height:1.65}
+.zube-card .tag{display:inline-block;align-self:flex-start;margin:0 0 2px;padding:6px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-dark);font-weight:700;font-size:12px}
+.zube-card .text-link{margin-top:auto;font-weight:700;color:var(--accent-dark);text-decoration:none}
+.zube-card .text-link:hover,.zube-card .text-link:focus{text-decoration:underline}
 .zube-info{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.zube-panel{background:#fff;border:1px solid #dfe7f2;border-radius:24px;padding:32px;box-shadow:0 14px 34px rgba(8,41,92,.06)}
-.zube-panel h2{margin:0 0 14px;color:#0b3f91}
+.zube-panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px;box-shadow:var(--shadow)}
+.zube-panel h2{margin:8px 0 14px;color:var(--text);font-size:32px;line-height:1.15}
+.zube-panel p{color:#4d5e68}
 .zube-list{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none}
-.zube-list li{padding:12px 14px;background:#eef4fb;border-radius:14px;color:#0b3f91;font-weight:700}
-.zube-cta{background:#0b3f91;color:#fff;border-radius:28px;padding:40px;display:flex;gap:28px;align-items:center;justify-content:space-between}
-.zube-cta p{color:rgba(255,255,255,.9);line-height:1.6}
-.zube-cta .btn{background:#fff;color:#0b3f91;border-color:#fff;white-space:nowrap}
-@media(max-width:1000px){.zube-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.zube-info{grid-template-columns:1fr}.zube-cta{display:block}}
-@media(max-width:680px){.zube-grid{grid-template-columns:1fr}.zube-hero{padding:68px 0}.zube-section{padding:52px 0}.zube-card{min-height:auto}.zube-cta{padding:28px}}
+.zube-list li{padding:12px 14px;background:var(--accent-soft);border-radius:14px;color:var(--accent-dark);font-weight:700}
+.zube-cta{background:linear-gradient(160deg,#ffffff,#eef8fd);border:1px solid #cae8f3;border-radius:28px;padding:36px;display:flex;gap:28px;align-items:center;justify-content:space-between;box-shadow:var(--shadow)}
+.zube-cta h2{margin:8px 0 0;color:var(--text)}
+.zube-cta p{color:#4d5e68;line-height:1.6}
+.zube-cta .btn{white-space:nowrap}
+@media(max-width:1000px){.zube-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.zube-info{grid-template-columns:1fr}.zube-cta{align-items:flex-start;flex-direction:column}.zube-hero-image{min-height:260px}}
+@media(max-width:680px){.zube-grid{grid-template-columns:1fr}.zube-section{padding:52px 0}.zube-card{min-height:auto;padding:22px}.zube-cta{padding:28px}.zube-hero-image{min-height:220px}}
