@@ -157,11 +157,34 @@
   }
 }
 
-/* V64 – Produktbeispiele im Hero weiter nach rechts setzen
-   Nur Desktop-Korrektur: Breite beibehalten, keine Bild-/HTML-Änderung. */
-@media (min-width: 1100px) {
+
+/* V65 – Produktbeispiele im Hero: Breite beibehalten, weiter nach rechts
+   Desktop-Korrektur ohne HTML-/Bildänderung. */
+@media (min-width: 1200px) {
+  .hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero .container,
+  .hero-inner {
+    position: relative;
+  }
+
   .hero-product-showcase {
-    margin-left: clamp(2rem, 6vw, 7rem);
-    transform: translateX(clamp(1.5rem, 4vw, 5rem));
+    position: absolute;
+    top: clamp(2.6rem, 6vh, 4.2rem);
+    right: clamp(3.5rem, 8vw, 10rem);
+    width: clamp(455px, 29vw, 525px);
+    max-width: none;
+    margin: 0;
+    transform: none;
+    z-index: 4;
+  }
+}
+
+@media (min-width: 1500px) {
+  .hero-product-showcase {
+    right: clamp(7rem, 12vw, 16rem);
   }
 }
