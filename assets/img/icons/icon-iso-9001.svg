@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ISO 9001 Qualitätsmanagement Icon</title>
+  <desc id="desc">Neutrales Zertifizierungsicon mit Schild, Häkchen und ISO 9001 Text.</desc>
+  <defs>
+    <linearGradient id="g" x1="120" y1="60" x2="392" y2="452" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f9fb"/>
+      <stop offset="1" stop-color="#e8edf2"/>
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="224" fill="url(#g)" stroke="#1f3f5b" stroke-width="18"/>
+  <path d="M256 84l132 48v100c0 88-50 160-132 196-82-36-132-108-132-196V132l132-48z" fill="#ffffff" stroke="#1f3f5b" stroke-width="18" stroke-linejoin="round"/>
+  <path d="M185 259l45 45 102-109" fill="none" stroke="#1f3f5b" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="152" y="344" width="208" height="64" rx="16" fill="#1f3f5b"/>
+  <text x="256" y="386" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" text-anchor="middle" fill="#ffffff">ISO 9001</text>
+</svg>

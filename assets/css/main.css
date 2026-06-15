@@ -33,3 +33,5 @@ h1,h2,h3{color:var(--text)}h2{font-size:40px;line-height:1.12;margin:12px 0 0}.s
 
 
 .section-header.section-header-full{max-width:none;margin-bottom:18px}
+
+.certification-card{display:flex;align-items:flex-start;gap:14px}.certification-card__icon{width:58px;height:58px;flex:0 0 auto}.certification-card h3{margin-top:0}
