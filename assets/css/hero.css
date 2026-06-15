@@ -138,7 +138,7 @@
   .hero-panel{
     width:calc(100% + 126px);
     justify-self:end;
-    transform:translate(-34px,-22px);
+    transform:translate(72px,-22px);
   }
 
   .hero-products--expanded{
@@ -149,7 +149,7 @@
 @media (min-width:901px) and (max-width:1180px){
   .hero-panel{
     width:calc(100% + 84px);
-    transform:translate(-20px,-14px);
+    transform:translate(36px,-14px);
   }
 
   .hero-products--expanded{
