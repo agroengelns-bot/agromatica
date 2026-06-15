@@ -158,33 +158,62 @@
 }
 
 
-/* V65 – Produktbeispiele im Hero: Breite beibehalten, weiter nach rechts
-   Desktop-Korrektur ohne HTML-/Bildänderung. */
+/* V66 – Hero Produktbeispiele: wirklich breiter und weiter rechts
+   Korrigiert nicht nur die Position, sondern auch die innere 3-Spalten-Kachelbreite. */
 @media (min-width: 1200px) {
   .hero {
     position: relative;
     overflow: hidden;
   }
 
-  .hero .container,
-  .hero-inner {
-    position: relative;
+  .hero-product-showcase,
+  .product-showcase,
+  .product-examples,
+  .hero-examples {
+    width: 610px !important;
+    max-width: 610px !important;
+    min-width: 610px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
   }
 
   .hero-product-showcase {
-    position: absolute;
-    top: clamp(2.6rem, 6vh, 4.2rem);
-    right: clamp(3.5rem, 8vw, 10rem);
-    width: clamp(455px, 29vw, 525px);
-    max-width: none;
-    margin: 0;
-    transform: none;
-    z-index: 4;
+    position: absolute !important;
+    top: 70px !important;
+    left: auto !important;
+    right: 140px !important;
+    z-index: 5 !important;
+  }
+
+  .hero-product-showcase .product-grid,
+  .hero-product-showcase .showcase-grid,
+  .hero-product-showcase .examples-grid,
+  .hero-product-showcase .hero-product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(150px, 1fr)) !important;
+    gap: 16px !important;
+  }
+
+  .hero-product-showcase .product-card,
+  .hero-product-showcase .showcase-card,
+  .hero-product-showcase .example-card,
+  .hero-product-showcase .hero-product-card {
+    min-width: 0 !important;
+    width: auto !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .hero-product-showcase img {
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
   }
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1600px) {
   .hero-product-showcase {
-    right: clamp(7rem, 12vw, 16rem);
+    right: 230px !important;
   }
 }
