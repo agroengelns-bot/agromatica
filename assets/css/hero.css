@@ -158,51 +158,46 @@
 }
 
 
-/* V66 – Hero Produktbeispiele: wirklich breiter und weiter rechts
-   Korrigiert nicht nur die Position, sondern auch die innere 3-Spalten-Kachelbreite. */
+/* V67 – Hero Produktbeispiele breiter und ausgewogener nach rechts
+   Ziel: Panel rechts positionieren, rechten Freiraum besser nutzen, Kacheln breiter statt gequetscht. */
 @media (min-width: 1200px) {
   .hero {
     position: relative;
     overflow: hidden;
   }
 
-  .hero-product-showcase,
-  .product-showcase,
-  .product-examples,
-  .hero-examples {
-    width: 610px !important;
-    max-width: 610px !important;
-    min-width: 610px !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    transform: none !important;
-  }
-
   .hero-product-showcase {
     position: absolute !important;
-    top: 70px !important;
+    top: clamp(3.4rem, 7vh, 5.2rem) !important;
     left: auto !important;
-    right: 140px !important;
+    right: clamp(1.5rem, 4.5vw, 5rem) !important;
+    width: clamp(640px, 38vw, 760px) !important;
+    max-width: none !important;
+    min-width: 640px !important;
+    margin: 0 !important;
+    transform: none !important;
     z-index: 5 !important;
   }
 
   .hero-product-showcase .product-grid,
   .hero-product-showcase .showcase-grid,
   .hero-product-showcase .examples-grid,
-  .hero-product-showcase .hero-product-grid {
+  .hero-product-showcase .hero-product-grid,
+  .hero-product-showcase ul {
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(150px, 1fr)) !important;
+    grid-template-columns: repeat(3, minmax(180px, 1fr)) !important;
     gap: 16px !important;
   }
 
   .hero-product-showcase .product-card,
   .hero-product-showcase .showcase-card,
   .hero-product-showcase .example-card,
-  .hero-product-showcase .hero-product-card {
+  .hero-product-showcase .hero-product-card,
+  .hero-product-showcase li {
     min-width: 0 !important;
     width: auto !important;
-    padding-left: 14px !important;
-    padding-right: 14px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
 
   .hero-product-showcase img {
@@ -212,8 +207,18 @@
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1500px) {
   .hero-product-showcase {
-    right: 230px !important;
+    right: clamp(2rem, 5.5vw, 7rem) !important;
+    width: clamp(700px, 40vw, 820px) !important;
+    min-width: 700px !important;
+  }
+
+  .hero-product-showcase .product-grid,
+  .hero-product-showcase .showcase-grid,
+  .hero-product-showcase .examples-grid,
+  .hero-product-showcase .hero-product-grid,
+  .hero-product-showcase ul {
+    grid-template-columns: repeat(3, minmax(200px, 1fr)) !important;
   }
 }
