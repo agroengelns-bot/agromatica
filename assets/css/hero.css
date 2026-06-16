@@ -362,3 +362,32 @@
     max-width:660px;
   }
 }
+
+/* V71 – Hero-Bereich harmonischer: Textblock sichtbar näher an das linke Personenbild rücken,
+   ohne die Produktbeispiele rechts zu verschieben oder zu überlagern. */
+@media (min-width:1100px){
+  .hero .container.hero-grid > div:first-child{
+    transform:translateX(clamp(-150px, -7vw, -80px));
+  }
+
+  .hero h1{
+    max-width:680px;
+  }
+
+  .lead,
+  .hero .vibration-note{
+    max-width:620px;
+  }
+}
+
+@media (min-width:1500px){
+  .hero .container.hero-grid > div:first-child{
+    transform:translateX(clamp(-190px, -8vw, -130px));
+  }
+}
+
+@media (min-width:1100px) and (max-width:1260px){
+  .hero .container.hero-grid > div:first-child{
+    transform:translateX(clamp(-80px, -5vw, -45px));
+  }
+}

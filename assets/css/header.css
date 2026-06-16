@@ -140,3 +140,91 @@ nav a.active{
     z-index:2;
   }
 }
+
+/* V71 – vollständiges DIN-EN-ISO-9001-Badge links im Header
+   Einheitlich auf allen Seiten: ganze Plakette mit Icon und Text, dezent links über dem Hero-/Seitenbereich. */
+.header-certification{
+  order:1;
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+  width:auto;
+  min-width:184px;
+  height:42px;
+  padding:5px 12px 5px 8px;
+  border:1px solid rgba(172,198,211,.9);
+  border-radius:999px;
+  background:rgba(255,255,255,.88);
+  box-shadow:0 7px 20px rgba(13,56,79,.07);
+  color:var(--text);
+  white-space:nowrap;
+}
+
+.header-certification img{
+  width:28px;
+  height:28px;
+  display:block;
+  flex:0 0 auto;
+}
+
+.header-certification span{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  line-height:1.05;
+}
+
+.header-certification strong{
+  font-size:12px;
+  letter-spacing:.025em;
+  font-weight:800;
+  color:#173140;
+}
+
+.header-certification small{
+  margin-top:2px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+@media (min-width:901px){
+  header .header-certification{
+    position:absolute;
+    left:clamp(18px, 2vw, 34px);
+    top:50%;
+    transform:translateY(-50%);
+    z-index:5;
+  }
+}
+
+@media (max-width:900px){
+  .header-certification{
+    min-width:174px;
+    height:38px;
+    padding:4px 10px 4px 7px;
+    gap:7px;
+  }
+
+  .header-certification img{
+    width:24px;
+    height:24px;
+  }
+
+  .header-certification strong{
+    font-size:11px;
+  }
+
+  .header-certification small{
+    font-size:9px;
+  }
+}
+
+@media (max-width:520px){
+  .header-certification{
+    min-width:0;
+    max-width:172px;
+  }
+}
