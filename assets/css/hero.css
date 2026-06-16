@@ -301,160 +301,40 @@
   }
 }
 
-/* V70 – Hero harmonischer: Text näher zum linken Bild, Produktbeispiele stabil rechts */
-@media (min-width: 1100px){
-  .hero .container.hero-grid{
-    max-width:none;
-    width:auto;
-    margin-left:clamp(300px, 22vw, 430px);
-    margin-right:clamp(18px, 2.4vw, 48px);
-    padding-left:0;
-    padding-right:18px;
-    grid-template-columns:minmax(390px, .78fr) minmax(600px, 1.12fr);
-    gap:clamp(18px, 1.8vw, 32px);
-    align-items:center;
-  }
-
-  .hero h1{
-    max-width:660px;
-    font-size:clamp(46px, 3vw, 58px);
-  }
-
-  .lead,
-  .hero .vibration-note{
-    max-width:600px;
-  }
-
-  .hero-panel{
-    justify-self:stretch;
-    width:100%;
-    max-width:900px;
-  }
+/* V73 – Unterseiten-Hero: Text auf dunklem Bildhintergrund lesbar machen
+   Betrifft z. B. sonderloesungen.html mit <section class="hero subhero">. */
+.hero.subhero{
+  min-height: 520px;
+  padding: 92px 0;
+  background:
+    linear-gradient(90deg, rgba(10,32,44,.78) 0%, rgba(10,32,44,.55) 46%, rgba(10,32,44,.30) 100%),
+    url('../img/hero-bg.png') center/cover no-repeat;
 }
 
-@media (min-width: 1400px){
-  .hero .container.hero-grid{
-    margin-left:clamp(320px, 21vw, 460px);
-    margin-right:clamp(22px, 2.6vw, 56px);
-    grid-template-columns:minmax(440px, .8fr) minmax(700px, 1.16fr);
-  }
+.hero.subhero .container{
+  position: relative;
+  z-index: 2;
 }
 
-@media (min-width: 1650px){
-  .hero .container.hero-grid{
-    margin-left:clamp(340px, 20vw, 500px);
-    margin-right:clamp(24px, 3vw, 64px);
-  }
+.hero.subhero .eyebrow{
+  color: var(--accent);
+  text-shadow: 0 2px 12px rgba(0,0,0,.45);
 }
 
-@media (min-width: 1100px) and (max-width: 1260px){
-  .hero .container.hero-grid{
-    margin-left:clamp(280px, 24vw, 360px);
-    grid-template-columns:minmax(360px, .82fr) minmax(520px, 1.08fr);
-    gap:18px;
-  }
-
-  .hero h1{
-    font-size:44px;
-  }
-
-  .hero-panel{
-    max-width:660px;
-  }
+.hero.subhero h1{
+  color: #fff;
+  text-shadow: 0 4px 18px rgba(0,0,0,.42);
 }
 
-/* V71 – Hero-Bereich harmonischer: Textblock sichtbar näher an das linke Personenbild rücken,
-   ohne die Produktbeispiele rechts zu verschieben oder zu überlagern. */
-@media (min-width:1100px){
-  .hero .container.hero-grid > div:first-child{
-    transform:translateX(clamp(-150px, -7vw, -80px));
-  }
-
-  .hero h1{
-    max-width:680px;
-  }
-
-  .lead,
-  .hero .vibration-note{
-    max-width:620px;
-  }
+.hero.subhero p:not(.eyebrow){
+  color: rgba(255,255,255,.92);
+  max-width: 980px;
+  text-shadow: 0 3px 14px rgba(0,0,0,.42);
 }
 
-@media (min-width:1500px){
-  .hero .container.hero-grid > div:first-child{
-    transform:translateX(clamp(-190px, -8vw, -130px));
-  }
-}
-
-@media (min-width:1100px) and (max-width:1260px){
-  .hero .container.hero-grid > div:first-child{
-    transform:translateX(clamp(-80px, -5vw, -45px));
-  }
-}
-
-
-/* V72 – Hero-Korrektur: drei klare Zonen statt überlagerter Linksschiebung.
-   Text startet rechts neben dem Personenbild, Produktbeispiele bleiben rechts stabil. */
-@media (min-width:1100px){
-  .hero .container.hero-grid{
-    width:auto;
-    max-width:none;
-    margin-left:clamp(350px, 23vw, 430px);
-    margin-right:clamp(24px, 3vw, 64px);
-    padding-left:0;
-    padding-right:0;
-    grid-template-columns:minmax(460px, .84fr) minmax(640px, 1.08fr);
-    gap:clamp(28px, 3vw, 52px);
-    align-items:center;
-  }
-
-  .hero .container.hero-grid > div:first-child{
-    transform:none;
-  }
-
-  .hero h1{
-    max-width:690px;
-    font-size:clamp(48px, 3.25vw, 60px);
-  }
-
-  .lead,
-  .hero .vibration-note{
-    max-width:620px;
-  }
-
-  .hero-panel{
-    justify-self:end;
-    width:100%;
-    max-width:860px;
-  }
-}
-
-@media (min-width:1400px){
-  .hero .container.hero-grid{
-    margin-left:clamp(390px, 24vw, 500px);
-    grid-template-columns:minmax(520px, .82fr) minmax(720px, 1.12fr);
-  }
-}
-
-@media (min-width:1650px){
-  .hero .container.hero-grid{
-    margin-left:clamp(430px, 25vw, 560px);
-  }
-}
-
-@media (min-width:1100px) and (max-width:1260px){
-  .hero .container.hero-grid{
-    margin-left:clamp(315px, 25vw, 360px);
-    margin-right:24px;
-    grid-template-columns:minmax(390px, .9fr) minmax(520px, 1fr);
-    gap:24px;
-  }
-
-  .hero h1{
-    font-size:44px;
-  }
-
-  .hero-panel{
-    max-width:660px;
+@media (max-width: 900px){
+  .hero.subhero{
+    min-height: auto;
+    padding: 72px 0;
   }
 }
