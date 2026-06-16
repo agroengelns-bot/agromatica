@@ -301,40 +301,27 @@
   }
 }
 
-/* V73 – Unterseiten-Hero: Text auf dunklem Bildhintergrund lesbar machen
-   Betrifft z. B. sonderloesungen.html mit <section class="hero subhero">. */
-.hero.subhero{
-  min-height: 520px;
-  padding: 92px 0;
-  background:
-    linear-gradient(90deg, rgba(10,32,44,.78) 0%, rgba(10,32,44,.55) 46%, rgba(10,32,44,.30) 100%),
-    url('../img/hero-bg.png') center/cover no-repeat;
-}
-
-.hero.subhero .container{
+/* Unternehmen: eigenes Fertigungsbild als Hero-Hintergrund */
+.page-hero.company-hero{
   position: relative;
-  z-index: 2;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(10,32,44,.72) 0%, rgba(10,32,44,.50) 45%, rgba(10,32,44,.24) 100%),
+    url('../img/unternehmen-hero-fertigung.png') center center / cover no-repeat;
 }
 
-.hero.subhero .eyebrow{
-  color: var(--accent);
-  text-shadow: 0 2px 12px rgba(0,0,0,.45);
+.page-hero.company-hero .container{
+  position: relative;
+  z-index: 1;
 }
 
-.hero.subhero h1{
+.page-hero.company-hero .eyebrow,
+.page-hero.company-hero h1,
+.page-hero.company-hero p{
   color: #fff;
-  text-shadow: 0 4px 18px rgba(0,0,0,.42);
+  text-shadow: 0 2px 14px rgba(0,0,0,.32);
 }
 
-.hero.subhero p:not(.eyebrow){
-  color: rgba(255,255,255,.92);
-  max-width: 980px;
-  text-shadow: 0 3px 14px rgba(0,0,0,.42);
-}
-
-@media (max-width: 900px){
-  .hero.subhero{
-    min-height: auto;
-    padding: 72px 0;
-  }
+.page-hero.company-hero .eyebrow{
+  color: #d9f3fb;
 }
