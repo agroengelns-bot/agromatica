@@ -391,3 +391,70 @@
     transform:translateX(clamp(-80px, -5vw, -45px));
   }
 }
+
+
+/* V72 – Hero-Korrektur: drei klare Zonen statt überlagerter Linksschiebung.
+   Text startet rechts neben dem Personenbild, Produktbeispiele bleiben rechts stabil. */
+@media (min-width:1100px){
+  .hero .container.hero-grid{
+    width:auto;
+    max-width:none;
+    margin-left:clamp(350px, 23vw, 430px);
+    margin-right:clamp(24px, 3vw, 64px);
+    padding-left:0;
+    padding-right:0;
+    grid-template-columns:minmax(460px, .84fr) minmax(640px, 1.08fr);
+    gap:clamp(28px, 3vw, 52px);
+    align-items:center;
+  }
+
+  .hero .container.hero-grid > div:first-child{
+    transform:none;
+  }
+
+  .hero h1{
+    max-width:690px;
+    font-size:clamp(48px, 3.25vw, 60px);
+  }
+
+  .lead,
+  .hero .vibration-note{
+    max-width:620px;
+  }
+
+  .hero-panel{
+    justify-self:end;
+    width:100%;
+    max-width:860px;
+  }
+}
+
+@media (min-width:1400px){
+  .hero .container.hero-grid{
+    margin-left:clamp(390px, 24vw, 500px);
+    grid-template-columns:minmax(520px, .82fr) minmax(720px, 1.12fr);
+  }
+}
+
+@media (min-width:1650px){
+  .hero .container.hero-grid{
+    margin-left:clamp(430px, 25vw, 560px);
+  }
+}
+
+@media (min-width:1100px) and (max-width:1260px){
+  .hero .container.hero-grid{
+    margin-left:clamp(315px, 25vw, 360px);
+    margin-right:24px;
+    grid-template-columns:minmax(390px, .9fr) minmax(520px, 1fr);
+    gap:24px;
+  }
+
+  .hero h1{
+    font-size:44px;
+  }
+
+  .hero-panel{
+    max-width:660px;
+  }
+}
