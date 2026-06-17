@@ -1,7 +1,8 @@
 const CONFIG_VERSION = "Konfigurator V45 – Layer sofort sichtbar";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
-const ASSET_BASE = "assets/img/konfigurator/";
-const CONFIG_URL = "assets/data/agromatic-master-config.json";
+const CONFIG_ASSET_PREFIX = window.location.pathname.includes("/en/") ? "../" : "";
+const ASSET_BASE = CONFIG_ASSET_PREFIX + "assets/img/konfigurator/";
+const CONFIG_URL = CONFIG_ASSET_PREFIX + "assets/data/agromatic-master-config.json";
 
 const IMAGE_ALIASES = {
   "Gehäuse.png": "gehaeuse.png",
