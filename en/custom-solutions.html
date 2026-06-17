@@ -12,6 +12,27 @@
 <link rel="stylesheet" href="../assets/css/hero.css">
 <link rel="stylesheet" href="../assets/css/content.css">
 <link rel="stylesheet" href="../assets/css/footer.css">
+
+<style>
+  .solution-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;overflow:visible;padding:18px;margin:-18px}
+  .solution-card{position:relative;display:flex;flex-direction:column;height:620px;background:#fff;border:1px solid #e3e8f0;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(8,41,92,.08);transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;transform-origin:center center;will-change:transform;cursor:pointer}
+  .solution-card:nth-child(1){transform-origin:left top}
+  .solution-card:nth-child(2){transform-origin:right top}
+  .solution-card:nth-child(3){transform-origin:left bottom}
+  .solution-card:nth-child(4){transform-origin:right bottom}
+  .solution-card:hover,.solution-card:focus-within{transform:scale(1.42);box-shadow:0 34px 80px rgba(8,41,92,.24);border-color:#b8cce6;z-index:20}
+  @media (prefers-reduced-motion: reduce){.solution-card{transition:none}.solution-card:hover,.solution-card:focus-within{transform:none}}
+  .solution-card img{width:100%;height:340px;object-fit:contain;display:block;background:#f6f8fb;padding:14px;box-sizing:border-box}
+  .solution-card-content{padding:26px;flex:1}
+  .solution-card h2{font-size:24px;margin:0 0 12px;color:#0b3f91}
+  .solution-card p{margin:0;line-height:1.6}
+  .solution-card-kraftweg{z-index:1}
+  .solution-card-kraftweg:hover,.solution-card-kraftweg:focus-within{transform:scale(2.0);z-index:30}
+  .solution-card-kraftweg img{height:360px;object-fit:contain;background:#f6f8fb;padding:12px}
+  .solution-card-kraftweg:hover img,.solution-card-kraftweg:focus-within img{height:430px}
+  @media(max-width:1100px){.solution-card:hover,.solution-card:focus-within{transform:scale(1.24)}.solution-card-kraftweg:hover,.solution-card-kraftweg:focus-within{transform:scale(1.55)}}
+  @media(max-width:900px){.solution-grid{grid-template-columns:1fr;padding:0;margin:0}.solution-card{height:auto}.solution-card img{height:260px;padding:12px}.solution-card:hover,.solution-card:focus-within,.solution-card-kraftweg:hover,.solution-card-kraftweg:focus-within{transform:scale(1.03)}.solution-card-kraftweg img,.solution-card-kraftweg:hover img,.solution-card-kraftweg:focus-within img{height:280px}}
+</style>
 </head>
 <body>
 <header>
@@ -28,7 +49,12 @@
 </header>
 
 <section class="page-hero hero subhero"><div class="container"><div class="eyebrow">Agromatic</div><h1>Custom solutions</h1><p>Technical custom solutions for industrial actuator technology, valve systems and demanding mechanical engineering applications.</p></div></section>
-<section><div class="container"><div class="grid-2"><div class="card"><span class="badge">01 | Vibration-intensive environments</span><h3>Robust actuator systems for dynamic applications</h3><p>Vibration-optimized actuator systems and specially manufactured controller solutions for centrifuges, railway technology and dynamic industrial applications.</p></div><div class="card"><span class="badge">02 | Force-travel controlled valve actuator</span><h3>Mechanical holding force without motor current</h3><p>After the defined contact force is reached, the motor is mechanically switched off in the closing direction. The holding force is not only maintained by spindle self-locking, but mechanically stored with elasticity.</p></div><div class="card"><span class="badge">03 | IO-Link signal technology</span><h3>Digital integration into automation systems</h3><p>Industrial signal and communication solutions for intelligent integration of sensors, actuators and automation systems.</p></div><div class="card"><span class="badge">04 | Customer-specific solutions</span><h3>Designed around your application</h3><p>From adapted mechanics to special interfaces, we develop actuator solutions that match installation space, control concept and operating conditions.</p></div></div></div></section>
+<section class="section"><div class="container"><div class="solution-grid">
+  <article class="solution-card"><img src="../assets/img/vibration-industrie.png" alt="Vibration-intensive industrial and railway applications"><div class="solution-card-content"><h2>01 | Vibration-intensive environments</h2><p>Vibration-optimized actuator systems and specially manufactured controller solutions for centrifuges, railway technology and dynamic industrial applications.</p></div></article>
+  <article class="solution-card solution-card-kraftweg"><img src="../assets/img/kraft-wegregelung-ventile.png" alt="Force-travel controlled valve actuator"><div class="solution-card-content"><h2>02 | Force-travel controlled valve actuator</h2><p>After the defined contact force is reached, the motor is mechanically switched off in the closing direction. The holding force is not only maintained by spindle self-locking, but mechanically stored with elasticity and retained without motor current.</p></div></article>
+  <article class="solution-card"><img src="../assets/img/sps-gesteuerte-antriebe-signaltechnik.png" alt="Actuators controlled directly via PLC and signal technology"><div class="solution-card-content"><h2>03 | IO-Link signal technology</h2><p>Industrial signal and communication solutions for intelligent integration of sensors, actuators and automation systems.</p></div></article>
+  <article class="solution-card"><img src="../assets/img/kundenspezifische-sonderloesungen.png" alt="Customer-specific custom solutions with special voltages, shaft variants, adapters and factory settings"><div class="solution-card-content"><h2>04 | Customer-specific solutions</h2><p>Custom actuator solutions for a wide range of industrial requirements – from individual units to series production. Agromatic implements adapted actuator solutions for special operating times, strokes, forces and torques, special voltages, dual-voltage inputs, shaft variants, mounting parts, customer-specific lifting units and ready-to-install factory-set actuators.</p></div></article>
+</div></div></section>
 <section class="cta-band"><div class="container"><div class="cta-box"><div class="section-header section-header-full"><div class="eyebrow">Project inquiry</div><h2>Need a solution beyond standard products?</h2><p class="section-copy">Tell us about your application, environmental conditions, control concept and installation space. We will evaluate the technical solution with you.</p></div><div class="actions"><a href="contact.html" class="btn btn-primary">Discuss custom solution</a></div></div></div></section>
 
 <footer><div class="container footer-grid"><div><strong>Agromatic Regelungstechnik GmbH</strong><br>Stukenbrocker Weg 38 · 33813 Oerlinghausen<br><span class="small">Long-standing membership in the German Mechanical Engineering Industry Association (VDMA)</span></div><div class="small">info@agromatic.de · +49 5202 9739 0</div></div></footer>
