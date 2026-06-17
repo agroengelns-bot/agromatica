@@ -1,8 +1,56 @@
 const CONFIG_VERSION = "Konfigurator V45 – Layer sofort sichtbar";
 const PROJECT_LINK = "https://github.com/agroengelns-bot/agromatica";
-const CONFIG_ASSET_PREFIX = window.location.pathname.includes("/en/") ? "../" : "";
+const IS_EN_CONFIGURATOR = window.location.pathname.includes("/en/");
+const CONFIG_ASSET_PREFIX = IS_EN_CONFIGURATOR ? "../" : "";
 const ASSET_BASE = CONFIG_ASSET_PREFIX + "assets/img/konfigurator/";
 const CONFIG_URL = CONFIG_ASSET_PREFIX + "assets/data/agromatic-master-config.json";
+
+const CONFIG_TRANSLATIONS_EN = {
+  "Konfigurator V45 – Layer sofort sichtbar": "Configurator V45 – layers immediately visible",
+  "kleine Haube mit Ring": "small cover with ring",
+  "große Haube mit Ring": "large cover with ring",
+  "kleine Haube": "small cover",
+  "große Haube": "large cover",
+  "ohne Zusatzgetriebe": "without auxiliary gearbox",
+  "mit Zusatzgetriebe": "with auxiliary gearbox",
+  "Kombibild Zusatzgetriebe mit passender Welle": "combined image of auxiliary gearbox with matching shaft",
+  "Gehäuse + Zusatzgetriebe": "Housing + auxiliary gearbox",
+  "Zusatzgetriebe + Vierkant": "Auxiliary gearbox + square shaft",
+  "Zusatzgetriebe + Q20": "Auxiliary gearbox + Q20",
+  "Zusatzgetriebe + Q25": "Auxiliary gearbox + Q25",
+  "Zusatzgetriebe + PF20": "Auxiliary gearbox + PF20",
+  "Zusatzgetriebe + PF25": "Auxiliary gearbox + PF25",
+  "Q20 ohne Zusatzgetriebe": "Q20 without auxiliary gearbox",
+  "Q25 ohne Zusatzgetriebe": "Q25 without auxiliary gearbox",
+  "PF20 ohne Zusatzgetriebe": "PF20 without auxiliary gearbox",
+  "PF25 ohne Zusatzgetriebe": "PF25 without auxiliary gearbox",
+  "Federwelle / Passfeder": "keyed shaft / keyway",
+  "Vierkant": "square shaft",
+  "ohne Welle": "without shaft",
+  "Zusatzgetriebe": "Auxiliary gearbox",
+  "Gehäuse": "Housing",
+  "Haube": "Cover",
+  "Ring": "Ring",
+  "Handrad": "Handwheel",
+  "Stellungsanzeige": "Position indicator",
+  "mit Handrad": "with handwheel",
+  "mit Stellungsanzeige": "with position indicator",
+  "Konfiguration": "Configuration",
+  "nach Auswahl": "by selection",
+  "Aktive Layer": "Active layers",
+  "Projekt": "Project",
+  "GitHub / Website öffnen": "Open GitHub / website"
+};
+
+function configText(value) {
+  const text = String(value ?? "");
+  if (!IS_EN_CONFIGURATOR || !text) return text;
+  if (CONFIG_TRANSLATIONS_EN[text]) return CONFIG_TRANSLATIONS_EN[text];
+
+  return Object.keys(CONFIG_TRANSLATIONS_EN)
+    .sort((a, b) => b.length - a.length)
+    .reduce((output, key) => output.split(key).join(CONFIG_TRANSLATIONS_EN[key]), text);
+}
 
 const IMAGE_ALIASES = {
   "Gehäuse.png": "gehaeuse.png",
@@ -66,7 +114,12 @@ const fallbackConfig = {
   variants: { baseVariants: {}, ringVariants: {}, hoodVariants: {}, shaftVariants: {}, gearboxVariants: {}, handwheelVariants: {} }
 };
 
-const torqueLabels = {
+const torqueLabels = IS_EN_CONFIGURATOR ? {
+  small: { label: "100 Nm", title: "100 Nm – small cover" },
+  small_with_ring: { label: "120 Nm", title: "120 Nm – small cover with ring" },
+  large: { label: "130 Nm", title: "130 Nm – large cover" },
+  large_with_ring: { label: "140 Nm", title: "140 Nm – large cover with ring" }
+} : {
   small: { label: "100 Nm", title: "100 Nm – kleine Haube" },
   small_with_ring: { label: "120 Nm", title: "120 Nm – kleine Haube mit Ring" },
   large: { label: "130 Nm", title: "130 Nm – große Haube" },
@@ -147,7 +200,7 @@ function optionList(select, items, selected) {
   Object.entries(items || {}).forEach(([key, item]) => {
     const option = document.createElement("option");
     option.value = key;
-    option.textContent = item.label || item.name || key;
+    option.textContent = configText(item.label || item.name || key);
     if (key === selected) option.selected = true;
     select.appendChild(option);
   });
@@ -157,7 +210,7 @@ function ensureVersionBadge() {
   if (document.querySelector(".version-badge")) return;
   const badge = document.createElement("div");
   badge.className = "version-badge";
-  badge.textContent = CONFIG_VERSION;
+  badge.textContent = configText(CONFIG_VERSION);
   document.body.appendChild(badge);
 }
 
@@ -166,10 +219,10 @@ function renderMatches(summary) {
   if (!box) return;
   box.innerHTML = "";
   [
-    { title: "Haube", copy: summary.hoodLabel },
-    { title: "Zusatzgetriebe", copy: summary.gearboxLabel },
-    { title: "Aktive Layer", copy: summary.layers.join(" + ") },
-    { title: "Projekt", copy: `<a href="${PROJECT_LINK}" target="_blank" rel="noopener">GitHub / Website öffnen</a>` }
+    { title: configText("Haube"), copy: configText(summary.hoodLabel) },
+    { title: configText("Zusatzgetriebe"), copy: configText(summary.gearboxLabel) },
+    { title: configText("Aktive Layer"), copy: summary.layers.map(configText).join(" + ") },
+    { title: configText("Projekt"), copy: `<a href="${PROJECT_LINK}" target="_blank" rel="noopener">${configText("GitHub / Website öffnen")}</a>` }
   ].forEach((item) => {
     const card = document.createElement("div");
     card.className = "match-card";
@@ -208,28 +261,28 @@ function updateConfigurator() {
   setLayer($("hoodLayer"), hoodVariant, hoodSetup.hoodMount || "onHousing");
   setLayer($("handwheelLayer"), handwheelVariant);
 
-  const torque = torqueLabels[hoodSetupKey] || { label: "", title: hoodSetup.label || "Konfiguration" };
-  const shaftLabel = rules.shaftType?.[shaftType]?.label || shaftVariant?.name || shaftType;
-  const gearboxLabel = rules.gearboxMode?.[gearboxMode]?.label || gearboxMode;
+  const torque = torqueLabels[hoodSetupKey] || { label: "", title: configText(hoodSetup.label || "Konfiguration") };
+  const shaftLabel = configText(rules.shaftType?.[shaftType]?.label || shaftVariant?.name || shaftType);
+  const gearboxLabel = configText(rules.gearboxMode?.[gearboxMode]?.label || gearboxMode);
   const layers = [];
-  if (gearboxVariant) layers.push(gearboxVariant.name || "Zusatzgetriebe");
-  if (shaftVariant) layers.push(shaftVariant.name || shaftLabel);
-  layers.push(baseVariant?.name || "Gehäuse");
-  if (ringVariant) layers.push(ringVariant.name || "Ring");
-  if (hoodVariant) layers.push(hoodSetup.label || hoodVariant.name || "Haube");
-  if (handwheelVariant) layers.push(handwheelVariant.name || "Handrad");
-  if (positionIndicatorEnabled) layers.push("Stellungsanzeige");
+  if (gearboxVariant) layers.push(configText(gearboxVariant.name || "Zusatzgetriebe"));
+  if (shaftVariant) layers.push(configText(shaftVariant.name || shaftLabel));
+  layers.push(configText(baseVariant?.name || "Gehäuse"));
+  if (ringVariant) layers.push(configText(ringVariant.name || "Ring"));
+  if (hoodVariant) layers.push(configText(hoodSetup.label || hoodVariant.name || "Haube"));
+  if (handwheelVariant) layers.push(configText(handwheelVariant.name || "Handrad"));
+  if (positionIndicatorEnabled) layers.push(configText("Stellungsanzeige"));
 
-  if ($("seriesBadge")) $("seriesBadge").textContent = torque.label || "Konfiguration";
-  if ($("resultTitle")) $("resultTitle").textContent = torque.title || hoodSetup.label;
-  if ($("torqueOut")) $("torqueOut").textContent = torque.label || "nach Auswahl";
+  if ($("seriesBadge")) $("seriesBadge").textContent = torque.label || configText("Konfiguration");
+  if ($("resultTitle")) $("resultTitle").textContent = torque.title || configText(hoodSetup.label);
+  if ($("torqueOut")) $("torqueOut").textContent = torque.label || configText("nach Auswahl");
   if ($("timeOut")) $("timeOut").textContent = `${time} s`;
   if ($("protectionOut")) $("protectionOut").textContent = protection;
-  if ($("housingOut")) $("housingOut").textContent = gearboxVariant ? "Gehäuse + Zusatzgetriebe" : "Gehäuse";
+  if ($("housingOut")) $("housingOut").textContent = gearboxVariant ? configText("Gehäuse + Zusatzgetriebe") : configText("Gehäuse");
   if ($("shaftOut")) $("shaftOut").textContent = shaftLabel;
   if ($("layersOut")) $("layersOut").textContent = layers.join(" + ");
 
-  renderMatches({ hoodLabel: hoodSetup.label, gearboxLabel: gearboxLabel + (handwheelEnabled ? " · mit Handrad" : "") + (positionIndicatorEnabled ? " · mit Stellungsanzeige" : ""), layers });
+  renderMatches({ hoodLabel: configText(hoodSetup.label), gearboxLabel: gearboxLabel + (handwheelEnabled ? " · " + configText("mit Handrad") : "") + (positionIndicatorEnabled ? " · " + configText("mit Stellungsanzeige") : ""), layers });
 }
 
 async function loadConfig() {
