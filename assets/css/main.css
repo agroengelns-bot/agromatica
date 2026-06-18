@@ -34,10 +34,58 @@ h1,h2,h3{color:var(--text)}h2{font-size:40px;line-height:1.12;margin:12px 0 0}.s
 
 .section-header.section-header-full{max-width:none;margin-bottom:18px}
 
+/* Inhaltslinks nicht als violette Browser-Standardlinks anzeigen */
+.card h3 a,
+.card h3 a:visited,
+.product-family-card h3 a,
+.product-family-card h3 a:visited,
+section a:not(.btn):not(.logo),
+section a:not(.btn):not(.logo):visited {
+  color: var(--text);
+}
 
+.card h3 a,
+.product-family-card h3 a {
+  text-decoration: none;
+}
 
-/* V15: Direkte Produktanker bleiben unter dem fixen Header sichtbar */
-.series-card[id^="baureihe-"],
-#baureihen{
-  scroll-margin-top: 120px;
+.card h3 a:hover,
+.card h3 a:focus,
+.product-family-card h3 a:hover,
+.product-family-card h3 a:focus {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Linkfarben vereinheitlichen: normale Inhalts- und Kachellinks schwarz halten.
+   Buttons, Logo und Footer bleiben aus Lesbarkeitsgruenden ausgenommen. */
+main a:not(.btn):not(.logo),
+main a:not(.btn):not(.logo):visited,
+section a:not(.btn):not(.logo),
+section a:not(.btn):not(.logo):visited,
+.card a:not(.btn),
+.card a:not(.btn):visited,
+.hero-product,
+.hero-product:visited,
+.hero-product span,
+.hero-product:visited span {
+  color: var(--text);
+}
+
+main a:not(.btn):not(.logo):hover,
+main a:not(.btn):not(.logo):focus,
+section a:not(.btn):not(.logo):hover,
+section a:not(.btn):not(.logo):focus,
+.card a:not(.btn):hover,
+.card a:not(.btn):focus,
+.hero-product:hover,
+.hero-product:focus,
+.hero-product:hover span,
+.hero-product:focus span {
+  color: var(--text);
+}
+
+.hero-product {
+  text-decoration: none;
 }
