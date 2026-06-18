@@ -172,3 +172,31 @@ nav a.active{
     max-width:172px;
   }
 }
+
+/* Header phone link */
+.header-phone{
+  display:inline-flex;
+  align-items:center;
+  white-space:nowrap;
+  font-weight:800;
+  color:var(--text);
+  text-decoration:none;
+  padding:8px 10px;
+  border-radius:999px;
+  background:rgba(240,248,252,.85);
+  border:1px solid rgba(172,198,211,.65);
+}
+
+.header-phone:hover,
+.header-phone:focus{
+  color:var(--accent-dark);
+  text-decoration:none;
+  background:#fff;
+}
+
+@media (max-width:760px){
+  .header-phone{
+    padding:6px 8px;
+    font-size:13px;
+  }
+}
