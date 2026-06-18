@@ -150,7 +150,7 @@
       button.className = 'btn btn-primary series-inquiry-btn';
       button.href = makeMailto(context, isEnglish, targetUrl);
       button.setAttribute('data-inquiry-context', context);
-      button.textContent = isEnglish ? 'Request this product' : 'Produkt anfragen';
+      button.textContent = isEnglish ? 'Request this product' : 'Stellantrieb auslegen lassen';
 
       var row = content.querySelector('.series-downloads');
       if (!row) {
@@ -162,8 +162,20 @@
     });
   }
 
+  function improveGermanCtaLabels(){
+    var isEnglish = (document.documentElement.lang || '').toLowerCase().indexOf('en') === 0 || location.pathname.indexOf('/en/') !== -1;
+    if (isEnglish) return;
+    document.querySelectorAll('a, button').forEach(function(el){
+      var label = textFrom(el);
+      if (label === 'Anfrage senden') {
+        el.textContent = 'Technische Anfrage senden';
+      }
+    });
+  }
+
 
   function init(){
+    improveGermanCtaLabels();
     addLegalLinks();
     addInquiryMailto();
     addSeriesInquiryButtons();
