@@ -37,7 +37,7 @@
     var subject = isEnglish ? ('Technical inquiry – ' + context) : ('Technische Anfrage – ' + context);
     var body = isEnglish
       ? [
-          'Hello Agromatic team,',
+          'Dear Mr. Kirschnick,',
           '',
           'I am interested in the following product or topic:',
           context,
@@ -59,7 +59,7 @@
           'Kind regards'
         ].join('\n')
       : [
-          'Hallo Agromatic-Team,',
+          'Sehr geehrter Herr Kirschnick,',
           '',
           'ich interessiere mich für folgendes Produkt bzw. Thema:',
           context,
