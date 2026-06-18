@@ -31,9 +31,9 @@
     return context || (document.documentElement.lang === 'en' ? 'Agromatic actuator' : 'Agromatic Stellantrieb');
   }
 
-  function makeMailto(context, isEnglish){
-    var url = location.href.split('#')[0];
-    if (location.hash) url += location.hash;
+  function makeMailto(context, isEnglish, targetUrl){
+    var url = targetUrl || location.href.split('#')[0];
+    if (!targetUrl && location.hash) url += location.hash;
     var subject = isEnglish ? ('Technical inquiry – ' + context) : ('Technische Anfrage – ' + context);
     var body = isEnglish
       ? [
@@ -102,9 +102,71 @@
     });
   }
 
+
+
+  function slugify(text){
+    return (text || '')
+      .toLowerCase()
+      .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'produkt';
+  }
+
+  function ensureCardId(card, usedIds){
+    if (card.id) {
+      usedIds[card.id] = true;
+      return card.id;
+    }
+    var heading = textFrom(card.querySelector('h3, h2'));
+    var base = 'produkt-' + slugify(heading);
+    var id = base;
+    var i = 2;
+    while (document.getElementById(id) || usedIds[id]) {
+      id = base + '-' + i;
+      i += 1;
+    }
+    card.id = id;
+    usedIds[id] = true;
+    return id;
+  }
+
+  function addSeriesInquiryButtons(){
+    var isEnglish = (document.documentElement.lang || '').toLowerCase().indexOf('en') === 0 || location.pathname.indexOf('/en/') !== -1;
+    var cards = document.querySelectorAll('.series-card');
+    if (!cards.length) return;
+
+    var usedIds = {};
+    document.querySelectorAll('[id]').forEach(function(el){ usedIds[el.id] = true; });
+
+    cards.forEach(function(card){
+      if (card.querySelector('.series-inquiry-btn')) return;
+
+      var content = card.querySelector('.series-content') || card;
+      var context = textFrom(card.querySelector('h3, h2')) || findContext(card);
+      var id = ensureCardId(card, usedIds);
+      var targetUrl = location.href.split('#')[0] + '#' + id;
+
+      var button = document.createElement('a');
+      button.className = 'btn btn-primary series-inquiry-btn';
+      button.href = makeMailto(context, isEnglish, targetUrl);
+      button.setAttribute('data-inquiry-context', context);
+      button.textContent = isEnglish ? 'Request this product' : 'Produkt anfragen';
+
+      var row = content.querySelector('.series-downloads');
+      if (!row) {
+        row = document.createElement('div');
+        row.className = 'button-row series-downloads';
+        content.appendChild(row);
+      }
+      row.insertBefore(button, row.firstChild);
+    });
+  }
+
+
   function init(){
     addLegalLinks();
     addInquiryMailto();
+    addSeriesInquiryButtons();
   }
 
   if (document.readyState === 'loading') {
