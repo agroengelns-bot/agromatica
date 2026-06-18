@@ -80,14 +80,14 @@
           '',
           'Viele Grüße'
         ].join('\n');
-    return 'mailto:info@agromatic.de?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    return 'mailto:Kirschnick@agromatic.de?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   }
 
   function isInquiryLink(link){
     var href = link.getAttribute('href') || '';
     var label = textFrom(link).toLowerCase();
     var hrefLower = href.toLowerCase();
-    if (hrefLower.indexOf('mailto:info@agromatic.de') === 0 && href.indexOf('subject=') === -1) return true;
+    if ((hrefLower.indexOf('mailto:info@agromatic.de') === 0 || hrefLower.indexOf('mailto:kirschnick@agromatic.de') === 0) && href.indexOf('subject=') === -1) return true;
     if (!(hrefLower === 'kontakt.html' || hrefLower === 'contact.html' || hrefLower === 'en/contact.html' || hrefLower === '../kontakt.html' || hrefLower === '../contact.html')) return false;
     return /(anfrage|anfragen|beratung|auslegung|inquiry|request)/i.test(label);
   }
