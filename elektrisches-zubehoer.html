@@ -36,6 +36,101 @@
 .electric-card .mount-image img{height:235px}
 @media (max-width:980px){.mount-intro,.mount-grid{grid-template-columns:1fr}.mount-card{grid-template-columns:1fr}}
 </style>
+
+<!-- Agromatic Schema.org Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.agromatic.de/#organization",
+      "name": "Agromatic Regelungstechnik GmbH",
+      "url": "https://www.agromatic.de/",
+      "logo": "https://www.agromatic.de/assets/img/logo.png",
+      "telephone": "+49 5202 9739 0",
+      "email": "info@agromatic.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Stukenbrocker Weg 38",
+        "postalCode": "33813",
+        "addressLocality": "Oerlinghausen",
+        "addressCountry": "DE"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.agromatic.de/#website",
+      "url": "https://www.agromatic.de/",
+      "name": "Agromatic",
+      "publisher": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "inLanguage": [
+        "de",
+        "en"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.agromatic.de/elektrisches-zubehoer.html#webpage",
+      "url": "https://www.agromatic.de/elektrisches-zubehoer.html",
+      "name": "Elektronisches Zubehör für elektrische Stellantriebe",
+      "isPartOf": {
+        "@id": "https://www.agromatic.de/#website"
+      },
+      "publisher": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "inLanguage": "de"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.agromatic.de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Produkte",
+          "item": "https://www.agromatic.de/produkte.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Zubehör & Regelungstechnik",
+          "item": "https://www.agromatic.de/zubehoer-regelungstechnik.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Elektrisches Zubehör für Stellantriebe",
+          "item": "https://www.agromatic.de/elektrisches-zubehoer.html"
+        }
+      ]
+    },
+    {
+      "@type": "ProductGroup",
+      "@id": "https://www.agromatic.de/elektrisches-zubehoer.html#productgroup",
+      "name": "Elektrisches Zubehör für Stellantriebe",
+      "description": "Elektrische Zubehörkomponenten für Agromatic-Stellantriebe, Signaltechnik und Anschlusslösungen.",
+      "category": "Zubehör für elektrische Stellantriebe",
+      "brand": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "manufacturer": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "url": "https://www.agromatic.de/elektrisches-zubehoer.html"
+    }
+  ]
+}
+</script>
+<!-- /Agromatic Schema.org Markup -->
 </head>
 <body>
 <header>
@@ -55,7 +150,7 @@
 <a href="anwendungen.html">Anwendungen</a>
 <a href="unternehmen.html">Unternehmen</a>
 <a class="language-link" href="en/electronic-accessories.html" lang="en">EN</a>
-<a class="header-phone" href="tel:+49520297390" aria-label="Agromatic telefonisch kontaktieren">+49 5202 9739 0</a><a class="btn btn-primary" href="kontakt.html">Anfrage senden</a>
+<a aria-label="Agromatic telefonisch kontaktieren" class="header-phone" href="tel:+49520297390">+49 5202 9739 0</a><a class="btn btn-primary" href="kontakt.html">Anfrage senden</a>
 </nav>
 </div>
 </header>
@@ -74,7 +169,7 @@
 <p class="section-copy">Mit elektrischem Original-Zubehör können Agromatic-Stellantriebe an spezielle Anforderungen angepasst werden. Dazu gehören Stellungsregler, Winkelgeber, Weghilfsschalter, Schaltnocken, Stromausgänge, Serviceschalter, Relais und Fail-Safe-Module.</p>
 <div class="actions">
 <a class="btn btn-secondary" href="zubehoer-regelungstechnik.html">Zurück zum Zubehör</a>
-<a class="btn btn-primary" href="kontakt.html">Anfrage senden</a>
+
 </div>
 </div>
 <div class="mount-intro-image">
@@ -146,16 +241,7 @@
 </div>
 </div>
 </section>
-<section class="cta-band">
-<div class="container">
-<div class="cta-box">
-<div class="eyebrow">Projektanfrage</div>
-<h2>Diverses elektronisches Zubehör passend zum Antrieb auswählen</h2>
-<p class="section-copy">Nennen Sie uns Antrieb, Versorgungsspannung, Einbausituation und gewünschte Zusatzfunktion. Wir prüfen, welche elektronische Ausstattung zur Baureihe und Anwendung passt.</p>
-<div class="actions"><a class="btn btn-primary" href="kontakt.html">Diverses elektronisches Zubehör anfragen</a></div>
-</div>
-</div>
-</section>
+
 <footer>
 <div class="container footer-grid">
 <div>
@@ -170,5 +256,5 @@
 </div>
 </div>
 </footer>
-</body>
+<script src="assets/js/main.js"></script></body>
 </html>

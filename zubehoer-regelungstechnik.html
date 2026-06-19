@@ -15,6 +15,117 @@
 <link href="assets/css/content.css" rel="stylesheet"/>
 <link href="assets/css/footer.css" rel="stylesheet"/>
 <link href="assets/css/zubehoer-page.css" rel="stylesheet"/>
+
+<!-- Agromatic Schema.org Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.agromatic.de/#organization",
+      "name": "Agromatic Regelungstechnik GmbH",
+      "url": "https://www.agromatic.de/",
+      "logo": "https://www.agromatic.de/assets/img/logo.png",
+      "telephone": "+49 5202 9739 0",
+      "email": "info@agromatic.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Stukenbrocker Weg 38",
+        "postalCode": "33813",
+        "addressLocality": "Oerlinghausen",
+        "addressCountry": "DE"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.agromatic.de/#website",
+      "url": "https://www.agromatic.de/",
+      "name": "Agromatic",
+      "publisher": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "inLanguage": [
+        "de",
+        "en"
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://www.agromatic.de/zubehoer-regelungstechnik.html#webpage",
+      "url": "https://www.agromatic.de/zubehoer-regelungstechnik.html",
+      "name": "Zubehör und Regelungstechnik für elektrische Stellantriebe",
+      "isPartOf": {
+        "@id": "https://www.agromatic.de/#website"
+      },
+      "publisher": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "inLanguage": "de"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.agromatic.de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Produkte",
+          "item": "https://www.agromatic.de/produkte.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Zubehör & Regelungstechnik",
+          "item": "https://www.agromatic.de/zubehoer-regelungstechnik.html"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://www.agromatic.de/zubehoer-regelungstechnik.html#itemlist",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Elektrisches Zubehör",
+          "url": "https://www.agromatic.de/elektrisches-zubehoer.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Stellungsregler",
+          "url": "https://www.agromatic.de/stellungsregler.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Positionsrückmeldung / Winkelgeber",
+          "url": "https://www.agromatic.de/positionsrueckmeldung-winkelgeber.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Weghilfsschalter & Nocken",
+          "url": "https://www.agromatic.de/weghilfsschalter-nocken.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Montageteile",
+          "url": "https://www.agromatic.de/montageteile.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- /Agromatic Schema.org Markup -->
 </head>
 <body>
 <header>
@@ -33,7 +144,7 @@
 <a href="produkte.html#atex-produktfamilien">ATEX</a>
 <a href="anwendungen.html">Anwendungen</a>
 <a href="unternehmen.html">Unternehmen</a>
-<a class="language-link" href="en/accessories-control-technology.html" lang="en">EN</a><a class="header-phone" href="tel:+49520297390" aria-label="Agromatic telefonisch kontaktieren">+49 5202 9739 0</a><a class="btn btn-primary" href="kontakt.html">Anfrage senden</a>
+<a class="language-link" href="en/accessories-control-technology.html" lang="en">EN</a><a aria-label="Agromatic telefonisch kontaktieren" class="header-phone" href="tel:+49520297390">+49 5202 9739 0</a><a class="btn btn-primary" href="kontakt.html">Anfrage senden</a>
 </nav>
 </div>
 </header>
@@ -45,7 +156,6 @@
 <h1>Zubehör und Regelungstechnik für elektrische Stellantriebe</h1>
 <p>Viele Agromatic-Antriebe können mit mechanischen Optionen, Stellungsreglern, analoger Positionsrückmeldung und digitalen Schnittstellen ausgestattet werden. So lassen sich unsere Antriebe flexibel in kundenseitige SPS-, Leit- und Automatisierungssysteme integrieren.</p>
 <div class="button-row">
-<a class="btn btn-primary" href="kontakt.html">Zubehör anfragen</a>
 <a class="btn btn-secondary" href="#zubehoer-baukasten">Optionen ansehen</a>
 </div>
 </div>
@@ -121,18 +231,7 @@
 </div>
 </div>
 </section>
-<section class="zube-section">
-<div class="container">
-<div class="zube-cta">
-<div>
-<p class="eyebrow">Projektanfrage</p>
-<h2>Zubehör und Regelungstechnik passend zum Antrieb auswählen</h2>
-<p>Beschreiben Sie uns Antrieb, Signalart, Rückmeldung und Einbausituation. Wir prüfen die passende Kombination aus Antrieb, Regler, Rückmeldung und mechanischem Zubehör.</p>
-</div>
-<a class="btn btn-primary" href="kontakt.html">Zubehör anfragen</a>
-</div>
-</div>
-</section>
+
 </main>
 <footer>
 <div class="container footer-grid">
@@ -148,5 +247,5 @@
 </div>
 </div>
 </footer>
-</body>
+<script src="assets/js/main.js"></script></body>
 </html>

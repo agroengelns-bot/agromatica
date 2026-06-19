@@ -36,6 +36,101 @@
 .electric-card .mount-image img{height:235px}
 @media (max-width:980px){.mount-intro,.mount-grid{grid-template-columns:1fr}.mount-card{grid-template-columns:1fr}}
 </style>
+
+<!-- Agromatic Schema.org Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.agromatic.de/#organization",
+      "name": "Agromatic Regelungstechnik GmbH",
+      "url": "https://www.agromatic.de/",
+      "logo": "https://www.agromatic.de/assets/img/logo.png",
+      "telephone": "+49 5202 9739 0",
+      "email": "info@agromatic.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Stukenbrocker Weg 38",
+        "postalCode": "33813",
+        "addressLocality": "Oerlinghausen",
+        "addressCountry": "DE"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.agromatic.de/#website",
+      "url": "https://www.agromatic.de/",
+      "name": "Agromatic",
+      "publisher": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "inLanguage": [
+        "de",
+        "en"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.agromatic.de/stellungsregler.html#webpage",
+      "url": "https://www.agromatic.de/stellungsregler.html",
+      "name": "Stellungsregler und Positionierregler für Agromatic-Stellantriebe",
+      "isPartOf": {
+        "@id": "https://www.agromatic.de/#website"
+      },
+      "publisher": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "inLanguage": "de"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.agromatic.de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Produkte",
+          "item": "https://www.agromatic.de/produkte.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Zubehör & Regelungstechnik",
+          "item": "https://www.agromatic.de/zubehoer-regelungstechnik.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Stellungsregler und Positionierregler",
+          "item": "https://www.agromatic.de/stellungsregler.html"
+        }
+      ]
+    },
+    {
+      "@type": "ProductGroup",
+      "@id": "https://www.agromatic.de/stellungsregler.html#productgroup",
+      "name": "Stellungsregler und Positionierregler",
+      "description": "Stellungsregler und Positionierregler für elektrische Stellantriebe und Regelanwendungen.",
+      "category": "Zubehör für elektrische Stellantriebe",
+      "brand": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "manufacturer": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "url": "https://www.agromatic.de/stellungsregler.html"
+    }
+  ]
+}
+</script>
+<!-- /Agromatic Schema.org Markup -->
 </head>
 <body>
 <header>
@@ -55,7 +150,7 @@
 <a href="anwendungen.html">Anwendungen</a>
 <a href="unternehmen.html">Unternehmen</a>
 <a class="language-link" href="en/position-controllers.html" lang="en">EN</a>
-<a class="header-phone" href="tel:+49520297390" aria-label="Agromatic telefonisch kontaktieren">+49 5202 9739 0</a><a class="btn btn-primary" href="kontakt.html">Anfrage senden</a>
+<a aria-label="Agromatic telefonisch kontaktieren" class="header-phone" href="tel:+49520297390">+49 5202 9739 0</a><a class="btn btn-primary" href="kontakt.html">Anfrage senden</a>
 </nav>
 </div>
 </header>
@@ -74,7 +169,7 @@
 <p class="section-copy">Stellungsregler ermöglichen die Einbindung von Agromatic-Antrieben in kundenseitige Steuerungs- und Regelungskonzepte. Je nach Baureihe stehen unterschiedliche Reglerausführungen zur Verfügung, zum Beispiel als interne Reglerkarte oder externe Lösung im Schaltschrank.</p>
 <div class="actions">
 <a class="btn btn-secondary" href="elektrisches-zubehoer.html">Zurück zu Elektronischem Zubehör</a>
-<a class="btn btn-primary" href="kontakt.html">Stellungsregler anfragen</a>
+
 </div>
 </div>
 <div class="mount-intro-image">
@@ -158,18 +253,7 @@
 </div>
 </div>
 </section>
-<section class="cta-band">
-<div class="container">
-<div class="cta-box">
-<div class="eyebrow">Projektanfrage</div>
-<h2>Passenden Stellungsregler zum Antrieb auswählen</h2>
-<p class="section-copy">Nennen Sie uns Antriebstyp, Versorgungsspannung, gewünschtes Sollwertsignal, Istwertsignal und Einbausituation. Wir prüfen, welche Reglerausführung zur Anwendung passt.</p>
-<div class="actions">
-<a class="btn btn-primary" href="kontakt.html">Stellungsregler anfragen</a>
-</div>
-</div>
-</div>
-</section>
+
 <footer>
 <div class="container footer-grid">
 <div>
@@ -184,5 +268,5 @@
 </div>
 </div>
 </footer>
-</body>
+<script src="assets/js/main.js"></script></body>
 </html>

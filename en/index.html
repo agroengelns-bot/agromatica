@@ -12,6 +12,69 @@
 <link rel="stylesheet" href="../assets/css/hero.css">
 <link rel="stylesheet" href="../assets/css/content.css">
 <link rel="stylesheet" href="../assets/css/footer.css">
+
+<!-- Agromatic Schema.org Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.agromatic.de/#organization",
+      "name": "Agromatic Regelungstechnik GmbH",
+      "url": "https://www.agromatic.de/",
+      "logo": "https://www.agromatic.de/assets/img/logo.png",
+      "telephone": "+49 5202 9739 0",
+      "email": "info@agromatic.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Stukenbrocker Weg 38",
+        "postalCode": "33813",
+        "addressLocality": "Oerlinghausen",
+        "addressCountry": "DE"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.agromatic.de/#website",
+      "url": "https://www.agromatic.de/",
+      "name": "Agromatic",
+      "publisher": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "inLanguage": [
+        "de",
+        "en"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.agromatic.de/en/index.html#webpage",
+      "url": "https://www.agromatic.de/en/index.html",
+      "name": "Electric actuators for demanding industrial applications",
+      "isPartOf": {
+        "@id": "https://www.agromatic.de/#website"
+      },
+      "publisher": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.agromatic.de/en/index.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- /Agromatic Schema.org Markup -->
 </head>
 <body>
 <header>

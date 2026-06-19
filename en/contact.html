@@ -12,6 +12,75 @@
 <link rel="stylesheet" href="../assets/css/hero.css">
 <link rel="stylesheet" href="../assets/css/content.css">
 <link rel="stylesheet" href="../assets/css/footer.css">
+
+<!-- Agromatic Schema.org Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.agromatic.de/#organization",
+      "name": "Agromatic Regelungstechnik GmbH",
+      "url": "https://www.agromatic.de/",
+      "logo": "https://www.agromatic.de/assets/img/logo.png",
+      "telephone": "+49 5202 9739 0",
+      "email": "info@agromatic.de",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Stukenbrocker Weg 38",
+        "postalCode": "33813",
+        "addressLocality": "Oerlinghausen",
+        "addressCountry": "DE"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.agromatic.de/#website",
+      "url": "https://www.agromatic.de/",
+      "name": "Agromatic",
+      "publisher": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "inLanguage": [
+        "de",
+        "en"
+      ]
+    },
+    {
+      "@type": "ContactPage",
+      "@id": "https://www.agromatic.de/en/contact.html#webpage",
+      "url": "https://www.agromatic.de/en/contact.html",
+      "name": "Contact us",
+      "isPartOf": {
+        "@id": "https://www.agromatic.de/#website"
+      },
+      "publisher": {
+        "@id": "https://www.agromatic.de/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.agromatic.de/en/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://www.agromatic.de/en/contact.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- /Agromatic Schema.org Markup -->
 </head>
 <body>
 <header>
