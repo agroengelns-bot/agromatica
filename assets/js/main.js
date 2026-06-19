@@ -130,29 +130,6 @@
     return id;
   }
 
-  function addMountCardInquiryLinks(){
-    var isEnglish = (document.documentElement.lang || '').toLowerCase().indexOf('en') === 0 || location.pathname.indexOf('/en/') !== -1;
-    var cards = document.querySelectorAll('.mount-card');
-    if (!cards.length) return;
-
-    var usedIds = {};
-    document.querySelectorAll('[id]').forEach(function(el){ usedIds[el.id] = true; });
-
-    cards.forEach(function(card){
-      var links = card.querySelectorAll('a.mount-link[href="kontakt.html"], a.mount-link[href="contact.html"]');
-      if (!links.length) return;
-
-      var context = textFrom(card.querySelector('h3, h2')) || findContext(links[0]);
-      var id = ensureCardId(card, usedIds);
-      var targetUrl = location.href.split('#')[0] + '#' + id;
-      links.forEach(function(link){
-        link.href = makeMailto(context, isEnglish, targetUrl);
-        link.setAttribute('data-inquiry-context', context);
-      });
-    });
-  }
-
-
   function addSeriesInquiryButtons(){
     var isEnglish = (document.documentElement.lang || '').toLowerCase().indexOf('en') === 0 || location.pathname.indexOf('/en/') !== -1;
     var cards = document.querySelectorAll('.series-card');
@@ -200,7 +177,6 @@
   function init(){
     improveGermanCtaLabels();
     addLegalLinks();
-    addMountCardInquiryLinks();
     addInquiryMailto();
     addSeriesInquiryButtons();
   }
